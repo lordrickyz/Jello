@@ -28,5 +28,6 @@
 
 # Files for Heroku to ignore
 node_modules
-bundles
+bundle.js
+bundle.js.map
 /public/assests

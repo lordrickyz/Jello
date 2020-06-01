@@ -25,3 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Files for Heroku to ignore
+node_modules
+bundle.js
+bundle.js.map
+/public/assests

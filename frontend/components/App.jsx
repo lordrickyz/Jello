@@ -9,15 +9,16 @@ import {
 import GreetingContainer from "./greeting/greeting_container";
 import SignupFormContainer from './session/signup_container';
 import LoginFormContainer from './session/login_container';
+import { AuthRoute, ProtectedRoute } from '../util/route_utils';
+//Add ProtectedRoute for dashboard main
 
 const App = () => (
   <div>
     <header>
-      <h1>Hello Jello</h1>
       <GreetingContainer/>
     </header>
-    <Route path="/login" component={LoginFormContainer} />
-    <Route path="/signup" component={SignupFormContainer} />
+    <AuthRoute path="/login" component={LoginFormContainer} />
+    <AuthRoute path="/signup" component={SignupFormContainer} />
   </div>
 );
 

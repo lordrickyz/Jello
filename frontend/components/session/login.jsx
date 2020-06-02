@@ -25,9 +25,10 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="session-form">
-        <h2>Log In!</h2>
+      <div className="session-form-login">
+        <h2>Log In (Place Image Jello Here)</h2>
         <form>
+          <h2>Log in to Jello</h2>
           <label>Username:
             <input
               type='text'

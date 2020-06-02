@@ -27,31 +27,34 @@ class Signup extends React.Component {
   render() {
     return (
       <div className= "session-form-signup">
-        <h2>Sign Up! (Place Image Jello Here)</h2>
+        <h2>(Place Image Jello Here)</h2>
         <form>
           <h2>Sign up for your account</h2>
-          <label>Username: 
-            <input 
-              type='text' 
-              value={this.state.username} 
-              onChange={this.handleInput('username')} 
-            />
-          </label>
-          <label>Email:
-            <input
-              type='text'
-              value={this.state.email}
-              onChange={this.handleInput('email')}
-            />
-          </label>
-          <label>Password:
-            <input
-              type='password'
-              value={this.state.password}
-              onChange={this.handleInput('password')}
-            />
-          </label>
-          <button onClick={this.handleSubmit}>Sign Up</button>
+          <label className="session-form-label">-Username-</label>
+          <input
+            className="signup-input"
+            type='text'
+            value={this.state.username}
+            placeholder="Who, Whom, Whomst?"
+            onChange={this.handleInput('username')}
+          />
+          <label className="session-form-label">-Email-</label>
+          <input
+            className="signup-input"
+            type='text'
+            value={this.state.email}
+            placeholder="email@jello.com"
+            onChange={this.handleInput('email')}
+          />
+          <label className="session-form-label">-Password-</label>
+          <input
+            className="signup-input"
+            type='password'
+            value={this.state.password}
+            placeholder="At Least 6 Characters"
+            onChange={this.handleInput('password')}
+          />
+          <button onClick={this.handleSubmit}>Create New Account</button>
         </form>
       </div>
     );

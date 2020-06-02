@@ -20,7 +20,7 @@ class Signup extends React.Component {
 
   handleSubmit(e) { //takes in event
     e.preventDefault();
-    this.props.createNewUser(this.state)
+    this.props.signup(this.state)
       .then(() => this.props.history.push('/'));
   }
 

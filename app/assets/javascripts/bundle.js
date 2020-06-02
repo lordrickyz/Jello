@@ -499,7 +499,7 @@ var Signup = /*#__PURE__*/function (_React$Component) {
 
       //takes in event
       e.preventDefault();
-      this.props.createNewUser(this.state).then(function () {
+      this.props.signup(this.state).then(function () {
         return _this3.props.history.push('/');
       });
     }
@@ -552,19 +552,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    signup: function (_signup) {
-      function signup(_x) {
-        return _signup.apply(this, arguments);
-      }
-
-      signup.toString = function () {
-        return _signup.toString();
-      };
-
-      return signup;
-    }(function (formUser) {
-      return dispatch(signup(formUser));
-    })
+    signup: function signup(formUser) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["signup"])(formUser));
+    }
   };
 };
 
@@ -806,29 +796,29 @@ var configureStore = function configureStore() {
 /*!*******************************************!*\
   !*** ./frontend/util/session_api_util.js ***!
   \*******************************************/
-/*! exports provided: login, signup, logout */
+/*! exports provided: signup, login, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 //Creating User
-var login = function login(user) {
+var signup = function signup(user) {
   return $.ajax({
+    url: '/api/user',
     method: 'POST',
-    url: '/api/session',
     data: {
       user: user
     }
   });
 }; //Signing User
 
-var signup = function signup(user) {
+var login = function login(user) {
   return $.ajax({
+    url: '/api/session',
     method: 'POST',
-    url: '/api/user',
     data: {
       user: user
     }

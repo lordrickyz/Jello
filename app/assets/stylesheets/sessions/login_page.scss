@@ -1,6 +1,4 @@
-// .session-background {
-//   background: #F9FAFC;;
-// }
+
 .login-back {
   position:fixed;
   padding:0;
@@ -20,17 +18,15 @@
 }
 
 .div-leftportal > img {
-  max-width: 100%;
-  height: auto;
-  box-sizing: border-box;
-  border-style: none;
+  width: auto;
+  height: 100%;
+  max-height: 60vh;
 }
 
 .div-rightportal > img {
-  max-width: 100%;
-  max-height: auto;
-  box-sizing: border-box;
-  border-style: none;
+  width: auto;
+  height: 100%;
+  max-height: 60vh;
 }
 
 .div-rightportal {
@@ -43,13 +39,13 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 90vh;
   justify-content: center;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: medium;
   form {
-    margin-top: 50px;
+    margin-top: 20px;
     height: 375px;
     width: 350px;
     background: rgb(255, 255, 255);
@@ -58,7 +54,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 3px;
-    box-shadow: 0px 0px 4px 2px lightgray;
+    box-shadow: 0px 0px 4px 2px lightgrey;
     // label {
     //   margin-top: 5px;
     //   padding: 10px;
@@ -68,11 +64,12 @@
     //   }
     input {
       border-radius: 2px;
-      border: solid rgb(232, 233, 235) 1px;
+      border: solid rgba(128, 128, 128, 0.233) 0.5px;
       width: 80%;
       height: 30px;
       border-width: 2px;
       border-radius: 3px;
+      padding: 0.3rem;
       }
     input::placeholder{
       color: #979898;
@@ -124,7 +121,7 @@
 }
 
 .session-login-form > h2 {
-  margin-top: -20px;
+  padding-top: 20px;
   margin-bottom: 30px;
   font-size:large;
   font-weight: bold;
@@ -132,7 +129,7 @@
   color: rgb(100, 100, 100);
 }
 
-.session-login-form > text {
+.session-login-form > span {
   font-size: small;
   margin-top: -12px;
   margin-bottom: -12px;
@@ -142,12 +139,10 @@
 
 .border-div {
   display: block;
-  // border-color: silver;
   border-bottom: 1px solid silver;
   width: 82%;
   margin-bottom: 10px;
 }
-
 
 .session-form-login {
   position: absolute;
@@ -156,19 +151,28 @@
 }
 
 .login-logo {
-// margin-top: 10px;
-  font-size: 2.5rem;
+  text-decoration: none;
+  display: block;
+  justify-items: center;
+  text-align: center;
+}
+
+.login-logo > h2 {
+  font-size: 2.3rem;
   font-family: cursive;
-  margin-left: 1rem;
   color: black;
   font-weight: bold;
-  text-decoration: none;
   display: inline;
   text-align: center;
 }
 
 .form-signup {
   margin-top: 10px;
+  text-decoration: none;
+}
+
+.form-signup:hover {
+  text-decoration: underline;
 }
 
 .login-logo > img {
@@ -178,7 +182,7 @@
   margin-left: -30px;
 }
 
-.navbar-logo:hover > img{
+.login-logo:hover > img{
   animation: shake 1s;
   animation: shake 2s infinite;
 }

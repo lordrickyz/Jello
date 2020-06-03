@@ -23,3 +23,15 @@ export const logout = () => (
     url: '/api/session'
   })
 );
+
+//Demo
+
+const demoUser = {
+  name: "DemoUser",
+  email: "demo@jello.com",
+  password: "demodemo"
+};
+
+export const demoLogin = () => (
+  login(demoUser)
+)

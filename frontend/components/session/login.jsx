@@ -34,11 +34,15 @@ class Login extends React.Component {
         <img src={lportal} className="leftportal" alt="left portal" />
       </div>
 
+      <div className="div-rightportal">
+        <img src={rportal} className="rightportal" alt="right portal" />
+      </div>
+
       <div className="session-form-login">
         <div className='session-logo-login'>
           <Link to='/' className="login-logo">
             <img src={jello} alt="logo jello" />
-            <text>Jello</text>
+            <h2>Jello</h2>
           </Link>
         </div>
         <form className="session-login-form">
@@ -61,15 +65,11 @@ class Login extends React.Component {
             onChange={this.handleInput('password')}
           />
           <button onClick={this.handleSubmit}>Log In</button>
-          <text>OR</text>
+          <span>OR</span>
           <Link to='/' className="form-demo">Fast Demo Login</Link>
           <div className='border-div'></div>
           <Link to='/signup' className='form-signup'>Sign up for an account</Link>
         </form>
-      </div>
-
-      <div className="div-rightportal">
-        <img src={rportal} className="rightportal" alt="right portal" />
       </div>
       </section>
     );

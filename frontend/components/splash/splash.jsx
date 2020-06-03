@@ -34,7 +34,7 @@ class Splash extends React.Component {
 
           <div className="splash-1-links">
             <Link to="/signup" className="splash-1-link">Sign Up - It's Free!</Link>
-            <Link to="/" className="splash-1-link">Try our Demo!</Link>
+            <Link to="/" className="splash-1-link" onClick={this.props.loginDemo}>Try our Demo!</Link>
           </div>
 
         </div>
@@ -72,7 +72,7 @@ class Splash extends React.Component {
       </section>
 
     <div className='background-gradient'>
-      <section class='splash-partner'>
+      <section className='splash-partner'>
         <div className="splash-p-container">
           <div>
             <div className="splash-p-header">

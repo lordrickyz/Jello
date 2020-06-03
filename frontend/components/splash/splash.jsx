@@ -45,6 +45,9 @@ class Splash extends React.Component {
               <p>Whether if your stuck in traffic, in the subway, or even with family. Stay organized and on-track anywhere with Jello.</p>
               <Link className="splash-2-link" to="/signup">Start Now →</Link>
             </div>
+            <div className='splash-img-right'>
+                <img src="https://themes.getbootstrap.com/wp-content/uploads/2018/07/thumb-4-1200x900.png" alt="right logo" />
+            </div>
           </div>
         </div>
       </section>
@@ -52,6 +55,9 @@ class Splash extends React.Component {
       <section className='splash-2-section'>
         <div className="splash-2-container">
           <div>
+            <div className='splash-img-left'>
+                <img src="https://images.assetsdelivery.com/compings_v2/bsd555/bsd5551908/bsd555190800948.jpg" alt="right logo" />
+            </div>
             <div className='splash-2-content'>
               <h2>Enhanced Schema Design</h2>
               <p>Boards are so breathtaking, it will even say you're breathtaking. Dive into the details by adding comments and due dates. Collaborate on projects from beginning to end. </p>
@@ -60,6 +66,7 @@ class Splash extends React.Component {
         </div>
       </section>
 
+    <div className='background-gradient'>
       <section class='splash-partner'>
         <div className="splash-p-container">
           <div>
@@ -69,7 +76,7 @@ class Splash extends React.Component {
             </div>
 
             <div className="splash-p-img">
-              <img src="" alt="Jello" />
+              <img src="" alt="company-logos" />
             </div>
 
             <div className="splash-p-links">
@@ -91,6 +98,9 @@ class Splash extends React.Component {
           </div>
         </div>
       </section>
+
+    </div>
+
       </>
     )
   }

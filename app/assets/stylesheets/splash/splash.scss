@@ -141,8 +141,8 @@
   padding-right: 15px;
   padding-left: 15px;
   color: #172b4d;
-  padding-top: 7rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 
@@ -154,16 +154,19 @@
 }
 
 .splash-2-content {
-  color: rgb(6, 9, 54);
+  color: #172b4d;
   width: 100%;
-  flex: 0 0 41.66666667%;
-  max-width: 41.66666667%;
+  flex: 0 0 43%;
+  max-width: auto;
   padding-right: 15px;
   padding-left: 15px;
   box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display:inline-block
+
 }
 
-.splash-2-content > h1 {
+.splash-2-content > h2 {
   font-size: 3rem;
   font-weight: bold;
   line-height: 1.2;
@@ -172,7 +175,7 @@
 }
 
 .splash-2-content > p {
-  font-size: 1.5625rem;
+  font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.5;
   margin-top: 0;
@@ -199,13 +202,32 @@
 }
 
 
+.splash-img-right {
+  margin-left: 8.33333333%;
+  flex: 0 0 43%;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.splash-img-right > img{
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-style: none;
+
+}
+
 //------------------------------
 
 
 .splash-3-section {
   display: block;
   text-align: center;
-  background: whitesmoke;
+  // background: whitesmoke;
 }
 
 .splash-3-container {
@@ -265,12 +287,32 @@
   transition: 0.15s;
 }
 
+.splash-img-left {
+  margin-right: 8.33333333%;
+  flex: 0 0 43%;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.splash-img-left > img{
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-style: none;
+}
+
 //----------------------------------
 
 .splash-partner {
   display: block;
   text-align: left;
-  background: whitesmoke;
+  // background: whitesmoke;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .splash-p-container {
@@ -282,8 +324,8 @@
   padding-right: 15px;
   padding-left: 15px;
   color: #172b4d;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 
@@ -345,4 +387,8 @@
 .splash-p-link:hover {
   background-color: #50a73f;
   transition: 0.15s;
+}
+
+.background-gradient {
+  background: linear-gradient(180deg,whitesmoke,#563a837e);
 }

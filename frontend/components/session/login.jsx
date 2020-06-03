@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import jello from 'images/pudding.svg';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,7 +28,12 @@ class Login extends React.Component {
   render() {
     return (
       <div className="session-form-login">
-        <h2>(Place Image Jello Here)</h2>
+        <div className='session-logo-login'>
+          <Link to='/' className="login-logo">
+            <img src={jello} alt="logo jello" />
+            <text>Jello</text>
+          </Link>
+        </div>
         <form>
           <h2>Log in to Jello</h2>
           <label className="session-form-label">-Username-</label>

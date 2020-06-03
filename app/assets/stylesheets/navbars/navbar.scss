@@ -13,10 +13,34 @@
   font-size: 2.5rem;
   float: left;
   font-family: cursive;
-  margin-left: 2rem;
+  margin-left: 1rem;
   color: white;
   font-weight: bold;
   text-decoration: none;
+  display: inline;
+}
+
+.navbar-logo > img {
+  width: 75px;
+  margin-top: -15px;
+  height: 75px;
+  float: left;
+  filter: invert(100%);
+}
+
+.navbar-logo:hover > img{
+  animation: shake 1s;
+  animation: shake 2s infinite;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(-8deg); }
+  34% { transform: rotate(0deg); }
+  50% { transform: rotate(-8deg); }
+  65% { transform: rotate(0deg); }
+  85% { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .navbar-links {
@@ -83,6 +107,7 @@
 .navbar-welcome > button:last-child {
   margin-right: 15px;
 }
+
 
 
 

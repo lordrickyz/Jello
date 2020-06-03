@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import jello from 'images/pudding.svg';
 
 const Navbar = ({ currentUser, logoutUser }) => {
   const display = currentUser ? (
@@ -20,7 +21,10 @@ const Navbar = ({ currentUser, logoutUser }) => {
   return (
     <header className="navbar-container">
       <nav className="navbar-nav">
-        <Link to='/' className="navbar-logo">[Image]Jello</Link>
+        <Link to='/' className="navbar-logo">
+          <img src={jello} alt="logo jello" />
+          <text>Jello</text>
+        </Link>
         {display}
       </nav>
     </header>

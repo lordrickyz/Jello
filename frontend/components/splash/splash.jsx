@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar/navbar';
-// import jelloImg1 from '../../../app/assets/images/jello_pudding.png';
-
+import jelloImg1 from 'images/jello-pudding.png';
+import film from 'images/film-strip.svg';
+import video from 'images/videogame.svg';
+import bball from 'images/basketball.svg';
+import btea from 'images/bubble-tea.svg';
+import shop from 'images/shopping-bag.svg';
+import bowl from 'images/bowling.svg';
 
 class Splash extends React.Component {
   render() {
@@ -23,7 +28,7 @@ class Splash extends React.Component {
             </div>
 
             <div className="splash-1-img">
-              <img src="https://www.pinclipart.com/picdir/big/387-3874217_pudding-sticker-pudding-cute-clipart.png" alt="Jello" />
+                <img src={jelloImg1} alt="Jello" />
             </div>
           </div>
 
@@ -71,16 +76,29 @@ class Splash extends React.Component {
         <div className="splash-p-container">
           <div>
             <div className="splash-p-header">
-              <h2>Work Smart with Jello</h2>
-              <h2>Companies of all shapes and sizes use Jello</h2>
+              <h2>Work Smarter with Jello</h2>
+              <h2>Fictional companies of all shapes and sizes use Jello</h2>
+              <p>@FREEPIKCOMPANY</p>
             </div>
 
-            <div className="splash-p-img">
-              <img src="" alt="company-logos" />
+            <div className="splash-p-imgs">
+              <div>
+                <img src={film} alt="logo film" />
+                <img src={video} alt="logo video" />
+                <img src={bball} alt="logo bball" />
+              </div>
+              <div>
+                <img src={btea} alt="logo btea" />
+                <img src={shop} alt="logo shop" />
+                <img src={bowl} alt="logo bowl" />
+              </div> 
+              <div>
+                <img src={bowl} alt="logo bowl" />
+              </div> 
             </div>
 
             <div className="splash-p-links">
-              <Link className="splash-p-link" to="/signup">Get Started - It's Free!</Link>
+                  <Link className="splash-p-link" to="/signup">Find out how →</Link>
             </div>
 
           </div>

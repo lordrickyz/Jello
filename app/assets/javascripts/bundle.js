@@ -86,6 +86,97 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./app/assets/images/basketball.svg":
+/*!******************************************!*\
+  !*** ./app/assets/images/basketball.svg ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/basketball919a49fce3dd5339541b08fddb6ddd83.svg");
+
+/***/ }),
+
+/***/ "./app/assets/images/bowling.svg":
+/*!***************************************!*\
+  !*** ./app/assets/images/bowling.svg ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/bowling7b8b6eeb76c88763ae8566b6b29273fd.svg");
+
+/***/ }),
+
+/***/ "./app/assets/images/bubble-tea.svg":
+/*!******************************************!*\
+  !*** ./app/assets/images/bubble-tea.svg ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/bubble-tead3f43f45a883f10020bfb930ee06e515.svg");
+
+/***/ }),
+
+/***/ "./app/assets/images/film-strip.svg":
+/*!******************************************!*\
+  !*** ./app/assets/images/film-strip.svg ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/film-strip5a95f1f3e2091ab77a83251714192c60.svg");
+
+/***/ }),
+
+/***/ "./app/assets/images/jello-pudding.png":
+/*!*********************************************!*\
+  !*** ./app/assets/images/jello-pudding.png ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/jello-puddingac57331f1b896b19540c828d2c49f6fa.png");
+
+/***/ }),
+
+/***/ "./app/assets/images/shopping-bag.svg":
+/*!********************************************!*\
+  !*** ./app/assets/images/shopping-bag.svg ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/shopping-bag916f96bb30d2e8f072a64578b783ac85.svg");
+
+/***/ }),
+
+/***/ "./app/assets/images/videogame.svg":
+/*!*****************************************!*\
+  !*** ./app/assets/images/videogame.svg ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/videogame7d260678770e89067377693cae055c0b.svg");
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -702,6 +793,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _navbar_navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/navbar */ "./frontend/components/navbar/navbar.jsx");
+/* harmony import */ var images_jello_pudding_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! images/jello-pudding.png */ "./app/assets/images/jello-pudding.png");
+/* harmony import */ var images_film_strip_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! images/film-strip.svg */ "./app/assets/images/film-strip.svg");
+/* harmony import */ var images_videogame_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! images/videogame.svg */ "./app/assets/images/videogame.svg");
+/* harmony import */ var images_basketball_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! images/basketball.svg */ "./app/assets/images/basketball.svg");
+/* harmony import */ var images_bubble_tea_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! images/bubble-tea.svg */ "./app/assets/images/bubble-tea.svg");
+/* harmony import */ var images_shopping_bag_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! images/shopping-bag.svg */ "./app/assets/images/shopping-bag.svg");
+/* harmony import */ var images_bowling_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! images/bowling.svg */ "./app/assets/images/bowling.svg");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -726,7 +824,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // import jelloImg1 from '../../../app/assets/images/jello_pudding.png';
+
+
+
+
+
+
+
+
 
 var Splash = /*#__PURE__*/function (_React$Component) {
   _inherits(Splash, _React$Component);
@@ -751,7 +856,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Jello lets you collaboratively work with others and get projects done."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Jello's boards, lists, and cards enable you to organize your projects in a fun, flexible and gelatin way.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-1-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://www.pinclipart.com/picdir/big/387-3874217_pudding-sticker-pudding-cute-clipart.png",
+        src: images_jello_pudding_png__WEBPACK_IMPORTED_MODULE_3__["default"],
         alt: "Jello"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-1-links"
@@ -794,17 +899,35 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         className: "splash-p-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-p-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Work Smart with Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Companies of all shapes and sizes use Jello")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "splash-p-img"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "",
-        alt: "company-logos"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Work Smarter with Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Fictional companies of all shapes and sizes use Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "@FREEPIKCOMPANY")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-p-imgs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_film_strip_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
+        alt: "logo film"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_videogame_svg__WEBPACK_IMPORTED_MODULE_5__["default"],
+        alt: "logo video"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_basketball_svg__WEBPACK_IMPORTED_MODULE_6__["default"],
+        alt: "logo bball"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_bubble_tea_svg__WEBPACK_IMPORTED_MODULE_7__["default"],
+        alt: "logo btea"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_shopping_bag_svg__WEBPACK_IMPORTED_MODULE_8__["default"],
+        alt: "logo shop"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_bowling_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+        alt: "logo bowl"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: images_bowling_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+        alt: "logo bowl"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-p-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "splash-p-link",
         to: "/signup"
-      }, "Get Started - It's Free!"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      }, "Find out how \u2192"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "splash-3-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-3-container"

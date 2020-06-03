@@ -188,7 +188,7 @@
   border-radius: 0.25rem;
   text-align: center;
   text-decoration: none;
-  background-color: #6c6e80;
+  background-color: #6D8EA2;
   color: white;
   font-size: 1rem;
   line-height: 1.5;
@@ -238,7 +238,7 @@
   padding-right: 15px;
   padding-left: 15px;
   color: #172b4d;
-  padding-top: 7rem;
+  padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
@@ -280,6 +280,7 @@
   font-size: 1rem;
   line-height: 1.5;
   transition: all .2s ease-in-out;
+  
 }
 
 .splash-3-link:hover {
@@ -312,7 +313,7 @@
   text-align: left;
   // background: whitesmoke;
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
 }
 
 .splash-p-container {
@@ -328,11 +329,10 @@
   padding-bottom: 6rem;
 }
 
-
 .splash-partner > div:first-of-type {
-  height: 690px;
+  height: 675px;
   width: 675px;
-  background-color: rgba(0, 0, 99, 0.781);
+  background:linear-gradient(rgba(0, 0, 99, 0.781), rgba(0, 0, 87, 0.493));
   border-radius: 20px;
   border-color: rgba(0, 0, 99, 0.781);
   display: block;
@@ -341,10 +341,23 @@
 }
 .splash-p-header {
   margin-top: 0;
+  top: 2rem;
+  position: absolute;
 }
 
 .splash-p-header > h2 {
   font-size: 1.7rem;
+  line-height: 1.2;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 0;
+  margin-bottom: 0.23rem;
+  text-align: center;
+  color: whitesmoke;
+}
+
+
+.splash-p-header > p {
+  font-size: 1rem;
   line-height: 1.2;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin-top: 0;
@@ -366,27 +379,55 @@
   display: block;
   align-items: center;
   box-sizing: border-box;
-  
+  justify-content: center;
+  display: flex;
 }
 
 .splash-p-link {
   position: absolute;
-  bottom: 0;
+  bottom: 1rem;
   width: 30%;
   padding: 0.75rem 1rem;
+  margin-bottom: 20px;
   border-radius: 0.25rem;
   text-align: center;
   text-decoration: none;
-  background-color: #61bd4f;
-  color: white;
+  background-color: #6D8EA2;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   transition: all .2s ease-in-out;
 }
 
 .splash-p-link:hover {
-  background-color: #50a73f;
+  background-color: rgba(13, 13, 65, 0.795);
   transition: 0.15s;
+}
+
+
+.splash-p-imgs {
+  flex: 0 0 43%;
+  max-width: 100%;
+  box-sizing: border-box;
+  height: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 7rem;
+}
+
+.splash-p-imgs > div {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.splash-p-imgs > div > img{
+  width: 12%;
+  height: auto;
+  filter: invert(100%);
 }
 
 .background-gradient {

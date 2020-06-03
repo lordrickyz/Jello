@@ -15,10 +15,8 @@ const Greeting = ({ currentUser, logoutUser }) => {
           <button className="invis-button"><Link to="/login">Log In</Link></button>
           &nbsp;
           <button><Link to="/signup">Sign Up</Link></button>
-          &nbsp;
-          <button>Demo</button>
         </div>
-        
+
       </div>
     </nav>
   );

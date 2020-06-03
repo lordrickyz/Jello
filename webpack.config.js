@@ -15,6 +15,16 @@ module.exports = {
         query: {
           presets: ['@babel/env', '@babel/react']
         }
+      },
+      { test: /\.(png|svg|jpg|gif)$/,
+        use: {
+        loader: "file-loader",
+        options: {
+          name: "[name][md5:hash].[ext]",
+          outputPath: "webpack-assets/",
+          publicPath: "/assets/webpack-assets/",
+          },
+        },
       }
     ]
   },

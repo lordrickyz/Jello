@@ -86,45 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./app/assets/images/basketball.svg":
-/*!******************************************!*\
-  !*** ./app/assets/images/basketball.svg ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/basketball919a49fce3dd5339541b08fddb6ddd83.svg");
-
-/***/ }),
-
-/***/ "./app/assets/images/bowling.svg":
-/*!***************************************!*\
-  !*** ./app/assets/images/bowling.svg ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/bowling7b8b6eeb76c88763ae8566b6b29273fd.svg");
-
-/***/ }),
-
-/***/ "./app/assets/images/bubble-tea.svg":
-/*!******************************************!*\
-  !*** ./app/assets/images/bubble-tea.svg ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/bubble-tead3f43f45a883f10020bfb930ee06e515.svg");
-
-/***/ }),
-
 /***/ "./app/assets/images/film-strip.svg":
 /*!******************************************!*\
   !*** ./app/assets/images/film-strip.svg ***!
@@ -135,19 +96,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/film-strip5a95f1f3e2091ab77a83251714192c60.svg");
-
-/***/ }),
-
-/***/ "./app/assets/images/jello-pudding.png":
-/*!*********************************************!*\
-  !*** ./app/assets/images/jello-pudding.png ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/jello-puddingac57331f1b896b19540c828d2c49f6fa.png");
 
 /***/ }),
 
@@ -187,32 +135,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/right-portal4124bc06b1de03229c2639940937d212.png");
-
-/***/ }),
-
-/***/ "./app/assets/images/shopping-bag.svg":
-/*!********************************************!*\
-  !*** ./app/assets/images/shopping-bag.svg ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/shopping-bag916f96bb30d2e8f072a64578b783ac85.svg");
-
-/***/ }),
-
-/***/ "./app/assets/images/videogame.svg":
-/*!*****************************************!*\
-  !*** ./app/assets/images/videogame.svg ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/videogame7d260678770e89067377693cae055c0b.svg");
 
 /***/ }),
 
@@ -474,7 +396,7 @@ var Navbar = function Navbar(_ref) {
     to: "/",
     className: "navbar-logo"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: images_pudding_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+    src: window.puddingIcon,
     alt: "logo jello"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Jello")), display));
 };
@@ -669,13 +591,13 @@ var Login = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-leftportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_right_portal_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        src: window.lportalURL,
         className: "leftportal",
         alt: "left portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-rightportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_left_portal_png__WEBPACK_IMPORTED_MODULE_4__["default"],
+        src: window.rportalURL,
         className: "rightportal",
         alt: "right portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -686,7 +608,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
         to: "/",
         className: "login-logo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_pudding_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+        src: window.puddingIcon,
         alt: "logo jello"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Jello"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-login-form"
@@ -884,13 +806,13 @@ var Signup = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-leftportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_right_portal_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        src: window.lportalURL,
         className: "leftportal",
         alt: "left portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-rightportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_left_portal_png__WEBPACK_IMPORTED_MODULE_4__["default"],
+        src: window.rportalURL,
         className: "rightportal",
         alt: "right portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -901,7 +823,7 @@ var Signup = /*#__PURE__*/function (_React$Component) {
         to: "/",
         className: "signup-logo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_pudding_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
+        src: window.puddingIcon,
         alt: "logo jello"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Jello"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-signup-form"
@@ -999,14 +921,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _navbar_navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/navbar */ "./frontend/components/navbar/navbar.jsx");
-/* harmony import */ var images_jello_pudding_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! images/jello-pudding.png */ "./app/assets/images/jello-pudding.png");
-/* harmony import */ var images_film_strip_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! images/film-strip.svg */ "./app/assets/images/film-strip.svg");
-/* harmony import */ var images_videogame_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! images/videogame.svg */ "./app/assets/images/videogame.svg");
-/* harmony import */ var images_basketball_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! images/basketball.svg */ "./app/assets/images/basketball.svg");
-/* harmony import */ var images_bubble_tea_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! images/bubble-tea.svg */ "./app/assets/images/bubble-tea.svg");
-/* harmony import */ var images_shopping_bag_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! images/shopping-bag.svg */ "./app/assets/images/shopping-bag.svg");
-/* harmony import */ var images_bowling_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! images/bowling.svg */ "./app/assets/images/bowling.svg");
-/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../footer/footer */ "./frontend/components/footer/footer.jsx");
+/* harmony import */ var images_film_strip_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! images/film-strip.svg */ "./app/assets/images/film-strip.svg");
+/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../footer/footer */ "./frontend/components/footer/footer.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1028,12 +944,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-
 
 
 
@@ -1064,7 +974,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Jello lets you collaboratively work with others and get projects done."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Jello's boards, lists, and cards enable you to organize your projects in a fun, flexible and gelatin way.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-1-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_jello_pudding_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        src: window.jelloURL,
         alt: "Jello"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-1-links"
@@ -1111,25 +1021,25 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Work Smarter with Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Fictional companies of all shapes and sizes use Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "@FREEPIKCOMPANY")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-p-imgs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_film_strip_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
+        src: window.filmIcon,
         alt: "logo film"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_videogame_svg__WEBPACK_IMPORTED_MODULE_5__["default"],
+        src: window.vgIcon,
         alt: "logo video"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_basketball_svg__WEBPACK_IMPORTED_MODULE_6__["default"],
+        src: window.bballIcon,
         alt: "logo bball"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_bubble_tea_svg__WEBPACK_IMPORTED_MODULE_7__["default"],
+        src: window.teaIcon,
         alt: "logo btea"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_shopping_bag_svg__WEBPACK_IMPORTED_MODULE_8__["default"],
+        src: window.bagIcon,
         alt: "logo shop"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_bowling_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+        src: window.bowlIcon,
         alt: "logo bowl"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: images_bowling_svg__WEBPACK_IMPORTED_MODULE_9__["default"],
+        src: window.bballIcon,
         alt: "logo bowl"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-p-links"
@@ -1147,7 +1057,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Start Planning Today"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sign up and become one of the few around the world to use Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "splash-3-link",
         to: "/signup"
-      }, "Get Started - It's Free!")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
+      }, "Get Started - It's Free!")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
 
@@ -1435,7 +1345,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_1___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
@@ -1543,9 +1453,9 @@ var logout = function logout() {
 }; //Demo
 
 var demoUser = {
-  username: "DemoUser",
+  username: "User_Demo",
   email: "demo@jello.com",
-  password: "demodemo"
+  password: "password"
 };
 var demoLogin = function demoLogin() {
   return login(demoUser);

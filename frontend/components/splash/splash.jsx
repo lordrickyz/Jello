@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar/navbar';
-import jelloImg1 from 'images/jello-pudding.png';
 import film from 'images/film-strip.svg';
-import video from 'images/videogame.svg';
-import bball from 'images/basketball.svg';
-import btea from 'images/bubble-tea.svg';
-import shop from 'images/shopping-bag.svg';
-import bowl from 'images/bowling.svg';
 import Footer from '../footer/footer';
 
 class Splash extends React.Component {
@@ -29,7 +23,7 @@ class Splash extends React.Component {
             </div>
 
             <div className="splash-1-img">
-                <img src={jelloImg1} alt="Jello" />
+                <img src={window.jelloURL} alt="Jello" />
             </div>
           </div>
 
@@ -84,17 +78,17 @@ class Splash extends React.Component {
 
             <div className="splash-p-imgs">
               <div>
-                <img src={film} alt="logo film" />
-                <img src={video} alt="logo video" />
-                <img src={bball} alt="logo bball" />
+                <img src={window.filmIcon} alt="logo film" />
+                <img src={window.vgIcon} alt="logo video" />
+                <img src={window.bballIcon} alt="logo bball" />
               </div>
               <div>
-                <img src={btea} alt="logo btea" />
-                <img src={shop} alt="logo shop" />
-                <img src={bowl} alt="logo bowl" />
+                <img src={window.teaIcon} alt="logo btea" />
+                <img src={window.bagIcon} alt="logo shop" />
+                <img src={window.bowlIcon} alt="logo bowl" />
               </div> 
               <div>
-                <img src={bowl} alt="logo bowl" />
+                <img src={window.bballIcon} alt="logo bowl" />
               </div> 
             </div>
 

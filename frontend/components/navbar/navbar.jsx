@@ -24,7 +24,7 @@ const Navbar = ({ currentUser, logoutUser, loginDemo }) => {
     <header className="navbar-container">
       <nav className="navbar-nav">
         <Link to='/' className="navbar-logo">
-          <img src={jello} alt="logo jello" />
+          <img src={window.puddingIcon} alt="logo jello" />
           <h2>Jello</h2>
         </Link>
         {display}

@@ -1,23 +1,27 @@
 class Api::SessionsController < ApplicationController
+
   def create
-    # Find user by credentials
-    @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
-    if @user.nil?
-      render json: ['Nope. Wrong credentials!'], status: 401
+    if User.find_by(username: params[:user][:username])
+      @user = User.find_by_credentials(params[:user][:username],params[:user][:password])
+
+      if @user.instance_of? User
+        login!(@user)
+        render :show
+      else
+        render json: ["Password does not match"], status: 422
+      end
     else
-      login!(@user)
-      render 'api/users/show';
+      render json: ["User does not exist"], status: 422
     end
   end
 
   def destroy
     if current_user
-    logout!
-    render json: { message: 'Logout successful.' }
-      return
+      logout!
+      render json: {}
     else
-      render json: ['There is no user to log out!!'], status: 404
-    end 
-
+      render json: ['No one is logged in!'], status: 404
+    end
   end
+
 end

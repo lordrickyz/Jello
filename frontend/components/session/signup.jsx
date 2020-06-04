@@ -60,17 +60,17 @@ class Signup extends React.Component {
     return (
       <section className="signup-back">
         <div className="div-leftportal">
-          <img src={lportal} className="leftportal" alt="left portal" />
+          <img src={window.lportalURL} className="leftportal" alt="left portal" />
         </div>
 
         <div className="div-rightportal">
-          <img src={rportal} className="rightportal" alt="right portal" />
+          <img src={window.rportalURL} className="rightportal" alt="right portal" />
         </div>
 
       <div className= "session-form-signup">
         <div className='session-logo-signup'>
           <Link to='/' className="signup-logo">
-            <img src={jello} alt="logo jello" />
+            <img src={window.puddingIcon} alt="logo jello" />
             <h2>Jello</h2>
           </Link>
         </div>

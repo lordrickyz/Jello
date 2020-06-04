@@ -60,17 +60,17 @@ class Login extends React.Component {
     return (
       <section className="login-back">
       <div className="div-leftportal">
-        <img src={lportal} className="leftportal" alt="left portal" />
+        <img src={window.lportalURL} className="leftportal" alt="left portal" />
       </div>
 
       <div className="div-rightportal">
-        <img src={rportal} className="rightportal" alt="right portal" />
+        <img src={window.rportalURL} className="rightportal" alt="right portal" />
       </div>
 
       <div className="session-form-login">
         <div className='session-logo-login'>
           <Link to='/' className="login-logo">
-            <img src={jello} alt="logo jello" />
+            <img src={window.puddingIcon} alt="logo jello" />
             <h2>Jello</h2>
           </Link>
         </div>

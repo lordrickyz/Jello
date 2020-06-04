@@ -19,17 +19,16 @@
   font-size: 1.4rem;
 }
 
-.footer-div > a {
-  display: block;
-  padding: 0.25rem;
-  text-align: center;
-  font-size: 20px;
-  color: rgb(128, 138, 155);
-  text-decoration: underline;
+.footer-container > ul > li > a {
+  display: inline-block;
+  margin: 5px;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #234074;
 }
 
-footer ul li:hover {
-  color: #034972;
+footer > ul > li > a:hover {
+  color: #024166;
   text-decoration: underline;
 }
 
@@ -47,9 +46,23 @@ footer ul li:hover {
   cursor: default;
 }
 
-.footer-div a {
+.footer-div > a {
+  display: block;
+  padding: 0.25rem;
+  text-align: center;
+  font-size: 20px;
+  color: rgb(128, 138, 155);
   margin: 1rem;
   margin-bottom: 3rem;
   font-size: 1rem;
   text-decoration: none;
+}
+
+.footer-div > a:hover {
+  color:rgb(92, 99, 110);
+  text-decoration: underline;
+}
+
+footer a svg {
+   margin-right: 4px;
 }

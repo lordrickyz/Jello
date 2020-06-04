@@ -1,21 +1,25 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAt, faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faAngellist, faLinkedin, faTrello, } from '@fortawesome/free-brands-svg-icons';
+
 
 class Footer extends React.Component {
   render() {
     return (
       <footer className="footer-container">
         <ul>
-          <li className="footer-li-1">Portfolio</li>
-          <li className="footer-li-2">GitHub</li>
-          <li className="footer-li-3">LinkedIn</li>
-          <li className="footer-li-4">AngelList</li>
-          <li className="footer-li-5">Email</li>
+          <li className="footer-li-1"><a href="https://github.com/lordrickyz"><FontAwesomeIcon icon={faGithub} />GitHub</a></li>
+          <li className="footer-li-2"><a href="https://www.linkedin.com/in/rickyzhengs/"><FontAwesomeIcon icon={faLinkedin} />LinkedIn</a></li>
+          <li className="footer-li-3"><a href="https://angel.co/"><FontAwesomeIcon icon={faAngellist} />AngelList</a></li>
+          <li className="footer-li-4"><a href=""><FontAwesomeIcon icon={faUserCircle} />Portfolio</a></li>
+          <li className="footer-li-5"><a href=""><FontAwesomeIcon icon={faEnvelope} />Email</a></li>
         </ul>
 
         <div className="footer-div">
-          <h1>Jello by Ricky Zheng</h1>
-          <a href="https://trello.com">Inspired by Trello</a>
+          <h1><FontAwesomeIcon icon={faAt} />Ricky Zheng</h1>
+          <a href="https://trello.com">Inspired by <FontAwesomeIcon icon={faTrello} />Trello</a>
         </div>
       </footer>
     );

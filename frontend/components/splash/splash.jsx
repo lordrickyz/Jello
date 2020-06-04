@@ -8,6 +8,7 @@ import bball from 'images/basketball.svg';
 import btea from 'images/bubble-tea.svg';
 import shop from 'images/shopping-bag.svg';
 import bowl from 'images/bowling.svg';
+import Footer from '../footer/footer';
 
 class Splash extends React.Component {
   render() {
@@ -104,7 +105,9 @@ class Splash extends React.Component {
           </div>
         </div>
       </section>
+    </div>
 
+    <div className='background-gradient-2'>
       <section className='splash-3-section'>
         <div className="splash-3-container">
           <div>
@@ -116,8 +119,9 @@ class Splash extends React.Component {
           </div>
         </div>
       </section>
-
     </div>
+
+      <Footer/>
 
       </>
     )

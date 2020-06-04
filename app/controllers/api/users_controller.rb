@@ -5,46 +5,37 @@ class Api::UsersController < ApplicationController
       login!(@user)
       render :show
     else
-      render json: @user.errors.full_messages, status: 401
-    end
-  end
-  
-  def update
-    @user = selected_user
-    if @user && @user.update_attributes(user_params)
-      render :show
-    elsif !@user
-      render json: ['Could not locate user'], status: 400
-    else
-      render json: @user.errors.full_messages, status: 401
+      render json: @user.errors.full_messages, status: 422
     end
   end
   
   def show
-    @user = selected_user
-  end
-  
-  def index
-    @users = User.all
-  end
-  
-  def destroy
-    @user = selected_user
-    if @user
-      @user.destroy
+    begin
+      @user = User.find(params[:id])
       render :show
-    else
-      render ['Could not find user']
+    rescue
+      render json: {error: "User not found", status: 404}
     end
   end
-  
-  private
-  
-  def selected_user
-    User.find(params[:id])
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      render :show
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
   end
-  
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    render :show
+  end
+
+  private
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end
+
 end

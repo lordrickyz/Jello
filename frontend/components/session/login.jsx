@@ -14,18 +14,47 @@ class Login extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   handleInput(type) {
     return (e) => {
       this.setState({ [type]: e.target.value })
     }
   }
 
-  handleSubmit(e) { //takes in event
+  handleSubmit(e) {
     e.preventDefault();
     this.props.login(this.state)
       .then(() => this.props.history.push('/'));
   }
+
+  componentDidMount() {
+    this.props.clearSessionErrors();
+  }
+
+  renderErrors() {
+    let errorList;
+    let errorsClass;
+    if (this.props.errors === undefined || this.props.errors.length == 0) {
+      errorList = null;
+      errorsClass = "no-errors"
+    } else {
+      errorsClass = "errors"
+      errorList = this.props.errors.map((error, i) => {
+        return (
+          <span key={`session-error-${i}`}>
+            {error}
+          </span>
+        );
+      });
+
+      return (
+        <div className={errorsClass}>
+          {errorList}
+        </div>
+      );
+    }
+  }
+
 
   render() {
     return (
@@ -47,7 +76,7 @@ class Login extends React.Component {
         </div>
         <form className="session-login-form">
           <h2>Log in to Jello</h2>
-          {/* <label className="session-form-label">-Username-</label> */}
+          {this.renderErrors()}
           <input
             className="signup-input"
             type='text'
@@ -57,7 +86,6 @@ class Login extends React.Component {
             onChange={this.handleInput('username')}
           />
           &nbsp;
-          {/* <label className="session-form-label">-Password-</label> */}
           <input
             type='password'
             value={this.state.password}
@@ -66,7 +94,7 @@ class Login extends React.Component {
           />
           <button onClick={this.handleSubmit}>Log In</button>
           <span>OR</span>
-          <Link to='/' className="form-demo">Fast Demo Login</Link>
+            <Link to='/' className="form-demo" onClick={this.props.loginDemo}>Fast Demo Login</Link>
           <div className='border-div'></div>
           <Link to='/signup' className='form-signup'>Sign up for an account</Link>
         </form>

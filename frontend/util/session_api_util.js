@@ -1,7 +1,7 @@
 //Creating User
 export const signup = user => (
   $.ajax({
-    url: '/api/user',
+    url: '/api/users',
     method: 'POST',
     data: { user }
   })
@@ -27,7 +27,7 @@ export const logout = () => (
 //Demo
 
 const demoUser = {
-  name: "DemoUser",
+  username: "DemoUser",
   email: "demo@jello.com",
   password: "demodemo"
 };

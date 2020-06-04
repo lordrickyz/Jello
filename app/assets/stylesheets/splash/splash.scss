@@ -310,29 +310,34 @@
 //----------------------------------
 
 .splash-partner {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
   text-align: left;
-  // background: whitesmoke;
   padding-top: 3rem;
   padding-bottom: 1rem;
+  justify-content: center;
 }
 
 .splash-p-container {
   position: relative;
-  width: 100%;
-  box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
   padding-right: 15px;
   padding-left: 15px;
   color: #172b4d;
-  padding-top: 6rem;
+  padding-top: 3rem;
   padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
 }
 
 .splash-partner > div:first-of-type {
-  height: 675px;
-  width: 675px;
+  height: auto;
+  width: 50%;
   background:linear-gradient(rgba(0, 0, 99, 0.781), rgba(0, 0, 87, 0.493));
   border-radius: 20px;
   border-color: rgba(0, 0, 99, 0.781);
@@ -340,15 +345,15 @@
   align-items: center;
   box-sizing: border-box;
 }
+
 .splash-p-header {
   margin-top: 0;
   top: 2rem;
-  position: absolute;
 }
 
-.splash-p-header > h2 {
+.splash-p-header > h2:nth-child(1) {
   font-size: 1.7rem;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin-top: 0;
   margin-bottom: 0.23rem;
@@ -359,20 +364,22 @@
 
 .splash-p-header > p {
   font-size: 1rem;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin-top: 0;
+  margin-top: 5px;
   margin-bottom: 0.23rem;
   text-align: center;
   color: whitesmoke;
 }
 
-.splash-p-header > h2:last-child {
+.splash-p-header > h2:nth-child(2) {
   font-size: 1.2rem;
-  line-height: 1.2;
+  line-height: 1.5;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin-top: 0;
   margin-bottom: 0.23rem;
   text-align: center;
+  color: whitesmoke;
 }
 
 .splash-p-links {
@@ -415,7 +422,7 @@
   height: 50%;
   padding-right: 15px;
   padding-left: 15px;
-  margin-top: 7rem;
+  margin-top: 3rem;
 }
 
 .splash-p-imgs > div {
@@ -432,5 +439,9 @@
 }
 
 .background-gradient {
-  background: linear-gradient(180deg,whitesmoke,#563a837e);
+  background: linear-gradient(whitesmoke,#aa5ed6cb);
+}
+
+.background-gradient-2 {
+  background: linear-gradient(#aa5ed6cb,#63a5dbce);
 }

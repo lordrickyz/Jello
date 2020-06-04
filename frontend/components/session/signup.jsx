@@ -22,10 +22,38 @@ class Signup extends React.Component {
     }
   }
 
-  handleSubmit(e) { //takes in event
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.signup(this.state)
+    this.props.createUser(this.state)
       .then(() => this.props.history.push('/'));
+  }
+
+  componentDidMount() {
+    this.props.clearSessionErrors();
+  }
+
+  renderErrors() {
+    let errorList;
+    let errorsClass;
+    if (this.props.errors === undefined || this.props.errors.length == 0) {
+      errorList = null;
+      errorsClass = "no-errors"
+    } else {
+      errorsClass = "errors"
+      errorList = this.props.errors.map((error, i) => {
+        return (
+          <span key={`session-error-${i}`}>
+            {error}
+          </span>
+        );
+      });
+
+      return (
+        <div className={errorsClass}>
+          {errorList}
+        </div>
+      );
+    }
   }
 
   render() {
@@ -49,30 +77,28 @@ class Signup extends React.Component {
 
         <form className="session-signup-form">
           <h2>Sign up for your account</h2>
-          {/* <label className="session-form-label">-Username-</label> */}
+          {this.renderErrors()}
           <input
             className="signup-input"
             type='text'
             value={this.state.username}
-            placeholder=" Enter Username"
+            placeholder=" Enter a Username"
             onChange={this.handleInput('username')}
           />
           &nbsp;
-          {/* <label className="session-form-label">-Email-</label> */}
           <input
             className="signup-input"
             type='text'
             value={this.state.email}
-            placeholder=" Enter Email"
+            placeholder=" Enter a Email"
             onChange={this.handleInput('email')}
           />
           &nbsp;
-          {/* <label className="session-form-label">-Password-</label> */}
           <input
             className="signup-input"
             type='password'
             value={this.state.password}
-            placeholder=" Password: At Least 6 Characters"
+            placeholder=" Enter a Password"
             onChange={this.handleInput('password')}
           />
           <p>By signing up, you confirm that you've read and accepted our <Link to='/' className='tos'>Terms of Service</Link> and <Link to='/' className='tos'>Privacy Policy</Link>.</p>

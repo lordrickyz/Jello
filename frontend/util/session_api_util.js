@@ -27,9 +27,9 @@ export const logout = () => (
 //Demo
 
 const demoUser = {
-  username: "DemoUser",
+  username: "demouser",
   email: "demo@jello.com",
-  password: "demodemo"
+  password: "password"
 };
 
 export const demoLogin = () => (

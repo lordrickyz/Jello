@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import jello from 'images/pudding.svg';
-import lportal from 'images/right-portal.png';
+import SessionFoot from '../footer/session_footer';
 import rportal from 'images/left-portal.png';
 
 class Login extends React.Component {
@@ -60,12 +59,14 @@ class Login extends React.Component {
     return (
       <section className="login-back">
       <div className="div-leftportal">
-        <img src={window.lportalURL} className="leftportal" alt="left portal" />
+        <img src={window.lpudding} className="leftportal" alt="left portal" />
       </div>
 
       <div className="div-rightportal">
-        <img src={window.rportalURL} className="rightportal" alt="right portal" />
+        <img src={window.rpudding} className="rightportal" alt="right portal" />
       </div>
+
+        <SessionFoot />
 
       <div className="session-form-login">
         <div className='session-logo-login'>

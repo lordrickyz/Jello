@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import jello from 'images/pudding.svg';
-import lportal from 'images/right-portal.png';
-import rportal from 'images/left-portal.png';
+import SessionFoot from '../footer/session_footer';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -60,22 +58,24 @@ class Signup extends React.Component {
     return (
       <section className="signup-back">
         <div className="div-leftportal">
-          <img src={window.lportalURL} className="leftportal" alt="left portal" />
+          <img src={window.lpudding} className="leftportal" alt="left portal" />
         </div>
 
         <div className="div-rightportal">
-          <img src={window.rportalURL} className="rightportal" alt="right portal" />
+          <img src={window.rpudding} className="rightportal" alt="right portal" />
         </div>
+        
+        <SessionFoot />
+        
+        <div className= "session-form-signup">
+          <div className='session-logo-signup'>
+            <Link to='/' className="signup-logo">
+              <img src={window.puddingIcon} alt="logo jello" />
+              <h2>Jello</h2>
+            </Link>
+          </div>
 
-      <div className= "session-form-signup">
-        <div className='session-logo-signup'>
-          <Link to='/' className="signup-logo">
-            <img src={window.puddingIcon} alt="logo jello" />
-            <h2>Jello</h2>
-          </Link>
-        </div>
-
-        <form className="session-signup-form">
+          <form className="session-signup-form">
           <h2>Sign up for your account</h2>
           {this.renderErrors()}
           <input
@@ -106,8 +106,8 @@ class Signup extends React.Component {
           <div className='border-div'></div>
           <Link to='/login' className='form-login'>Already have an account? Log In</Link>
         </form>
-      </div>
-    </section>
+        </div>
+      </section>
     );
   }
 

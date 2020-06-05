@@ -1,14 +1,13 @@
-import { connect } from 'react-redux';
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faAngellist, faLinkedin, faTrello, } from '@fortawesome/free-brands-svg-icons';
 
 
-class Footer extends React.Component {
+class SplashFoot extends React.Component {
   render() {
     return (
-      <footer className="footer-container">
+      <footer className="footer-container-splash">
         <ul>
           <li className="footer-li-1"><a href="https://github.com/lordrickyz"><FontAwesomeIcon icon={faGithub} />GitHub</a></li>
           <li className="footer-li-2"><a href="https://www.linkedin.com/in/rickyzhengs/"><FontAwesomeIcon icon={faLinkedin} />LinkedIn</a></li>
@@ -26,4 +25,4 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer;
+export default SplashFoot;

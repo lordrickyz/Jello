@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar/navbar';
-import film from 'images/film-strip.svg';
-import Footer from '../footer/footer';
+import SplashFoot from '../footer/splash_footer';
 
 class Splash extends React.Component {
   render() {
@@ -23,7 +22,7 @@ class Splash extends React.Component {
             </div>
 
             <div className="splash-1-img">
-                <img src={window.jelloURL} alt="Jello" />
+                <img src={window.splashmain} alt="Main Splash" />
             </div>
           </div>
 
@@ -46,7 +45,7 @@ class Splash extends React.Component {
               <Link className="splash-2-link" to="/signup">Start Now →</Link>
             </div>
             <div className='splash-img-right'>
-                <img src="https://themes.getbootstrap.com/wp-content/uploads/2018/07/thumb-4-1200x900.png" alt="right logo" />
+                <img src={window.splashmain2} alt="Right Splash" />
             </div>
           </div>
         </div>
@@ -56,7 +55,7 @@ class Splash extends React.Component {
         <div className="splash-2-container">
           <div>
             <div className='splash-img-left'>
-                <img src="https://images.assetsdelivery.com/compings_v2/bsd555/bsd5551908/bsd555190800948.jpg" alt="right logo" />
+                <img src={window.splashmain3} alt="Left Splash" />
             </div>
             <div className='splash-2-content'>
               <h2>Enhanced Schema Design</h2>
@@ -115,7 +114,7 @@ class Splash extends React.Component {
       </section>
     </div>
 
-      <Footer/>
+    <SplashFoot/>
 
       </>
     )

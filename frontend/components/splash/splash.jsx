@@ -45,7 +45,7 @@ class Splash extends React.Component {
               <Link className="splash-2-link" to="/signup">Start Now →</Link>
             </div>
             <div className='splash-img-right'>
-                <img src={window.splashmain2} alt="Right Splash" />
+              <img src={window.splashmain2} alt="Right Splash" />
             </div>
           </div>
         </div>

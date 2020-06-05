@@ -54,14 +54,15 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 }
 
 .splash-1-content {
   color: white;
   width: 100%;
-  flex: 0 0 41.66666667%;
-  max-width: 41.66666667%;
+  flex: 0 0 43%;
+  max-width: auto;
   padding-right: 15px;
   padding-left: 15px;
   box-sizing: border-box;
@@ -85,8 +86,8 @@
 
 .splash-1-img {
   margin-left: 8.33333333%;
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 43%;
+  max-width: 100%;
   box-sizing: border-box;
   width: 100%;
   padding-right: 15px;
@@ -94,6 +95,42 @@
 }
 
 .splash-1-img > img{
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-style: none;
+}
+
+.splash-img-left {
+  margin-right: 8.33333333%;
+  flex: 0 0 43%;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.splash-img-left > img{
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-style: none;
+}
+
+
+.splash-img-right {
+  flex: 0 0 43%;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.splash-img-right > img{
   max-width: 100%;
   height: auto;
   box-sizing: border-box;
@@ -147,7 +184,8 @@
 }
 
 
-.splash-2-container > div:first-of-type {
+.splash-2-container > div {
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -163,8 +201,7 @@
   padding-left: 15px;
   box-sizing: border-box;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  display:inline-block
-
+  display: inline-block
 }
 
 .splash-2-content > h2 {
@@ -202,9 +239,26 @@
   transform: scale(1.1);
 }
 
+.splash-img-left {
+  margin-right: 8.33333333%;
+  flex: 0 0 43%;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.splash-img-left > img{
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-style: none;
+}
+
 
 .splash-img-right {
-  margin-left: 8.33333333%;
   flex: 0 0 43%;
   max-width: 100%;
   box-sizing: border-box;
@@ -219,7 +273,6 @@
   box-sizing: border-box;
   vertical-align: middle;
   border-style: none;
-
 }
 
 //------------------------------
@@ -289,23 +342,6 @@
   transition: 0.15s;
 }
 
-.splash-img-left {
-  margin-right: 8.33333333%;
-  flex: 0 0 43%;
-  max-width: 100%;
-  box-sizing: border-box;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.splash-img-left > img{
-  max-width: 100%;
-  height: auto;
-  box-sizing: border-box;
-  vertical-align: middle;
-  border-style: none;
-}
 
 //----------------------------------
 

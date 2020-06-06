@@ -3,9 +3,9 @@ class Board < ApplicationRecord
   before_validation :assign_default_label
 
   def assign_default_label
-    return if (self.title?)
-
-    self.title = "Default Board Title"
+    if (!self.title.blank?)
+      self.title = "Default Board Title"
+    end
   end
 
   def is_admin?(user)

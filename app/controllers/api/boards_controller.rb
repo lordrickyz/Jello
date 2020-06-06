@@ -42,7 +42,7 @@ class Api::BoardsController < ApplicationController
       if Board.destroy(@board.id)
         render :show
       else
-        render json: ['Something went wrong.'], status: 404
+        render json: ['Cannot delete, something went wrong.'], status: 404
       end
     else
       render json: ['You are not the admin of this board'], status: 403

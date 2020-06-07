@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Splash from './splash';
 import { loginDemo } from '../../actions/session_actions';
 
-const mapStateToProps = ( state ) => ({
+const mapStateToProps = (state) => ({
     loggedIn: Boolean(state.session.id),
 });
 

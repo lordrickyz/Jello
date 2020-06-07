@@ -37,8 +37,6 @@ export const loginUser = formUser => dispatch => login(formUser)
 export const logoutUser = () => dispatch => logout()
   .then(() => dispatch(logoutCurrentUser()))
   .fail(errors => (dispatch(receiveSessionErrors(errors.responseJSON))));
-    
-
 
 export const loginDemo = () => dispatch => demoLogin()
   .then((demoUser) => dispatch(receiveCurrentUser(demoUser)))

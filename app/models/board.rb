@@ -13,7 +13,7 @@ class Board < ApplicationRecord
     end
   end
 
-  def is_admin?(user)
+  def is_admin?(user) #basically owners of the board.
     user.id == self.admin_id
   end
 

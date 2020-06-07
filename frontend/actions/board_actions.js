@@ -40,9 +40,10 @@ export const fetchBoard = (id) => dispatch => BoardAPIUtil.fetchBoard(id)
   .fail(errors => (dispatch(receiveBoardErrors(errors.responseJSON))));
 
 export const createBoard = (board) => dispatch => BoardAPIUtil.createBoard(board)
-  .then(board => dispatch(receiveBoard(board)))
-  .fail(errors => (dispatch(receiveBoardErrors(errors.responseJSON))));
-
+  .then(board => dispatch(receiveBoard(board)), errors => (
+    dispatch(receiveSessionErrors(errors.responseJSON))
+  )
+);
 
 export const updateBoard = (board) => dispatch => BoardAPIUtil.updateBoard(board)
   .then(board => dispatch(receiveBoard(board)))

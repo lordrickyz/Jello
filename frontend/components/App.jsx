@@ -7,10 +7,10 @@ import {
   HashRouter
 } from 'react-router-dom';
 import NavbarContainer from "./navbar/navbar_container";
-import ConnectedSplash from "./splash/splash_container"
+import ConnectedSplash from './splash/splash_container';
 import SignupFormContainer from './session/signup_container';
 import LoginFormContainer from './session/login_container';
-import { AuthRoute, ProtectedRoute } from '../util/route_utils';
+import { AuthRoute } from '../util/route_utils';
 
 const App = () => (
   <div>

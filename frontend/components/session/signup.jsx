@@ -101,7 +101,7 @@ class Signup extends React.Component {
             placeholder=" Enter a Password"
             onChange={this.handleInput('password')}
           />
-          <p>By signing up, you confirm that you've read and accepted our <Link to='/' className='tos'>Terms of Service</Link> and <Link to='/' className='tos'>Privacy Policy</Link>.</p>
+          <p>By signing up, you confirm that you've read and accepted our Terms of Service and Privacy Policy.</p>
           <button onClick={this.handleSubmit}>Create New Account</button>
           <div className='border-div'></div>
           <Link to='/login' className='form-login'>Already have an account? Log In</Link>

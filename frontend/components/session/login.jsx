@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SessionFoot from '../footer/session_footer';
-import rportal from 'images/left-portal.png';
 
 class Login extends React.Component {
   constructor(props) {

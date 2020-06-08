@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import Splash from './splash';
+// import SplashFix from './splash_fix';
 import { loginDemo } from '../../actions/session_actions';
 
 const mapStateToProps = (state) => ({
-    loggedIn: Boolean(state.session.id),
+    currentUser: state.entities.users[state.session.id],
 });
 
 const mapDispatchToProps = (dispatch) => ({

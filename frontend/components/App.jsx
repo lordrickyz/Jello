@@ -7,20 +7,21 @@ import {
   HashRouter
 } from 'react-router-dom';
 import NavbarContainer from "./navbar/navbar_container";
-import ConnectedSplash from './splash/splash_container';
+import SplashContainer from './splash/splash_container';
 import SignupFormContainer from './session/signup_container';
 import LoginFormContainer from './session/login_container';
-import { AuthRoute } from '../util/route_utils';
+import BoardIndexContainer from './boards/board_index_container'
+import { AuthRoute, ProtectedRoute, BoardedRoute } from '../util/route_utils';
 
 const App = () => (
   <div>
     <Switch>
+      <AuthRoute exact path="/" component={SplashContainer} />
+      <ProtectedRoute exact path="/boards" component={BoardIndexContainer} />
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
-      <Route path="/" component={NavbarContainer} />
+      {/* <AuthRoute path="/" component={NavbarContainer} /> */}
     </Switch>
-
-    <Route exact path="/" component={ConnectedSplash} />
   </div>
 );
 

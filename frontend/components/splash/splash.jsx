@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../navbar/navbar';
+// import Navbar from '../navbar/navbar';
 import SplashFoot from '../footer/splash_footer';
+import Navbar from "../navbar/navbar_container";
+
 
 class Splash extends React.Component {
   render() {
     return (
       <>
-      {Navbar}
+      <Navbar/>
 
       <section className="splash-1-section">
           <div className="splash-1-container">
@@ -28,7 +30,7 @@ class Splash extends React.Component {
 
           <div className="splash-1-links">
             <Link to="/signup" className="splash-1-link">Sign Up - It's Free!</Link>
-            <Link to="/" className="splash-1-link" onClick={this.props.loginDemo}>Try our Demo!</Link>
+            <Link to="/boards" className="splash-1-link" onClick={this.props.loginDemo}>Try our Demo!</Link>
           </div>
 
         </div>
@@ -119,6 +121,6 @@ class Splash extends React.Component {
       </>
     )
   }
-}
+};
 
 export default Splash;

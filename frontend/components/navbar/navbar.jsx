@@ -16,7 +16,7 @@ const Navbar = ({ currentUser, logoutUser, loginDemo }) => {
         &nbsp;
         <Link to="/signup" className="navbar-btn">Sign Up</Link>
         &nbsp;
-        <Link to="/" className="navbar-btn" onClick={loginDemo}>Demo</Link>
+        <Link to="/boards" className="navbar-btn" onClick={loginDemo}>Demo</Link>
       </div>
     );
 

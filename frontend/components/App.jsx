@@ -12,9 +12,13 @@ import SignupFormContainer from './session/signup_container';
 import LoginFormContainer from './session/login_container';
 import BoardIndexContainer from './boards/board_index_container'
 import { AuthRoute, ProtectedRoute, BoardedRoute } from '../util/route_utils';
+import Modal from './modals/modal';
+
 
 const App = () => (
   <div>
+   <Modal />
+
     <Switch>
       <AuthRoute exact path="/" component={SplashContainer} />
       <ProtectedRoute exact path="/boards" component={BoardIndexContainer} />

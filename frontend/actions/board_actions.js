@@ -27,6 +27,7 @@ export const receiveBoardErrors = (errors) => ({
   errors
 })
 
+
 export const fetchBoards = () => dispatch => BoardAPIUtil.fetchBoards()
   .then(boards => dispatch(receiveBoards(boards)))
   .fail(errors => (dispatch(receiveBoardErrors(errors.responseJSON))));

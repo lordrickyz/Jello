@@ -17,6 +17,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   vertical-align: baseline;
 }
 
+a {
+  text-decoration:none;
+}
+
 :focus {
   outline: 0;
 }

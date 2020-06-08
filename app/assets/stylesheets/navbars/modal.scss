@@ -1,0 +1,21 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(35, 204, 255, 0.082);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal-child {
+  display: block;
+  background-color: transparent;
+  border: none;
+  margin-top: 36px;
+  padding: 24px;
+  width: auto;
+}

@@ -6,7 +6,6 @@ const boardsReducer = (state = {}, action) => {
 
   switch(action.type) {
     case RECEIVE_BOARDS:
-      // debugger;
       return merge({}, state, action.boards);
     case RECEIVE_BOARD:
       return merge({}, state, { [action.board.id]: action.board });

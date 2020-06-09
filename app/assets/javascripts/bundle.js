@@ -178,7 +178,7 @@ var createBoard = function createBoard(board) {
     return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createBoard"](board).then(function (board) {
       return dispatch(receiveBoard(board));
     }, function (errors) {
-      return dispatch(receiveSessionErrors(errors.responseJSON));
+      return dispatch(receiveBoardErrors(errors.responseJSON));
     });
   };
 };
@@ -386,6 +386,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -419,21 +421,38 @@ var BoardForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, BoardForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.board;
+    _this.state = {
+      title: _this.props.board.title
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.clearTitle = _this.clearTitle.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
-      this.props.createBoard(this.state);
+      this.props.createBoard(this.state).then(function () {
+        return _this2.props.closeModal();
+      });
     }
   }, {
-    key: "updateTitle",
-    value: function updateTitle(e) {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "clearTitle",
+    value: function clearTitle() {
       this.setState({
-        title: e.target.value
+        title: ""
       });
     }
   }, {
@@ -442,17 +461,20 @@ var BoardForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit.bind(this)
+        onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-form-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        onChange: this.updateTitle.bind(this),
-        value: this.state.title,
+        onChange: this.update('title'),
+        value: this.state.title // onFocus={this.clearTitle}
+        ,
         placeholder: "Add board title"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "create-board-button"
-      }, "Create Board")));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        className: "create-board-button",
+        value: "Create Board"
+      })));
     }
   }]);
 
@@ -474,6 +496,10 @@ var BoardForm = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _board_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_form */ "./frontend/components/boards/board_form.jsx");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
 
 
 
@@ -487,19 +513,12 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createBoard: function (_createBoard) {
-      function createBoard(_x) {
-        return _createBoard.apply(this, arguments);
-      }
-
-      createBoard.toString = function () {
-        return _createBoard.toString();
-      };
-
-      return createBoard;
-    }(function (board) {
-      return dispatch(createBoard(board));
-    })
+    createBoard: function createBoard(board) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["createBoard"])(board));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    }
   };
 };
 
@@ -563,6 +582,7 @@ var BoardIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.renderBoards = _this.renderBoards.bind(_assertThisInitialized(_this));
+    _this.CreateBoardModal = _this.CreateBoardModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -570,6 +590,17 @@ var BoardIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoards();
+      this.props.closeModal();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.closeModal();
+    }
+  }, {
+    key: "CreateBoardModal",
+    value: function CreateBoardModal() {
+      this.props.openModal("create-board");
     }
   }, {
     key: "renderBoards",
@@ -589,20 +620,18 @@ var BoardIndex = /*#__PURE__*/function (_React$Component) {
         }, boardItems, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "board-list-item",
           key: "create-board-li",
-          id: "create-board-li"
-          /*onClick={this.props.createboard*/
-
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Create new board"))));
+          id: "create-board-li",
+          onClick: this.CreateBoardModal
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Create New Board"))));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "boards-list"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "board-list-item",
           key: "create-board-li",
-          id: "create-board-li"
-          /*onClick={this.props.createboard}*/
-
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Create new board"))));
+          id: "create-board-li",
+          onClick: this.CreateBoardModal
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Create New Board"))));
       }
     }
   }, {
@@ -1084,7 +1113,7 @@ var BoardNav = /*#__PURE__*/function (_React$Component) {
       }), "Jello")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "float-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.showForm("create-board-options"),
+        onClick: this.showForm("create-board"),
         className: "create-board-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"]

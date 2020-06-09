@@ -38,7 +38,7 @@ export const fetchBoard = (id) => dispatch => BoardAPIUtil.fetchBoard(id)
 
 export const createBoard = (board) => dispatch => BoardAPIUtil.createBoard(board)
   .then(board => dispatch(receiveBoard(board)), errors => (
-    dispatch(receiveSessionErrors(errors.responseJSON))
+    dispatch(receiveBoardErrors(errors.responseJSON))
   )
 );
 

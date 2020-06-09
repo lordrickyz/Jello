@@ -22,6 +22,7 @@ class BoardNav extends React.Component {
     this.props.closeModal();
   }
 
+
   showForm(field) {
     if (this.props.modal === field) {
       return () => {
@@ -68,7 +69,7 @@ class BoardNav extends React.Component {
           </Link>
         </div>
         <div className="float-right">
-          <button onClick={this.showForm("create-board-options")} className="create-board-btn"><FontAwesomeIcon icon={faPlus}/></button>
+          <button onClick={this.showForm("create-board")} className="create-board-btn"><FontAwesomeIcon icon={faPlus}/></button>
           <button onClick={this.showForm("information")} className="information-btn"><FontAwesomeIcon icon={faInfoCircle}/></button>
           <button onClick={this.showForm("notifications")} className="notification-btn"><FontAwesomeIcon icon={faBell}/></button>
           <button onClick={this.showForm("user-options")} id="user-options-btn">{this.props.currentUser.username[0]}</button>

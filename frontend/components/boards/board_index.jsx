@@ -10,11 +10,20 @@ export default class BoardIndex extends React.Component {
     super(props);
 
     this.renderBoards = this.renderBoards.bind(this);
+    this.CreateBoardModal = this.CreateBoardModal.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchBoards();
-    
+    this.props.closeModal();
+  }
+
+  componentWillUnmount() {
+    this.props.closeModal();
+  }
+
+  CreateBoardModal() {
+    this.props.openModal("create-board")
   }
 
   renderBoards() {
@@ -26,20 +35,22 @@ export default class BoardIndex extends React.Component {
       );
     });
 
+
+
     if (boardItems.length > 0) {
       return (
         <ul className="boards-list">
           {boardItems}
-          <li className="board-list-item" key="create-board-li" id="create-board-li" /*onClick={this.props.createboard*/ >
-            <div><span>Create new board</span></div>
+          <li className="board-list-item" key="create-board-li" id="create-board-li" onClick={this.CreateBoardModal}>
+            <div><span>Create New Board</span></div>
           </li>
         </ul>
       );
     } else {
       return (
         <ul className="boards-list">
-          <li className="board-list-item" key="create-board-li" id="create-board-li" /*onClick={this.props.createboard}*/ >
-            <div><span>Create new board</span></div>
+          <li className="board-list-item" key="create-board-li" id="create-board-li" onClick={this.CreateBoardModal} >
+            <div><span>Create New Board</span></div>
           </li>
         </ul>
       );

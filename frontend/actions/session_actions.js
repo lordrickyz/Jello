@@ -1,4 +1,5 @@
 import { signup, login, logout, demoLogin } from '../util/session_api_util'
+import { receiveBoards } from '../util/board_api_util';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
@@ -37,9 +38,7 @@ export const loginUser = formUser => dispatch => login(formUser)
 export const logoutUser = () => dispatch => logout()
   .then(() => dispatch(logoutCurrentUser()))
   .fail(errors => (dispatch(receiveSessionErrors(errors.responseJSON))));
-    
-
 
 export const loginDemo = () => dispatch => demoLogin()
-  .then((demoUser) => dispatch(receiveCurrentUser(demoUser)))
+  .then(demoUser => dispatch(receiveCurrentUser(demoUser)))
   .fail(errors => (dispatch(receiveSessionErrors(errors.responseJSON))));

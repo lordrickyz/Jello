@@ -1,3 +1,4 @@
+
 //Creating User
 export const signup = user => (
   $.ajax({
@@ -34,4 +35,5 @@ const demoUser = {
 
 export const demoLogin = () => (
   login(demoUser)
+
 )

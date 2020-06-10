@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SessionFoot from '../footer/session_footer';
-import rportal from 'images/left-portal.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class Login extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.login(this.state)
-      .then(() => this.props.history.push('/'));
+      .then(() => this.props.history.push('/boards'));
   }
 
   componentDidMount() {
@@ -95,7 +94,7 @@ class Login extends React.Component {
           />
           <button onClick={this.handleSubmit}>Log In</button>
           <span>OR</span>
-            <Link to='/' className="form-demo" onClick={this.props.loginDemo}>Fast Demo Login</Link>
+            <Link to='/boards' className="form-demo" onClick={this.props.loginDemo}>Fast Demo Login</Link>
           <div className='border-div'></div>
           <Link to='/signup' className='form-signup'>Sign up for an account</Link>
         </form>

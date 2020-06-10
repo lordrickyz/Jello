@@ -4,15 +4,23 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 
-import { fetchBoards } from '../../../actions/board_actions'
+import { fetchBoard, updateBoard } from '../../../actions/board_actions'
 import { openModal, closeModal } from '../../../actions/modal_actions'
 
-const mstp = () => ({
-
-})
+// const mstp = (state, ownProps) => {
+//   console.log(ownProps)
+//   return {
+//   boardId: ownProps.match.params.id,
+//   modal: state.ui.modal,
+//   currentUser: state.entities.users[state.session.id],
+//   board: state.entities.boards[boardId]
+// }}
 
 const mdtp = dispatch => ({
-
+  openModal: modal => dispatch(openModal(modal)),
+  fetchBoard: (board) => dispatch(fetchBoard(board)),
+  updateBoard: board => dispatch(updateBoard(board)),
+  closeModal: () => dispatch(closeModal()),
 })
 
 
@@ -23,14 +31,14 @@ class BoardShowNav extends React.Component {
       title: props.board.title,
       id: props.board.id,
     }
-    this.deleteBoard = this.deleteBoard.bind(this);
+
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
   componentDidMount() {
-    this.props.fetchBoards();
+    this.props.fetchBoard(this.state.id);
     this.props.closeModal();
   }
 
@@ -63,8 +71,8 @@ class BoardShowNav extends React.Component {
   render() {
     return (
       <section className="boardshow-container">
-        
-        <div className="float-left">
+
+        <div className="menu-left">
           <form id={'board-title'} onSubmit={this.handleSubmit}>
             <input
               id={'board-title-input'}
@@ -78,10 +86,8 @@ class BoardShowNav extends React.Component {
           <button id={'board-invite-btn'}>Invite</button>
         </div>
 
-        <div className="float-right">
-          <button className="show-menu-right" onClick={this.props.openModal('show-menu')}>
-              Show Menu
-          </button>
+        <div className="menu-right">
+          <button id={"menu-right"}>Show Menu</button>
         </div>
 
       </section>
@@ -89,4 +95,4 @@ class BoardShowNav extends React.Component {
   }
 }
 
-export default connect(mstp,mdtp)(BoardShowNav)
+export default connect(null,mdtp)(BoardShowNav)

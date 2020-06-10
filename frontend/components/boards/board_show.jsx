@@ -16,8 +16,8 @@ class BoardShow extends React.Component {
   render() {
     return (
       <>
-        <BoardNavContainer />
       <section className={'board-show-container'}>
+        <BoardNavContainer />
         <BoardShowNav
           boardId={this.props.boardId}
           board={this.props.board}

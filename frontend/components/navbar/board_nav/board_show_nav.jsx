@@ -8,7 +8,7 @@ import { fetchBoard, updateBoard } from '../../../actions/board_actions'
 import { openModal, closeModal } from '../../../actions/modal_actions'
 
 // const mstp = (state, ownProps) => {
-//   console.log(ownProps)
+//   debugger
 //   return {
 //   boardId: ownProps.match.params.id,
 //   modal: state.ui.modal,
@@ -87,7 +87,7 @@ class BoardShowNav extends React.Component {
         </div>
 
         <div className="menu-right">
-          <button id={"menu-right"}>Show Menu</button>
+          <button id={"menu-rightbtn"}>Show Menu</button>
         </div>
 
       </section>

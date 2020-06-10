@@ -766,9 +766,9 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: 'board-show-container'
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_show_nav__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_show_nav__WEBPACK_IMPORTED_MODULE_1__["default"], {
         boardId: this.props.boardId,
         board: this.props.board,
         deleteBoard: this.props.deleteBoard,
@@ -1379,7 +1379,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
  // const mstp = (state, ownProps) => {
-//   console.log(ownProps)
+//   debugger
 //   return {
 //   boardId: ownProps.match.params.id,
 //   modal: state.ui.modal,
@@ -1490,7 +1490,7 @@ var BoardShowNav = /*#__PURE__*/function (_React$Component) {
       }, "Invite")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "menu-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "menu-right"
+        id: "menu-rightbtn"
       }, "Show Menu")));
     }
   }]);

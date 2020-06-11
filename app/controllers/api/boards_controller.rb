@@ -2,6 +2,7 @@ class Api::BoardsController < ApplicationController
 
   def index
     @boards = current_user.boards
+    render :index
   end
 
   def show

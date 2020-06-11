@@ -1,6 +1,6 @@
 class Api::ListsController < ApplicationController
   def index
-    @lists = List.where(board_id: params[:board_id])
+    @lists = List.all
     render :index
   end
 
@@ -13,9 +13,16 @@ class Api::ListsController < ApplicationController
     end
   end
 
+  def show
+    @list = List.find_by(id: params[:id])
+    render :show
+  end
+
   def update
-    @list = List.find(params[:id])
-    if @list.update(list_params)
+    @list = List.find_by(id: params[:list][:id])
+    @list.title = params[:list][:title]
+
+    if @list.save
       render :show
     else
       render json: @list.errors.full_messages, status: 404

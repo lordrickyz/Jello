@@ -203,6 +203,111 @@ var deleteBoard = function deleteBoard(id) {
 
 /***/ }),
 
+/***/ "./frontend/actions/lists_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/lists_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_LISTS, RECEIVE_LIST, REMOVE_LIST, RECEIVE_LIST_ERRORS, CLEAR_LIST_ERRORS, fetchLists, fetchList, createList, updateList, deleteList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LISTS", function() { return RECEIVE_LISTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIST", function() { return RECEIVE_LIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIST", function() { return REMOVE_LIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIST_ERRORS", function() { return RECEIVE_LIST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_LIST_ERRORS", function() { return CLEAR_LIST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLists", function() { return fetchLists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchList", function() { return fetchList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createList", function() { return createList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateList", function() { return updateList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteList", function() { return deleteList; });
+/* harmony import */ var _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/list_api_util */ "./frontend/util/list_api_util.js");
+
+var RECEIVE_LISTS = "RECEIVE_LISTS";
+var RECEIVE_LIST = "RECEIVE_LIST";
+var REMOVE_LIST = "REMOVE_LIST";
+var RECEIVE_LIST_ERRORS = "RECEIVE_LIST_ERRORS";
+var CLEAR_LIST_ERRORS = "CLEAR_LIST_ERRORS";
+
+var receiveLists = function receiveLists(lists) {
+  return {
+    type: RECEIVE_LISTS,
+    lists: lists
+  };
+};
+
+var receiveList = function receiveList(_ref) {
+  var list = _ref.list;
+  return {
+    type: RECEIVE_LIST,
+    list: list
+  };
+};
+
+var removeList = function removeList(_ref2) {
+  var list = _ref2.list;
+  return {
+    type: REMOVE_LIST,
+    list: list
+  };
+};
+
+var receiveListErrors = function receiveListErrors(errors) {
+  return {
+    type: RECEIVE_LIST_ERRORS,
+    errors: errors
+  };
+};
+
+var fetchLists = function fetchLists() {
+  return function (dispatch) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLists"]().then(function (lists) {
+      return dispatch(receiveLists(lists));
+    }).fail(function (errors) {
+      return dispatch(receiveListErrors(errors.responseJSON));
+    });
+  };
+};
+var fetchList = function fetchList(id) {
+  return function (dispatch) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchList"](id).then(function (list) {
+      return dispatch(receiveList(list));
+    }).fail(function (errors) {
+      return dispatch(receiveListErrors(errors.responseJSON));
+    });
+  };
+};
+var createList = function createList(list) {
+  return function (dispatch) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["createList"](list).then(function (list) {
+      return dispatch(receiveList(list));
+    }, function (errors) {
+      return dispatch(receiveListErrors(errors.responseJSON));
+    });
+  };
+};
+var updateList = function updateList(list) {
+  return function (dispatch) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["updateList"](list).then(function (list) {
+      return dispatch(receiveList(list));
+    }).fail(function (errors) {
+      return dispatch(receiveListErrors(errors.responseJSON));
+    });
+  };
+};
+var deleteList = function deleteList(id) {
+  return function (dispatch) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](id).then(function () {
+      return dispatch(removeList(listId));
+    }).fail(function (errors) {
+      return dispatch(receiveListErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -2561,14 +2666,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users/users_reducer */ "./frontend/reducers/users/users_reducer.js");
 /* harmony import */ var _boards_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./boards_reducer */ "./frontend/reducers/components/boards_reducer.js");
+/* harmony import */ var _lists_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lists_reducer */ "./frontend/reducers/components/lists_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  boards: _boards_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  boards: _boards_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  lists: _lists_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/components/lists_reducer.js":
+/*!*******************************************************!*\
+  !*** ./frontend/reducers/components/lists_reducer.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var listsReducer = function listsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LISTS"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.lists);
+
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.lists);
+
+    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIST"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.list.id, action.list));
+
+    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIST"]:
+      var newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state);
+      delete newState[action.list.id];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (listsReducer);
 
 /***/ }),
 
@@ -2617,14 +2773,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/errors/session_errors_reducer.js");
 /* harmony import */ var _board_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board_errors_reducer */ "./frontend/reducers/errors/board_errors_reducer.js");
+/* harmony import */ var _list_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list_errors_reducer */ "./frontend/reducers/errors/list_errors_reducer.js");
+
 
 
 
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  boards: _board_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  boards: _board_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  lists: _list_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/errors/list_errors_reducer.js":
+/*!*********************************************************!*\
+  !*** ./frontend/reducers/errors/list_errors_reducer.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
+
+
+var listErrorsReducer = function listErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIST_ERRORS"]:
+      return action.errors;
+
+    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_LIST_ERRORS"]:
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (listErrorsReducer);
 
 /***/ }),
 
@@ -2894,6 +3086,59 @@ var deleteBoard = function deleteBoard(id) {
   return $.ajax({
     url: "/api/boards/".concat(id),
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/list_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/list_api_util.js ***!
+  \****************************************/
+/*! exports provided: fetchLists, fetchList, createList, updateList, deleteList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLists", function() { return fetchLists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchList", function() { return fetchList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createList", function() { return createList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateList", function() { return updateList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteList", function() { return deleteList; });
+var fetchLists = function fetchLists() {
+  return $.ajax({
+    url: "/api/lists",
+    method: "GET"
+  });
+};
+var fetchList = function fetchList(id) {
+  return $.ajax({
+    url: "/api/lists/".concat(id),
+    method: "GET"
+  });
+};
+var createList = function createList(list) {
+  return $.ajax({
+    url: "/api/lists",
+    method: "POST",
+    data: {
+      list: list
+    }
+  });
+};
+var updateList = function updateList(list) {
+  return $.ajax({
+    url: "/api/lists/".concat(list.id),
+    method: "PATCH",
+    data: {
+      list: list
+    }
+  });
+};
+var deleteList = function deleteList(id) {
+  return $.ajax({
+    url: "/api/lists/".concat(id),
+    method: "DELETE"
   });
 };
 

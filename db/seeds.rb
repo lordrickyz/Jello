@@ -8,6 +8,7 @@
 
 User.destroy_all
 Board.destroy_all
+List.destroy_all
 
 seed_users = User.create([
   { username: "User_Demo", email: "demo@jello.com", password: "password" },
@@ -32,8 +33,26 @@ seed_boards = Board.create([
     description: "This is a description for Ricky's Board",
     admin_id: seed_users.second.id
   },
-  { title: "App Student's Board 3",
+  { title: "App Student's Board",
     description: "This is a description for App's Board",
     admin_id: seed_users.third.id
+  }
+])
+
+seed_lists = List.create([
+  { title: "Demo List 1",
+    board_id: seed_boards.first.id
+  },
+  { title: "Demo List 2",
+    board_id: seed_boards.first.id
+  },
+  { title: "Demo List 3",
+    board_id: seed_boards.first.id
+  },
+  { title: "Ricky's List",
+    board_id: seed_boards.second.id
+  },
+  { title: "App Student's List",
+    board_id: seed_boards.third.id
   }
 ])

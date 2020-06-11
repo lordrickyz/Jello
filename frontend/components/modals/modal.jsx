@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import UserMenu from '../navbar/board_nav/user_menu';
 import BoardForm from '../boards/board_form_container';
+import BoardShowMenu from '../boards/board_show_menu'
 
 const Modal = ({ modal, closeModal }) => {
   if (!modal) {
@@ -16,6 +17,9 @@ const Modal = ({ modal, closeModal }) => {
       break;
     case 'create-board':
       component = <BoardForm />
+      break;
+    case 'menu-board':
+      component = <BoardShowMenu />
       break;
     default:
       return null;

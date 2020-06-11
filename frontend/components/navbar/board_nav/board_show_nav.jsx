@@ -7,16 +7,17 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { fetchBoard, updateBoard } from '../../../actions/board_actions'
 import { openModal, closeModal } from '../../../actions/modal_actions'
 
-// const mstp = (state, ownProps) => {
-//   debugger
-//   return {
-//   boardId: ownProps.match.params.id,
-//   modal: state.ui.modal,
-//   currentUser: state.entities.users[state.session.id],
-//   board: state.entities.boards[boardId]
-// }}
+const mapStatetoProps = (state, ownProps) => {
+  // debugger;
+  return {
+  boardId: ownProps.boardId,
+  modal: state.ui.modal,
+  currentUser: state.entities.users[state.session.id],
+  board: ownProps.board,
+  history: ownProps.history
+}}
 
-const mdtp = dispatch => ({
+const mapDispatchtoProps = dispatch => ({
   openModal: modal => dispatch(openModal(modal)),
   fetchBoard: (board) => dispatch(fetchBoard(board)),
   updateBoard: board => dispatch(updateBoard(board)),
@@ -27,9 +28,10 @@ const mdtp = dispatch => ({
 class BoardShowNav extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       title: props.board.title,
-      id: props.board.id,
+      id: props.boardId,
     }
 
     this.update = this.update.bind(this);
@@ -38,6 +40,7 @@ class BoardShowNav extends React.Component {
   }
 
   componentDidMount() {
+
     this.props.fetchBoard(this.state.id);
     this.props.closeModal();
   }
@@ -62,7 +65,7 @@ class BoardShowNav extends React.Component {
     if (oldProps !== this.props) {
       this.setState({
           title: this.props.board.title,
-          id: this.props.board.id,
+          id: this.props.boardId,
         }
       )}
     ;}
@@ -87,7 +90,7 @@ class BoardShowNav extends React.Component {
         </div>
 
         <div className="menu-right">
-          <button id={"menu-rightbtn"}>Show Menu</button>
+          <button id={"menu-rightbtn"} onClick={() => this.props.openModal("menu-board")}>Show Menu</button>
         </div>
 
       </section>
@@ -95,4 +98,4 @@ class BoardShowNav extends React.Component {
   }
 }
 
-export default connect(null,mdtp)(BoardShowNav)
+export default connect(mapStatetoProps, mapDispatchtoProps)(BoardShowNav)

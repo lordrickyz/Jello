@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import BoardShow from './board_show';
 import { fetchBoard } from '../../actions/board_actions'
 // import { } from '../../actions/modal_actions'
-import { withRouter } from 'react-router-dom';
 
 
 const mapStatetoProps = (state, ownProps) => {

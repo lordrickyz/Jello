@@ -19,7 +19,7 @@ class Splash extends React.Component {
               Jello lets you collaboratively work with others and get projects done.
               </h1>
               <p>
-                Jello's boards, lists, and cards enable you to organize your projects in a fun, flexible and gelatin way.
+                Jello's boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible, and rewarding way.
               </p>
             </div>
 
@@ -43,7 +43,7 @@ class Splash extends React.Component {
           <div>
             <div className='splash-2-content'> 
               <h2>Work anywhere with any team</h2>
-              <p>Whether if your stuck in traffic, in the subway, or even with family. Stay organized and on-track anywhere with Jello.</p>
+                <p>Whether it’s for work, a side project or even the next family vacation, Jello helps your team stay organized.</p>
               <Link className="splash-2-link" to="/signup">Start Now →</Link>
             </div>
             <div className='splash-img-right'>
@@ -61,7 +61,7 @@ class Splash extends React.Component {
             </div>
             <div className='splash-2-content'>
               <h2>Enhanced Schema Design</h2>
-              <p>Boards are so breathtaking, it will even say you're breathtaking. Dive into the details by adding comments and due dates. Collaborate on projects from beginning to end. </p>
+                <p>Dive into the details by adding comments, attachments, due dates, and more directly to Jello cards. Collaborate on projects from beginning to end. </p>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@ class Splash extends React.Component {
           <div>
             <div className="splash-dashboard">
               <h2>Start Planning Today</h2>
-              <h3>Sign up and become one of the few around the world to use Jello</h3>
+                  <h3>Sign up and become one of the millions of people around the world using Jello to get more done.</h3>
               <Link className="splash-3-link" to="/signup">Get Started - It's Free!</Link>
             </div>
           </div>

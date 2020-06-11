@@ -4,6 +4,7 @@ import React from 'react';
 class ListIndex extends React.Component {
   constructor(props) {
     super(props)
+    // debugger;
     this.renderLists = this.renderLists.bind(this);
     this.CreateListModal = this.CreateListModal.bind(this)
   }
@@ -21,28 +22,28 @@ class ListIndex extends React.Component {
     this.props.openModal("create-list")
   }
 
-  renderLists() {
+  renderLists() {  
     const listItems = this.props.lists.map((list) => {
       return (
-        <li className="list-index-items" key={`list-index-${list.id}`}>
-          <span>{board.title}</span>
+        <li className="list-index-items" key={`list-index-${list.id}`} >
+          <span>{list.title}</span>
         </li>
       );
     });
     if (listItems.length > 0) {
       return (
         <ul className="lists-items">
-          {boardItems}
-          <li className="list-index-item" key="create-list-li" id="create-list-li">
-            <div><span>Create New List</span></div>
+          {listItems}
+          <li className="list-index-item" key="create-list-li" id="create-list-li" onClick={this.CreateListModal}>
+            <div><span>Add New List</span></div>
           </li>
         </ul>
       );
     } else {
       return (
         <ul className="lists-items">
-          <li className="list-index-item" key="create-list-li" id="create-list-li">
-            <div><span>Create New List</span></div>
+          <li className="list-index-item" key="create-list-li" id="create-list-li" onClick={this.CreateListModal}>
+            <div><span>Add New List</span></div>
           </li>
         </ul>
       );

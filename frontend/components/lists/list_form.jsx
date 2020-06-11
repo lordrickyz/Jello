@@ -1,32 +1,46 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
-import { withRouter } from 'react-router-dom';
-import { createList } from '../../actions/list_actions';
-
-
-const msp = (state, ownProps) => {
-  return {
-    
-  }
-}
-
-const mdp = dispatch => {
-  return {
-    createList: (list) => dispatch(createList(list)),
-  }
-}
 
 class ListForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    // debugger;
+    this.state = {
+      title: props.lists.title
+    };
+    this.update = this.update.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    // debugger;
+    this.props.createList(this.state)
+      .then(() => this.props.closeModal());
+  }
+
+  update(field) {
+    return (e) => {
+      this.setState({ [field]: e.currentTarget.value });
+    };
   }
 
   render() {
-    return {
-
-    }
+    return (
+      <div className="list-form-container">
+        <form onSubmit={this.handleSubmit} className="list-form">
+          <div className="list-form-title">
+            <input 
+              type="text"
+              onChange={this.update('title')}
+              value={this.state.title}
+              placeholder="Add list title"
+            />
+          </div>
+          <input type="submit" value="Add List" className="list-input-button"/>
+        </form>
+      </div>
+    );
   }
 }
 
-export default withRouter(connect(msp, mdp)(ListForm))
+export default ListForm;

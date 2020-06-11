@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import UserMenu from '../navbar/board_nav/user_menu';
 import BoardForm from '../boards/board_form_container';
 import BoardShowMenu from '../boards/board_show_menu'
+import ListForm from '../lists/list_form_container';
 
 const Modal = ({ modal, closeModal }) => {
   if (!modal) {
@@ -20,6 +21,9 @@ const Modal = ({ modal, closeModal }) => {
       break;
     case 'menu-board':
       component = <BoardShowMenu />
+      break;
+    case 'create-list':
+      component = <ListForm />
       break;
     default:
       return null;

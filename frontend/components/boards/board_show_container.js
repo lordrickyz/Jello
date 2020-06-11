@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import BoardShow from './board_show';
 import { fetchBoard } from '../../actions/board_actions'
+import { fetchLists } from '../../actions/lists_actions'
 // import { } from '../../actions/modal_actions'
 
 
@@ -19,7 +20,8 @@ const mapStatetoProps = (state, ownProps) => {
 const mapDispatchtoProps = dispatch => ({
   fetchBoard: id => dispatch(fetchBoard(id)),
   updateBoard: board => dispatch(updateBoard(board)),
-  deleteBoard: id => dispatch(deleteBoard(id))
+  deleteBoard: id => dispatch(deleteBoard(id)),
+  fetchLists: () => dispatch(fetchLists()),
 })
 
 export default (connect(mapStatetoProps,mapDispatchtoProps)(BoardShow));

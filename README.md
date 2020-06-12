@@ -15,7 +15,7 @@ Jello is a Trello Clone. It offers collaborate tools to assist in project manage
 
 ## Technologies
 
-Jello is built with Ruby on Rails and PSQL as backend and React.js, Redux, and mostly Javascript on frontend. Styling is predominately on SCSS. Jello Live demo is using Heroku for deployment and libaries used so far are [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) for icons.
+Jello is built with Ruby on Rails and PSQL as backend and React.js, Redux, and mostly Javascript on frontend. Styling is predominately on SCSS. Jello Live demo is using Heroku for deployment and libaries used so far are [@React-FontAwesome](https://github.com/FortAwesome/react-fontawesome) for icons.
 
 ## Features
 

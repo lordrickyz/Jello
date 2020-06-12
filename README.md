@@ -4,13 +4,13 @@
 
 [Click Me To Enter Live Site](https://jelloz.herokuapp.com/)
 
-![Jello splash page](app/assets/images/readme/readme-splash.png)
+![Jello splash page](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/readme-splash.png)
 
 ## Introduction
 
 Jello is a Trello Clone. It offers collaborate tools to assist in project management and allows users to organize their workflow. Teams can easily manage their projects through a simple system of creating boards.
 
-![Jello splash gif](app/assets/images/readme/splashgif.gif)
+![Jello splash gif](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/splashgif.gif)
 
 
 ## Technologies
@@ -21,19 +21,23 @@ Jello is built with Ruby on Rails and PSQL as backend and React.js, Redux, and m
 
 ### User Auth
 
-![Sign Up Page](app/assets/images/readme/signup.png)
+![Sign Up Page](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/signup.png)
 
 Users can sign up or log in through the redirect buttons from top of the navigation bar. Users passwords are secured with BCrypt and session tokens are randomly generated and invalidated when logged out.
 
 ## Boards
 
-### Board Create, Edit, and Delete
+### Board Create
 
-![Create Board](GifStuff)
+![Create Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/createboard.gif)
 
-![Edit Board](GifStuff)
+### Board Edit
 
-![Delete Board](GifStuff)
+![Edit Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/editBoard.gif)
+
+### Board Delete
+
+![Delete Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/deleteBoard.gif)
 
 Users have a simple dashboard that includes their list of boards they already made. Users can create, edit, and delete their own boards for their designated projects.
 
@@ -49,6 +53,3 @@ Jello will eventually be able to do the following:
 * Search for Boards
 * Change Background of Board.
 * Notifications for Changes Made
-
-
-

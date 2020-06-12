@@ -1517,6 +1517,13 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
       this.props.closeModal();
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.lists !== this.props.lists) {
+        this.props.fetchLists();
+      }
+    }
+  }, {
     key: "CreateListModal",
     value: function CreateListModal() {
       this.props.openModal("create-list");

@@ -38,6 +38,7 @@ Users can sign up or log in through the redirect buttons from top of the navigat
 Users have a simple dashboard that includes their list of boards they already made. Users can create, edit, and delete their own boards for their designated projects.
 
 
+
 ## Future Updates
 
 Jello will eventually be able to do the following:

@@ -27,13 +27,17 @@ Users can sign up or log in through the redirect buttons from top of the navigat
 
 ## Boards
 
-### Board Create, Edit, and Delete
+### Board Create
 
-<img src="https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/createboard.gif" width="40" height="40" />
+![Create Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/createboard.gif)
 
-<img src="https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/editBoard.gif" width="40" height="40" />
+### Board Edit
 
-<img src="https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/deleteBoard.gif" width="40" height="40" />
+![Edit Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/editBoard.gif)
+
+### Board Delete
+
+![Delete Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/deleteBoard.gif)
 
 Users have a simple dashboard that includes their list of boards they already made. Users can create, edit, and delete their own boards for their designated projects.
 

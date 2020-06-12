@@ -1,6 +1,5 @@
 class Api::ListsController < ApplicationController
-<<<<<<< HEAD
-=======
+
   def index
     @lists = List.all
     render :index
@@ -46,5 +45,5 @@ class Api::ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:title, :board_id)
   end
->>>>>>> lists
+
 end

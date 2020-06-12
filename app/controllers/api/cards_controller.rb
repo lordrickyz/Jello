@@ -1,6 +1,5 @@
 # class Api::CardsController < ApplicationController
-# <<<<<<< HEAD
-# =======
+
 #     def index
 #     @cards = Card.all
 #     render :index
@@ -46,5 +45,5 @@
 #   def card_params
 #     params.require(:card).permit(:title, :description, :list_id)
 #   end
-# >>>>>>> lists
+
 # end

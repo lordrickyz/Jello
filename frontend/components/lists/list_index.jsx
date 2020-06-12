@@ -17,6 +17,12 @@ class ListIndex extends React.Component {
     this.props.closeModal();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.lists !== this.props.lists) {
+      this.props.fetchLists();
+    }
+  }
+
   CreateListModal() {
     this.props.openModal("create-list")
   }

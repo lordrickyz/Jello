@@ -4,7 +4,6 @@ import React from 'react';
 class ListIndex extends React.Component {
   constructor(props) {
     super(props)
-    // debugger;
     this.renderLists = this.renderLists.bind(this);
     this.CreateListModal = this.CreateListModal.bind(this)
   }

@@ -3,7 +3,6 @@ import React from 'react';
 class ListForm extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
     this.state = {
       title: props.lists.title
     };
@@ -13,7 +12,6 @@ class ListForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // debugger;
     this.props.createList(this.state)
       .then(() => this.props.closeModal());
   }

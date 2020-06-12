@@ -1041,8 +1041,7 @@ var BoardMenu = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, BoardMenu);
 
-    _this = _super.call(this, props); // debugger
-
+    _this = _super.call(this, props);
     _this.deleteBoard = _this.deleteBoard.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1352,8 +1351,7 @@ var ListForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, ListForm);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.state = {
       title: props.lists.title
     };
@@ -1367,8 +1365,7 @@ var ListForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      e.preventDefault(); // debugger;
-
+      e.preventDefault();
       this.props.createList(this.state).then(function () {
         return _this2.props.closeModal();
       });
@@ -1433,7 +1430,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  //debugger;
   var boardId = ownProps.history.location.pathname.split("/")[2];
   return {
     boardId: boardId,
@@ -1503,8 +1499,7 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, ListIndex);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.renderLists = _this.renderLists.bind(_assertThisInitialized(_this));
     _this.CreateListModal = _this.CreateListModal.bind(_assertThisInitialized(_this));
     return _this;
@@ -1593,7 +1588,6 @@ __webpack_require__.r(__webpack_exports__);
  // import { withRouter } from 'react-router-dom';
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger;
   return {
     currentUser: state.session.id,
     boardId: parseInt(ownProps.boardId),
@@ -1963,7 +1957,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var mapStatetoProps = function mapStatetoProps(state, ownProps) {
-  // debugger;
   return {
     boardId: ownProps.boardId,
     modal: state.ui.modal,

@@ -6,7 +6,6 @@ import ListForm from './list_form';
 
 
 const msp = (state, ownProps) => {
-  //debugger;
   const boardId = ownProps.history.location.pathname.split("/")[2]
   return {
     boardId: boardId,

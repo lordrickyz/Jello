@@ -9,7 +9,6 @@ class BoardForm extends React.Component {
     }
     
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.clearTitle = this.clearTitle.bind(this)
   }
 
   handleSubmit(e) {
@@ -25,10 +24,6 @@ class BoardForm extends React.Component {
     };
   }
 
-  clearTitle() {
-    this.setState({ title: "" })
-  }
-
   render() {
     return (
       <div className="board-form">
@@ -38,7 +33,6 @@ class BoardForm extends React.Component {
               type="text"
               onChange={this.update('title')}
               value={this.state.title}
-              // onFocus={this.clearTitle}
               placeholder="Add board title"
             />
           </div>

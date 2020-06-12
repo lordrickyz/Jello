@@ -29,7 +29,6 @@ const mapDispatchToProps = dispatch => ({
 class BoardMenu extends React.Component {
   constructor(props) {
     super(props)
-    // debugger
     this.deleteBoard = this.deleteBoard.bind(this)
   }
 

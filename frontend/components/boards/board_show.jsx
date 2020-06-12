@@ -1,6 +1,7 @@
 import React from 'react';
 import BoardShowNav from '../navbar/board_nav/board_show_nav';
 import BoardNavContainer from '../navbar/board_nav/board_nav_container'
+import ListIndex from '../lists/list_index_container';
 
 
 class BoardShow extends React.Component {
@@ -27,14 +28,10 @@ class BoardShow extends React.Component {
           currentUser={this.props.currentUser}
         />
 
-        <section>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </section>
       </section>
+        <ListIndex 
+         boardId={this.props.boardId}
+        />
       </>
     )
   }

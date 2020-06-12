@@ -8,7 +8,6 @@ import { fetchBoard, updateBoard } from '../../../actions/board_actions'
 import { openModal, closeModal } from '../../../actions/modal_actions'
 
 const mapStatetoProps = (state, ownProps) => {
-  // debugger;
   return {
   boardId: ownProps.boardId,
   modal: state.ui.modal,

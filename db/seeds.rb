@@ -44,15 +44,15 @@ seed_lists = List.create([
     board_id: seed_boards.first.id
   },
   { title: "Demo List 2",
-    board_id: seed_boards.first.id
-  },
-  { title: "Demo List 3",
-    board_id: seed_boards.first.id
-  },
-  { title: "Ricky's List",
     board_id: seed_boards.second.id
   },
-  { title: "App Student's List",
+  { title: "Demo List 3",
     board_id: seed_boards.third.id
+  },
+  { title: "Ricky's List",
+    board_id: seed_boards.fourth.id
+  },
+  { title: "App Student's List",
+    board_id: seed_boards.fifth.id
   }
 ])

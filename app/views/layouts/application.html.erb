@@ -24,10 +24,12 @@
       window.boardnav = "<%= image_url('boardnav.png') %>";
     </script>
 
+    <%= favicon_link_tag asset_path('favicon.ico') %>
     <meta property="og:title" content="Jello" />
-    <meta property="og:description" content="Jello is a Trello Clone" />
-    <meta property="og:url" content="https://jelloz.herokuapp.com/#/" />
-    <meta property="og:image" content="<%= image_url('homepage.gif') %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Trello Clone that uses Ruby Rails as Backend and React for Frontend" />
+    <meta property="og:url" content="https://jelloz.herokuapp.com/" />
+    <meta property="og:image" content="<%= asset_path('homepage.gif') %>" />
     
   </head>
 

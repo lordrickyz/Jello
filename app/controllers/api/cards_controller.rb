@@ -1,7 +1,7 @@
 class Api::CardsController < ApplicationController
 
-    def index
-    @cards = Card.all
+  def index
+    @cards = Card.all.where(list_id: params[:list_id])
     render :index
   end
 

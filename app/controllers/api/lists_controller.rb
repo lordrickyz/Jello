@@ -1,7 +1,7 @@
 class Api::ListsController < ApplicationController
 
   def index
-    @lists = List.all
+    @lists = List.all.where(board_id: params[:board_id])
     render :index
   end
 
@@ -10,7 +10,7 @@ class Api::ListsController < ApplicationController
     if @list.save
       render :show
     else
-      render json: @list.errors.full_messages, status: 404
+      render json: @list.errors.full_messages, status: 422
     end
   end
 
@@ -26,7 +26,7 @@ class Api::ListsController < ApplicationController
     if @list.save
       render :show
     else
-      render json: @list.errors.full_messages, status: 404
+      render json: @list.errors.full_messages, status: 422
     end
   end
 
@@ -36,7 +36,7 @@ class Api::ListsController < ApplicationController
     if @list.destroy
       render :show
     else
-      render json: { message: 'Could not be deleted' }, status: 404
+      render json: { message: 'Could not be deleted' }, status: 422
     end
   end
 

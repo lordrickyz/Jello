@@ -3429,39 +3429,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createList", function() { return createList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateList", function() { return updateList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteList", function() { return deleteList; });
-var fetchLists = function fetchLists() {
+var fetchLists = function fetchLists(boardId) {
   return $.ajax({
-    url: "/api/lists",
+    url: "/api/boards/".concat(boardId, "/lists"),
     method: "GET"
   });
 };
-var fetchList = function fetchList(id) {
+var fetchList = function fetchList(boardId, id) {
   return $.ajax({
-    url: "/api/lists/".concat(id),
+    url: "/api/boards/".concat(boardId, "/lists/").concat(id),
     method: "GET"
   });
 };
-var createList = function createList(list) {
+var createList = function createList(boardId, list) {
   return $.ajax({
-    url: "/api/lists",
+    url: "/api/boards/".concat(boardId, "/lists"),
     method: "POST",
     data: {
       list: list
     }
   });
 };
-var updateList = function updateList(list) {
+var updateList = function updateList(boardId, list) {
   return $.ajax({
-    url: "/api/lists/".concat(list.id),
+    url: "/api/boards/".concat(boardId, "/lists/").concat(list.id),
     method: "PATCH",
     data: {
       list: list
     }
   });
 };
-var deleteList = function deleteList(id) {
+var deleteList = function deleteList(boardId, id) {
   return $.ajax({
-    url: "/api/lists/".concat(id),
+    url: "/api/boards/".concat(boardId, "/lists/").concat(id),
     method: "DELETE"
   });
 };

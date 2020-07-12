@@ -40,19 +40,49 @@ seed_boards = Board.create([
 ])
 
 seed_lists = List.create([
-  { title: "Demo List 1",
+  { title: "Demo List 1 Part One",
     board_id: seed_boards.first.id
   },
-  { title: "Demo List 2",
+  { title: "Demo List 1 Part Two",
+    board_id: seed_boards.first.id
+  },
+  { title: "Demo List 1 Part Three",
+    board_id: seed_boards.first.id
+  },
+  { title: "Demo List 2 Part One",
     board_id: seed_boards.second.id
   },
-  { title: "Demo List 3",
+  { title: "Demo List 2 Part Two",
+    board_id: seed_boards.second.id
+  },
+  { title: "Demo List 2 Part Three",
+    board_id: seed_boards.second.id
+  },
+  { title: "Demo List 3 Part One",
     board_id: seed_boards.third.id
   },
-  { title: "Ricky's List",
+  { title: "Demo List 3 Part Two",
+    board_id: seed_boards.third.id
+  },
+  { title: "Demo List 3 Part Three",
+    board_id: seed_boards.third.id
+  },
+  { title: "Ricky's List 1",
     board_id: seed_boards.fourth.id
   },
-  { title: "App Student's List",
+  { title: "Ricky's List 2",
+    board_id: seed_boards.fourth.id
+  },
+  { title: "Ricky's List 3",
+    board_id: seed_boards.fourth.id
+  },
+  { title: "App Student's List 1",
+    board_id: seed_boards.fifth.id
+  },
+  { title: "App Student's List 2",
+    board_id: seed_boards.fifth.id
+  },
+  { title: "App Student's List 3",
     board_id: seed_boards.fifth.id
   }
 ])

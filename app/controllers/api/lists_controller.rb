@@ -6,11 +6,17 @@ class Api::ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
-    if @list.save
-      render :show
+    @lists = List.all.where(board_id: params[:board_id])
+    list = List.new(list_params)
+    list.board_id = params[:board_id]
+    if list.save
+      if @lists.length > 1
+        list.updateLists(@lists[-2].id)
+      end
+      @lists
+      render :index
     else
-      render json: @list.errors.full_messages, status: 422
+      render json: list.errors.full_messages, status: 422
     end
   end
 
@@ -20,13 +26,17 @@ class Api::ListsController < ApplicationController
   end
 
   def update
-    @list = List.find_by(id: params[:list][:id])
-    @list.title = params[:list][:title]
-
-    if @list.save
-      render :show
+    list = List.find(params[:id])
+    if list
+      if list_params[:prev_id] && list_params[:next_id]
+        list.updateLists(list_params[:prev_id], list_params[:next_id])
+      else
+        list.update(list_params)
+      end
+      @lists = List.where(board_id: list.board_id)
+      render :index
     else
-      render json: @list.errors.full_messages, status: 422
+      render json: list.errors.full_messages, status: 404
     end
   end
 

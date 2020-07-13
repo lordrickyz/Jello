@@ -9,6 +9,7 @@
 User.destroy_all
 Board.destroy_all
 List.destroy_all
+Card.destroy_all
 
 seed_users = User.create([
   { username: "User_Demo", email: "demo@jello.com", password: "password" },
@@ -84,5 +85,37 @@ seed_lists = List.create([
   },
   { title: "App Student's List 3",
     board_id: seed_boards.fifth.id
+  }
+])
+
+
+seed_cards = Card.create([
+  { title: "Demo Card 1 Part One",
+    description: "A Description for Demo 1",
+    list_id: seed_lists.first.id
+  },
+  { title: "Demo Card 1 Part Two",
+    description: "A Description for Demo 1",
+    list_id: seed_lists.first.id
+  },
+  { title: "Demo Card 2 Part One",
+    description: "A Description for Demo 2",
+    list_id: seed_lists.second.id
+  },
+  { title: "Demo Card 2 Part Two",
+    description: "A Description for Demo 2",
+    list_id: seed_lists.second.id
+  },
+  { title: "Demo Card 3 Part One",
+    description: "A Description for Demo 3",
+    list_id: seed_lists.third.id
+  },
+  { title: "Demo Card 3 Part Two",
+    description: "A Description for Demo 3",
+    list_id: seed_lists.third.id
+  },
+  { title: "Demo Card 3 Part Three",
+    description: "A Description for Demo 3",
+    list_id: seed_lists.third.id
   }
 ])

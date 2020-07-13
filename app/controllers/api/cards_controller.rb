@@ -6,13 +6,17 @@ class Api::CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
-    @card.description = params[:card][:description] || ""
-    @card.author_id = current_user.id
-    if @card.save
-      render :show
+    @cards = Card.all.where(list_id: params[:list_id])
+    card = Card.new(card_params)
+    card.list_id = params[:list_id]
+    if card.save
+      if @cards.length > 1
+        card.updateCards(@cards[-2].id)
+      end
+      @cards
+      render :index
     else
-      render json: @card.errors.full_messages, status: 404
+      render json: card.errors.full_messages, status: 422
     end
   end
 
@@ -27,6 +31,7 @@ class Api::CardsController < ApplicationController
       if card_params[:list_id]
         old_list_id = card.list_id
         card.update_attribute(:list_id, card_params[:list_id])
+        card.updateCards(card_params[:prev_id], card_params[:next_id])
         @cards = Card.where(list_id: [card.list_id, old_list_id])
       else
         card.update_attributes({title: card_params[:title], description: card_params[:description]})

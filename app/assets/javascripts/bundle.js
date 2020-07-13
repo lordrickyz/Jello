@@ -203,6 +203,104 @@ var deleteBoard = function deleteBoard(id) {
 
 /***/ }),
 
+/***/ "./frontend/actions/cards_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/cards_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_CARDS, RECEIVE_CARD, CLEAR_CARDS, RECEIVE_CARD_ERRORS, CLEAR_CARD_ERRORS, fetchCards, fetchCard, createCard, updateCard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CARDS", function() { return RECEIVE_CARDS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CARD", function() { return RECEIVE_CARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_CARDS", function() { return CLEAR_CARDS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CARD_ERRORS", function() { return RECEIVE_CARD_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_CARD_ERRORS", function() { return CLEAR_CARD_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCards", function() { return fetchCards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCard", function() { return fetchCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCard", function() { return createCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCard", function() { return updateCard; });
+/* harmony import */ var _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/card_api_util */ "./frontend/util/card_api_util.js");
+
+var RECEIVE_CARDS = 'RECEIVE_CARDS';
+var RECEIVE_CARD = 'RECEIVE_CARD';
+var CLEAR_CARDS = 'CLEAR_CARDS';
+var RECEIVE_CARD_ERRORS = 'RECEIVE_CARD_ERRORS';
+var CLEAR_CARD_ERRORS = 'CLEAR_CARD_ERRORS';
+
+var receiveCards = function receiveCards(cards) {
+  return {
+    type: RECEIVE_CARDS,
+    cards: cards
+  };
+};
+
+var receiveCard = function receiveCard(card) {
+  return {
+    type: RECEIVE_CARD,
+    cards: cards
+  };
+};
+
+var clearCards = function clearCards() {
+  return {
+    type: CLEAR_CARDS
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_CARD_ERRORS,
+    errors: errors
+  };
+};
+
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_CARD_ERRORS
+  };
+};
+
+var fetchCards = function fetchCards(listId) {
+  return function (dispatch) {
+    return _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCards"](listId).then(function (cards) {
+      return dispatch(receiveCards(cards));
+    }).fail(function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var fetchCard = function fetchCard(cardId) {
+  return function (dispatch) {
+    return _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCard"](cardId).then(function (card) {
+      return dispatch(receiveCard(card));
+    }).fail(function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var createCard = function createCard(cardId, card) {
+  return function (dispatch) {
+    return _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__["createCard"](cardId, card).then(function (cards) {
+      return dispatch(receiveCards(cards));
+    }).fail(function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var updateCard = function updateCard(card) {
+  return function (dispatch) {
+    return _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__["updateCard"](card).then(function (cards) {
+      return dispatch(receiveCards(cards));
+    }).fail(function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/lists_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/lists_actions.js ***!
@@ -1464,6 +1562,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _list_item_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./list_item_container */ "./frontend/components/lists/list_item_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1503,8 +1609,14 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       boardId: props.boardId,
       lists: props.lists,
-      currentUser: props.currentUser
+      currentUser: props.currentUser,
+      listOrder: [],
+      cardDragResult: {}
     };
+    _this.orderLists = _this.orderLists.bind(_assertThisInitialized(_this));
+    _this.renderLists = _this.renderLists.bind(_assertThisInitialized(_this));
+    _this.updateListToDB = _this.updateListToDB.bind(_assertThisInitialized(_this));
+    _this.onDragEnd = _this.onDragEnd.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1512,26 +1624,125 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchLists(this.props.boardId);
+      this.orderLists();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.lists !== this.props.lists) {
+        this.orderLists();
+      }
+    }
+  }, {
+    key: "orderLists",
+    value: function orderLists() {
+      if (Object.keys(this.props.lists).length === 0) return;
+      var listsFromProps = Object.values(this.props.lists);
+      var orderedLists = [];
+      var currentList = listsFromProps.find(function (list) {
+        return list.prev_id === null;
+      });
+      orderedLists.push(currentList.id);
+
+      while (currentList.next_id !== null) {
+        currentList = listsFromProps.find(function (list) {
+          return list.id === currentList.next_id;
+        });
+        orderedLists.push(currentList.id);
+      }
+
+      this.setState({
+        listOrder: orderedLists
+      });
     }
   }, {
     key: "renderLists",
     value: function renderLists() {
-      if (!this.props.lists) return null;
-      var lists = Object.values(this.props.lists).map(function (list) {
+      var _this2 = this;
+
+      if (this.state.listOrder.length === 0) return null;
+      var listItems = this.state.listOrder.map(function (listId, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_list_item_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: list.id,
-          list: list
+          list: _this2.props.lists[listId],
+          key: "list-".concat(listId),
+          dragIdx: index,
+          cardDragResult: _this2.state.cardDragResult
         });
       });
-      return lists;
+      return listItems;
+    }
+  }, {
+    key: "updateListToDB",
+    value: function updateListToDB(list, newIndex, newListOrder) {
+      if (newIndex === 0) {
+        list.prev_id = null;
+        list.next_id = newListOrder[1];
+      } else if (newIndex === newListOrder.length - 1) {
+        list.prev_id = newListOrder[newListOrder.length - 2];
+        list.next_id = null;
+      } else {
+        list.prev_id = newListOrder[newIndex - 1];
+        list.next_id = newListOrder[newIndex + 1];
+      }
+
+      this.props.updateList(this.state.boardId, list);
+    }
+  }, {
+    key: "onDragEnd",
+    value: function onDragEnd(result) {
+      var destination = result.destination,
+          source = result.source,
+          draggableId = result.draggableId,
+          type = result.type;
+
+      if (!destination) {
+        return;
+      }
+
+      if (destination.droppableId === source.droppableId && destination.index === source.index) {
+        return;
+      }
+
+      if (type === 'LIST') {
+        var newListOrder = Array.from(this.state.listOrder);
+        newListOrder.splice(source.index, 1);
+        var draggedListId = draggableId.slice(draggableId.search('_') + 1);
+        newListOrder.splice(destination.index, 0, draggedListId);
+
+        var newState = _objectSpread(_objectSpread({}, this.state), {}, {
+          listOrder: newListOrder
+        });
+
+        this.setState(newState);
+        this.updateListToDB(this.props.lists[draggedListId], destination.index, newListOrder);
+      }
+
+      if (type === 'CARD') {
+        this.setState({
+          cardDragResult: result
+        });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      //onDragEnd = { this.onDragEnd.bind(this) }
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__["DragDropContext"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "drag-drop-context"
-      }, this.renderLists()));
+      var _this3 = this;
+
+      if (!this.state.listOrder) return null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__["DragDropContext"], {
+        onDragEnd: this.onDragEnd
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__["Droppable"], {
+        droppableId: "board_".concat(this.props.boardId),
+        type: "LIST",
+        direction: "horizontal"
+      }, function (provided, snapshot) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
+          className: "list-index-container",
+          ref: provided.innerRef
+        }, provided.droppableProps), _this3.renderLists(), provided.placeholder);
+      })));
     }
   }]);
 
@@ -1580,6 +1791,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    },
+    updateList: function updateList(boardId, list) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__["updateList"])(boardId, list));
     }
   };
 };
@@ -1646,13 +1860,9 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ListItem);
 
   function ListItem(props) {
-    var _this;
-
     _classCallCheck(this, ListItem);
 
-    _this = _super.call(this, props);
-    debugger;
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(ListItem, [{
@@ -3031,6 +3241,47 @@ var boardsReducer = function boardsReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/components/cards_reducer.js":
+/*!*******************************************************!*\
+  !*** ./frontend/reducers/components/cards_reducer.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var cardsReducer = function cardsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CARDS"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.cards);
+
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CARD"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.card.id, action.card));
+
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["CLEAR_CARDS"]:
+      return {};
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (cardsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/components/entities_reducer.js":
 /*!**********************************************************!*\
   !*** ./frontend/reducers/components/entities_reducer.js ***!
@@ -3044,6 +3295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users/users_reducer */ "./frontend/reducers/users/users_reducer.js");
 /* harmony import */ var _boards_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./boards_reducer */ "./frontend/reducers/components/boards_reducer.js");
 /* harmony import */ var _lists_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lists_reducer */ "./frontend/reducers/components/lists_reducer.js");
+/* harmony import */ var _cards_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cards_reducer */ "./frontend/reducers/components/cards_reducer.js");
+
 
 
 
@@ -3051,7 +3304,8 @@ __webpack_require__.r(__webpack_exports__);
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   boards: _boards_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  lists: _lists_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  lists: _lists_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  cards: _cards_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -3071,7 +3325,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
- // import { RECEIVE_BOARD } from '../../actions/board_actions';
 
 
 
@@ -3083,8 +3336,6 @@ var listsReducer = function listsReducer() {
   switch (action.type) {
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LISTS"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, action.lists);
-    // case RECEIVE_BOARD:
-    //   return merge({}, action.lists);
 
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIST"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.list.id, action.list));
@@ -3136,6 +3387,39 @@ var boardErrorsReducer = function boardErrorsReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/errors/card_errors_reducer.js":
+/*!*********************************************************!*\
+  !*** ./frontend/reducers/errors/card_errors_reducer.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+
+
+var cardErrorsReducer = function cardErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CARD_ERRORS"]:
+      return action.errors;
+
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_CARD_ERRORS"]:
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (cardErrorsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/errors/errors_reducer.js":
 /*!****************************************************!*\
   !*** ./frontend/reducers/errors/errors_reducer.js ***!
@@ -3149,6 +3433,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/errors/session_errors_reducer.js");
 /* harmony import */ var _board_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board_errors_reducer */ "./frontend/reducers/errors/board_errors_reducer.js");
 /* harmony import */ var _list_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list_errors_reducer */ "./frontend/reducers/errors/list_errors_reducer.js");
+/* harmony import */ var _card_errors_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./card_errors_reducer */ "./frontend/reducers/errors/card_errors_reducer.js");
+
 
 
 
@@ -3156,7 +3442,8 @@ __webpack_require__.r(__webpack_exports__);
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   boards: _board_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  lists: _list_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  lists: _list_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  cards: _card_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
 
@@ -3461,6 +3748,52 @@ var deleteBoard = function deleteBoard(id) {
   return $.ajax({
     url: "/api/boards/".concat(id),
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/card_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/card_api_util.js ***!
+  \****************************************/
+/*! exports provided: fetchCards, createCard, fetchCard, updateCard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCards", function() { return fetchCards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCard", function() { return createCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCard", function() { return fetchCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCard", function() { return updateCard; });
+var fetchCards = function fetchCards(listId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/lists/".concat(listId, "/cards")
+  });
+};
+var createCard = function createCard(listId, card) {
+  return $.ajax({
+    method: 'POST',
+    url: "/api/lists/".concat(listId, "/cards"),
+    data: {
+      card: card
+    }
+  });
+};
+var fetchCard = function fetchCard(cardId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/cards/".concat(cardId)
+  });
+};
+var updateCard = function updateCard(card) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/cards/".concat(card.id),
+    data: {
+      card: card
+    }
   });
 };
 

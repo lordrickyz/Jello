@@ -3,14 +3,7 @@ export const fetchLists = (boardId) =>
     url: `/api/boards/${boardId}/lists`,
     method: "GET",
   });
-
-export const fetchList = (boardId, id) => {
-  return $.ajax({
-    url: `/api/boards/${boardId}/lists/${id}`,
-    method: "GET"
-  });
-};
-
+  
 export const createList = (boardId, list) => {
   return $.ajax({
     url: `/api/boards/${boardId}/lists`,

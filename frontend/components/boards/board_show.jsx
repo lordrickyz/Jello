@@ -1,7 +1,7 @@
 import React from 'react';
 import BoardShowNav from '../navbar/board_nav/board_show_nav';
 import BoardNavContainer from '../navbar/board_nav/board_nav_container'
-import ListIndex from '../lists/list_index_container';
+import ListIndexContainer from '../lists/list_index_container';
 
 
 class BoardShow extends React.Component {
@@ -11,6 +11,7 @@ class BoardShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchBoard(this.props.boardId)
+    this.props.fetchLists(this.props.boardId)
   }
 
 
@@ -29,8 +30,9 @@ class BoardShow extends React.Component {
         />
 
       </section>
-        <ListIndex 
+        <ListIndexContainer 
          boardId={this.props.boardId}
+
         />
       </>
     )

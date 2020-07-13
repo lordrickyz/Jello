@@ -21,7 +21,7 @@ const mapDispatchtoProps = dispatch => ({
   fetchBoard: id => dispatch(fetchBoard(id)),
   updateBoard: board => dispatch(updateBoard(board)),
   deleteBoard: id => dispatch(deleteBoard(id)),
-  fetchLists: () => dispatch(fetchLists()),
+  fetchLists: boardId => dispatch(fetchLists(boardId)),
 })
 
 export default (connect(mapStatetoProps,mapDispatchtoProps)(BoardShow));

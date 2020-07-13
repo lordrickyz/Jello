@@ -260,45 +260,45 @@ var receiveListErrors = function receiveListErrors(errors) {
   };
 };
 
-var fetchLists = function fetchLists() {
+var fetchLists = function fetchLists(boardId) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLists"]().then(function (lists) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLists"](boardId).then(function (lists) {
       return dispatch(receiveLists(lists));
     }).fail(function (errors) {
       return dispatch(receiveListErrors(errors.responseJSON));
     });
   };
 };
-var fetchList = function fetchList(id) {
+var fetchList = function fetchList(boardId, id) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchList"](id).then(function (list) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchList"](boardId, id).then(function (list) {
       return dispatch(receiveList(list));
     }).fail(function (errors) {
       return dispatch(receiveListErrors(errors.responseJSON));
     });
   };
 };
-var createList = function createList(list) {
+var createList = function createList(boardId, list) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["createList"](list).then(function (list) {
-      return dispatch(receiveList(list));
-    }, function (errors) {
-      return dispatch(receiveListErrors(errors.responseJSON));
-    });
-  };
-};
-var updateList = function updateList(list) {
-  return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["updateList"](list).then(function (list) {
-      return dispatch(receiveList(list));
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["createList"](boardId, list).then(function (lists) {
+      return dispatch(receiveLists(lists));
     }).fail(function (errors) {
       return dispatch(receiveListErrors(errors.responseJSON));
     });
   };
 };
-var deleteList = function deleteList(id) {
+var updateList = function updateList(boardId, list) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](id).then(function () {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["updateList"](boardId, list).then(function (lists) {
+      return dispatch(receiveLists(lists));
+    }).fail(function (errors) {
+      return dispatch(receiveListErrors(errors.responseJSON));
+    });
+  };
+};
+var deleteList = function deleteList(boardId, id) {
+  return function (dispatch) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](boardId, id).then(function (listId) {
       return dispatch(removeList(listId));
     }).fail(function (errors) {
       return dispatch(receiveListErrors(errors.responseJSON));
@@ -860,6 +860,7 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoard(this.props.boardId);
+      this.props.fetchLists(this.props.boardId);
     }
   }, {
     key: "render",
@@ -947,8 +948,8 @@ var mapDispatchtoProps = function mapDispatchtoProps(dispatch) {
     }(function (id) {
       return dispatch(deleteBoard(id));
     }),
-    fetchLists: function fetchLists() {
-      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLists"])());
+    fetchLists: function fetchLists(boardId) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLists"])(boardId));
     }
   };
 };
@@ -1465,7 +1466,11 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
+/* harmony import */ var _list_item_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list_item_container */ "./frontend/components/lists/list_item_container.js");
+/* harmony import */ var _list_item_container__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_list_item_container__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _list_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./list_form_container */ "./frontend/components/lists/list_form_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1491,6 +1496,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
 var ListIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(ListIndex, _React$Component);
 
@@ -1502,79 +1510,35 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ListIndex);
 
     _this = _super.call(this, props);
-    _this.renderLists = _this.renderLists.bind(_assertThisInitialized(_this));
-    _this.CreateListModal = _this.CreateListModal.bind(_assertThisInitialized(_this));
+    _this.state = {
+      boardId: props.boardId,
+      lists: props.lists,
+      currentUser: props.currentUser
+    };
+    debugger;
     return _this;
   }
 
   _createClass(ListIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLists();
-      this.props.closeModal();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.closeModal();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (prevProps.lists !== this.props.lists) {
-        this.props.fetchLists();
-      }
-    }
-  }, {
-    key: "CreateListModal",
-    value: function CreateListModal() {
-      this.props.openModal("create-list");
-    }
-  }, {
-    key: "renderLists",
-    value: function renderLists() {
-      var listItems = this.props.lists.map(function (list) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "list-index-items",
-          key: "list-index-".concat(list.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, list.title));
-      });
-
-      if (listItems.length > 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          className: "lists-items"
-        }, listItems, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "list-index-item",
-          key: "create-list-li",
-          id: "create-list-li",
-          onClick: this.CreateListModal
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Add New List"))));
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          className: "lists-items"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "list-index-item",
-          key: "create-list-li",
-          id: "create-list-li",
-          onClick: this.CreateListModal
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Add New List"))));
-      }
+      this.props.fetchLists(this.state.boardId);
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "lists-index-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "lists-index"
-      }, this.renderLists()));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "list-outer-index"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "list-index"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__["DragDropContext"], null, _list_form_container__WEBPACK_IMPORTED_MODULE_4__["default"])));
     }
   }]);
 
   return ListIndex;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ListIndex);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ListIndex));
 
 /***/ }),
 
@@ -1591,25 +1555,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _list_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./list_index */ "./frontend/components/lists/list_index.jsx");
 /* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
- // import { withRouter } from 'react-router-dom';
+
+
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.session.id,
     boardId: parseInt(ownProps.boardId),
-    lists: Object.keys(state.entities.lists).map(function (id) {
-      return state.entities.lists[id];
-    })
+    lists: state.session.lists // Object.keys(state.entities.lists).map((id) => state.entities.lists[id])
+
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchLists: function fetchLists() {
-      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLists"])());
+    fetchLists: function fetchLists(boardId) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLists"])(boardId));
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
@@ -1620,7 +1585,18 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_list_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_list_index__WEBPACK_IMPORTED_MODULE_1__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/lists/list_item_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/lists/list_item_container.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 
@@ -3014,12 +2990,11 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
+ // import { RECEIVE_BOARD } from '../../actions/board_actions';
 
 
 
@@ -3030,16 +3005,15 @@ var listsReducer = function listsReducer() {
 
   switch (action.type) {
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LISTS"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.lists);
-
-    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.lists);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, action.lists);
+    // case RECEIVE_BOARD:
+    //   return merge({}, action.lists);
 
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIST"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.list.id, action.list));
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.list.id, action.list));
 
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIST"]:
-      var newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state);
+      var newState = lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state);
       delete newState[action.list.id];
       return newState;
 
@@ -3419,25 +3393,18 @@ var deleteBoard = function deleteBoard(id) {
 /*!****************************************!*\
   !*** ./frontend/util/list_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchLists, fetchList, createList, updateList, deleteList */
+/*! exports provided: fetchLists, createList, updateList, deleteList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLists", function() { return fetchLists; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchList", function() { return fetchList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createList", function() { return createList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateList", function() { return updateList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteList", function() { return deleteList; });
 var fetchLists = function fetchLists(boardId) {
   return $.ajax({
     url: "/api/boards/".concat(boardId, "/lists"),
-    method: "GET"
-  });
-};
-var fetchList = function fetchList(boardId, id) {
-  return $.ajax({
-    url: "/api/boards/".concat(boardId, "/lists/").concat(id),
     method: "GET"
   });
 };

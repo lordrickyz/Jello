@@ -22,11 +22,19 @@ class Api::CardsController < ApplicationController
   end
 
   def update
-    @card = Card.find_by(id: params[:card][:id])
-    if @card.update(card_params)
-      render :show
+    card = Card.find(params[:id])
+    if card
+      if card_params[:list_id]
+        old_list_id = card.list_id
+        card.update_attribute(:list_id, card_params[:list_id])
+        @cards = Card.where(list_id: [card.list_id, old_list_id])
+      else
+        card.update_attributes({title: card_params[:title], description: card_params[:description]})
+        @cards = Card.where(list_id: card.list_id)
+      end
+      render :index
     else
-      render json: @card.errors.full_messages, status: 404
+      render json: card.errors.full_messages, status: 404
     end
   end
 
@@ -43,7 +51,7 @@ class Api::CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title, :description, :list_id)
+    params.require(:card).permit(:title, :description, :list_id, :prev_id, :next_id)
   end
 
 end

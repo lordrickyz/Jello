@@ -26,24 +26,22 @@ const receiveListErrors = (errors) => ({
   errors
 });
 
-export const fetchLists = () => dispatch => ListAPIUtil.fetchLists()
+export const fetchLists = (boardId) => dispatch => ListAPIUtil.fetchLists(boardId)
     .then(lists => dispatch(receiveLists(lists)))
     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
 
-export const fetchList = (id) => dispatch => ListAPIUtil.fetchList(id)
+export const fetchList = (boardId, id) => dispatch => ListAPIUtil.fetchList(boardId, id)
     .then(list => dispatch(receiveList(list)))
     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
 
-export const createList = (list) => dispatch => ListAPIUtil.createList(list)
-    .then(list => dispatch(receiveList(list)), errors => (
-      dispatch(receiveListErrors(errors.responseJSON))
-  )
-);
+export const createList = (boardId, list) => dispatch => ListAPIUtil.createList(boardId, list)
+    .then(lists => dispatch(receiveLists(lists)))
+    .fail(errors => (dispatch(receiveListErrors(errors.responseJSON))));
 
-export const updateList = (list) => dispatch => ListAPIUtil.updateList(list)
-    .then(list => dispatch(receiveList(list)))
+export const updateList = (boardId, list) => dispatch => ListAPIUtil.updateList(boardId, list)
+    .then(lists => dispatch(receiveLists(lists)))
     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
 
-export const deleteList = (id) => dispatch => ListAPIUtil.deleteList(id)
-    .then(() => dispatch(removeList(listId)))
+export const deleteList = (boardId, id) => dispatch => ListAPIUtil.deleteList(boardId,id)
+    .then((listId) => dispatch(removeList(listId)))
     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));

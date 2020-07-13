@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import BoardIndex from './board_index'
-import { fetchBoards } from '../../actions/board_actions'
+import BoardIndex from './board_index';
+import { fetchBoards } from '../../actions/board_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => {

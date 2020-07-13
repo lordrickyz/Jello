@@ -5,11 +5,11 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
+
   return {
     currentUser: state.session.id,
     boardId: parseInt(ownProps.boardId),
-    lists: state.session.lists,
-    // Object.keys(state.entities.lists).map((id) => state.entities.lists[id])
+    lists: ownProps.lists,
   }
 };
 

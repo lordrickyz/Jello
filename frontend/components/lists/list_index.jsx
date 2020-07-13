@@ -1,8 +1,8 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { DragDropContext } from 'react-beautiful-dnd';
+// import { withRouter } from 'react-router-dom';
+import { Draggable, Droppable, DragDropContext } from 'react-beautiful-dnd';
 import ListItemContainer from './list_item_container';
-import ListFormContainer from './list_form_container';
+// import ListFormContainer from './list_form_container';
 
 class ListIndex extends React.Component {
   constructor(props) {
@@ -12,25 +12,33 @@ class ListIndex extends React.Component {
       lists: props.lists,
       currentUser: props.currentUser,
     };
-    debugger;
   }
 
   componentDidMount() {
-    this.props.fetchLists(this.state.boardId)
+    this.props.fetchLists(this.props.boardId)
   }
 
-  render() {
+  renderLists() {
+    if (!this.props.lists) return null;
 
+    const lists = Object.values(this.props.lists).map(list => {
+      return <ListItemContainer key={list.id} list={list} />
+    })
+
+    return lists
+  }
+
+
+  render() {
+//onDragEnd = { this.onDragEnd.bind(this) }
     return (
-      <div className="list-outer-index" >
-        <div className="list-index">
-          <DragDropContext>
-            {ListFormContainer}
-          </DragDropContext>
+      <DragDropContext> 
+        <div className="drag-drop-context">
+          {this.renderLists()}
         </div>
-      </div>
+      </DragDropContext>
     )
   }
 }
 
-export default withRouter(ListIndex)
+export default (ListIndex)

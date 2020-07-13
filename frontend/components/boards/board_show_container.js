@@ -9,9 +9,15 @@ const mapStatetoProps = (state, ownProps) => {
   const defaultBoard = {
     title: "Title",
   }
+
+  const defaultList = {
+    title: "Title",
+  }
+
   return{
     boardId: parseInt(ownProps.match.params.id),
     board: state.entities.boards[ownProps.match.params.id] || defaultBoard,
+    lists: state.entities.lists || defaultList,
     history: ownProps.history,
     currentUser: state.entities.users[state.session.id],
   }

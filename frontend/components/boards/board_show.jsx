@@ -32,7 +32,7 @@ class BoardShow extends React.Component {
       </section>
         <ListIndexContainer 
          boardId={this.props.boardId}
-
+         lists={this.props.lists}
         />
       </>
     )

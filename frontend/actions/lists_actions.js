@@ -11,10 +11,10 @@ const receiveLists = (lists) => ({
   lists
 });
 
-const receiveList = ({list}) => ({
-  type: RECEIVE_LIST,
-  list
-});
+// const receiveList = ({list}) => ({
+//   type: RECEIVE_LIST,
+//   list
+// });
 
 const removeList = ({list}) => ({
   type: REMOVE_LIST,
@@ -30,9 +30,9 @@ export const fetchLists = (boardId) => dispatch => ListAPIUtil.fetchLists(boardI
     .then(lists => dispatch(receiveLists(lists)))
     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
 
-export const fetchList = (boardId, id) => dispatch => ListAPIUtil.fetchList(boardId, id)
-    .then(list => dispatch(receiveList(list)))
-    .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
+// export const fetchList = (boardId, id) => dispatch => ListAPIUtil.fetchList(boardId, id)
+//     .then(list => dispatch(receiveList(list)))
+//     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
 
 export const createList = (boardId, list) => dispatch => ListAPIUtil.createList(boardId, list)
     .then(lists => dispatch(receiveLists(lists)))

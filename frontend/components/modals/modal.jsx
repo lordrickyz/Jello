@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import UserMenu from '../navbar/board_nav/user_menu';
+import BoardMenu from '../navbar/board_nav/board_menu';
 import BoardForm from '../boards/board_form_container';
 import BoardShowMenu from '../boards/board_show_menu';
 import CardShowContainer from '../card/card_show_container';
@@ -27,9 +28,9 @@ const Modal = ({ modal, closeModal }) => {
     case "showCard":
       component = <CardShowContainer cardId={modal.id} />;
       break;
-    // case 'create-list':
-    //   component = <ListForm />
-    // break;
+    case "board-menu":
+      component = <BoardMenu />;
+      break;
     default:
       return null;
   }

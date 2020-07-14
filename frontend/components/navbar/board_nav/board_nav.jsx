@@ -52,7 +52,7 @@ class BoardNav extends React.Component {
       <section className="board-navbar">
         <div className="float-left">
           <Link to="/" className="home-btn"><FontAwesomeIcon icon={faHome}/></Link>
-          <button className="boards-btn"><FontAwesomeIcon icon={faList}/> Boards</button>
+          <button onClick={this.showForm("board-menu")} className="boards-btn"><FontAwesomeIcon icon={faList}/> Boards</button>
           <input
             value={this.state.searchbar}
             onBlur={this.clearSearch}

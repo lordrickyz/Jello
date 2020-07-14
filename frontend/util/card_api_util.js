@@ -1,29 +1,36 @@
 export const fetchCards = (listId) => {
   return $.ajax({
-    method: 'GET',
-    url: `/api/lists/${listId}/cards`
+    url: `/api/lists/${listId}/cards`,
+    method: 'GET'
   });
 };
 
 export const createCard = (listId, card) => {
   return $.ajax({
-    method: 'POST',
     url: `/api/lists/${listId}/cards`,
+    method: 'POST',
     data: { card }
   });
 };
 
 export const fetchCard = (cardId) => {
   return $.ajax({
-    method: 'GET',
-    url: `/api/cards/${cardId}`
+    url: `/api/cards/${cardId}`,
+    method: 'GET'
   });
 }
 
 export const updateCard = (card) => {
   return $.ajax({
-    method: 'PATCH',
     url: `/api/cards/${card.id}`,
+    method: 'PATCH',
     data: { card }
+  });
+};
+
+export const deleteCard = (id) => {
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/cards/${id}`
   });
 };

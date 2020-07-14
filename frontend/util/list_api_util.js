@@ -12,17 +12,17 @@ export const createList = (boardId, list) => {
   });
 };
 
-export const updateList = (boardId, list) => {
+export const updateList = (list) => {
   return $.ajax({
-    url: `/api/boards/${boardId}/lists/${list.id}`,
+    url: `/api/lists/${list.id}`,
     method: "PATCH",
     data: { list },
   });
 };
 
-export const deleteList = (boardId, id) => {
+export const deleteList = (id) => {
   return $.ajax({
-    url: `/api/boards/${boardId}/lists/${id}`,
+    url: `/api/lists/${id}`,
     method: "DELETE",
   });
 };

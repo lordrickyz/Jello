@@ -1,31 +1,26 @@
 import * as CardAPIUtil from '../util/card_api_util';
 
-export const RECEIVE_CARDS = 'RECEIVE_CARDS';
-export const RECEIVE_CARD = 'RECEIVE_CARD';
-export const CLEAR_CARDS = 'CLEAR_CARDS';
-export const RECEIVE_CARD_ERRORS = 'RECEIVE_CARD_ERRORS';
-export const CLEAR_CARD_ERRORS = 'CLEAR_CARD_ERRORS';
+export const RECEIVE_CARDS = "RECEIVE_CARDS";
+export const RECEIVE_CARD = "RECEIVE_CARD";
+export const RECEIVE_CARD_ERRORS = "RECEIVE_CARD_ERRORS";
+export const CLEAR_CARD_ERRORS = "CLEAR_CARD_ERRORS";
 
-const receiveCards = (cards) => ({
+export const receiveCards = (cards) => ({
     type: RECEIVE_CARDS,
     cards
 });
 
-const receiveCard = (card) => ({
+export const receiveCard = (card) => ({
   type: RECEIVE_CARD,
-  cards
+  card,
 });
 
-const clearCards = () => ({
-    type: CLEAR_CARDS
-});
-
-const receiveErrors = (errors) => ({
+export const receiveErrors = (errors) => ({
     type: RECEIVE_CARD_ERRORS,
     errors
 });
 
-const clearErrors = () => ({
+export const clearErrors = () => ({
     type: CLEAR_CARD_ERRORS
 });
 

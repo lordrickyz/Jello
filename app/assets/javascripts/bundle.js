@@ -135,15 +135,16 @@ var receiveBoards = function receiveBoards(boards) {
     boards: boards
   };
 };
-var receiveBoard = function receiveBoard(_ref) {
-  var board = _ref.board;
+var receiveBoard = function receiveBoard(payload) {
   return {
     type: RECEIVE_BOARD,
-    board: board
+    board: payload.board,
+    lists: payload.lists,
+    cards: payload.cards
   };
 };
-var removeBoard = function removeBoard(_ref2) {
-  var board = _ref2.board;
+var removeBoard = function removeBoard(_ref) {
+  var board = _ref.board;
   return {
     type: REMOVE_BOARD,
     board: board
@@ -207,61 +208,52 @@ var deleteBoard = function deleteBoard(id) {
 /*!*******************************************!*\
   !*** ./frontend/actions/cards_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_CARDS, RECEIVE_CARD, CLEAR_CARDS, RECEIVE_CARD_ERRORS, CLEAR_CARD_ERRORS, fetchCards, fetchCard, createCard, updateCard */
+/*! exports provided: RECEIVE_CARDS, RECEIVE_CARD, RECEIVE_CARD_ERRORS, CLEAR_CARD_ERRORS, receiveCards, receiveCard, receiveErrors, clearErrors, fetchCards, fetchCard, createCard, updateCard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CARDS", function() { return RECEIVE_CARDS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CARD", function() { return RECEIVE_CARD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_CARDS", function() { return CLEAR_CARDS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CARD_ERRORS", function() { return RECEIVE_CARD_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_CARD_ERRORS", function() { return CLEAR_CARD_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCards", function() { return receiveCards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCard", function() { return receiveCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCards", function() { return fetchCards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCard", function() { return fetchCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCard", function() { return createCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCard", function() { return updateCard; });
 /* harmony import */ var _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/card_api_util */ "./frontend/util/card_api_util.js");
 
-var RECEIVE_CARDS = 'RECEIVE_CARDS';
-var RECEIVE_CARD = 'RECEIVE_CARD';
-var CLEAR_CARDS = 'CLEAR_CARDS';
-var RECEIVE_CARD_ERRORS = 'RECEIVE_CARD_ERRORS';
-var CLEAR_CARD_ERRORS = 'CLEAR_CARD_ERRORS';
-
+var RECEIVE_CARDS = "RECEIVE_CARDS";
+var RECEIVE_CARD = "RECEIVE_CARD";
+var RECEIVE_CARD_ERRORS = "RECEIVE_CARD_ERRORS";
+var CLEAR_CARD_ERRORS = "CLEAR_CARD_ERRORS";
 var receiveCards = function receiveCards(cards) {
   return {
     type: RECEIVE_CARDS,
     cards: cards
   };
 };
-
 var receiveCard = function receiveCard(card) {
   return {
     type: RECEIVE_CARD,
-    cards: cards
+    card: card
   };
 };
-
-var clearCards = function clearCards() {
-  return {
-    type: CLEAR_CARDS
-  };
-};
-
 var receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_CARD_ERRORS,
     errors: errors
   };
 };
-
 var clearErrors = function clearErrors() {
   return {
     type: CLEAR_CARD_ERRORS
   };
 };
-
 var fetchCards = function fetchCards(listId) {
   return function (dispatch) {
     return _util_card_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCards"](listId).then(function (cards) {
@@ -305,16 +297,20 @@ var updateCard = function updateCard(card) {
 /*!*******************************************!*\
   !*** ./frontend/actions/lists_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_LISTS, RECEIVE_LIST, REMOVE_LIST, RECEIVE_LIST_ERRORS, CLEAR_LIST_ERRORS, fetchLists, createList, updateList, deleteList */
+/*! exports provided: RECEIVE_LISTS, RECEIVE_LIST, RECEIVE_LIST_ERRORS, CLEAR_LIST_ERRORS, receiveLists, receiveList, removeList, receiveErrors, clearErrors, fetchLists, createList, updateList, deleteList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LISTS", function() { return RECEIVE_LISTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIST", function() { return RECEIVE_LIST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIST", function() { return REMOVE_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIST_ERRORS", function() { return RECEIVE_LIST_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_LIST_ERRORS", function() { return CLEAR_LIST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLists", function() { return receiveLists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveList", function() { return receiveList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeList", function() { return removeList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLists", function() { return fetchLists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createList", function() { return createList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateList", function() { return updateList; });
@@ -323,72 +319,72 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_LISTS = "RECEIVE_LISTS";
 var RECEIVE_LIST = "RECEIVE_LIST";
-var REMOVE_LIST = "REMOVE_LIST";
 var RECEIVE_LIST_ERRORS = "RECEIVE_LIST_ERRORS";
 var CLEAR_LIST_ERRORS = "CLEAR_LIST_ERRORS";
-
 var receiveLists = function receiveLists(lists) {
   return {
     type: RECEIVE_LISTS,
     lists: lists
   };
-}; // const receiveList = ({list}) => ({
-//   type: RECEIVE_LIST,
-//   list
-// });
-
-
-var removeList = function removeList(_ref) {
+};
+var receiveList = function receiveList(_ref) {
   var list = _ref.list;
+  return {
+    type: RECEIVE_LIST,
+    list: list
+  };
+};
+var removeList = function removeList(_ref2) {
+  var list = _ref2.list;
   return {
     type: REMOVE_LIST,
     list: list
   };
 };
-
-var receiveListErrors = function receiveListErrors(errors) {
+var receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_LIST_ERRORS,
     errors: errors
   };
 };
-
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_LIST_ERRORS
+  };
+};
 var fetchLists = function fetchLists(boardId) {
   return function (dispatch) {
     return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLists"](boardId).then(function (lists) {
       return dispatch(receiveLists(lists));
     }).fail(function (errors) {
-      return dispatch(receiveListErrors(errors.responseJSON));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
-}; // export const fetchList = (boardId, id) => dispatch => ListAPIUtil.fetchList(boardId, id)
-//     .then(list => dispatch(receiveList(list)))
-//     .fail(errors => dispatch(receiveListErrors(errors.responseJSON)));
-
+};
 var createList = function createList(boardId, list) {
   return function (dispatch) {
     return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["createList"](boardId, list).then(function (lists) {
       return dispatch(receiveLists(lists));
     }).fail(function (errors) {
-      return dispatch(receiveListErrors(errors.responseJSON));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
-var updateList = function updateList(boardId, list) {
+var updateList = function updateList(list) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["updateList"](boardId, list).then(function (lists) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["updateList"](list).then(function (lists) {
       return dispatch(receiveLists(lists));
     }).fail(function (errors) {
-      return dispatch(receiveListErrors(errors.responseJSON));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
-var deleteList = function deleteList(boardId, id) {
+var deleteList = function deleteList(id) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](boardId, id).then(function (listId) {
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](id).then(function (listId) {
       return dispatch(removeList(listId));
     }).fail(function (errors) {
-      return dispatch(receiveListErrors(errors.responseJSON));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -778,12 +774,6 @@ var BoardIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoards();
-      this.props.closeModal();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.closeModal();
     }
   }, {
     key: "CreateBoardModal",
@@ -835,7 +825,7 @@ var BoardIndex = /*#__PURE__*/function (_React$Component) {
         className: "user-boards-section-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faChalkboardTeacher"]
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " Personal Boards")), this.renderBoards()))));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Personal Boards")), this.renderBoards()))));
     }
   }]);
 
@@ -880,9 +870,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
@@ -904,7 +891,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _navbar_board_nav_board_show_nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar/board_nav/board_show_nav */ "./frontend/components/navbar/board_nav/board_show_nav.jsx");
 /* harmony import */ var _navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/board_nav/board_nav_container */ "./frontend/components/navbar/board_nav/board_nav_container.js");
-/* harmony import */ var _lists_list_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lists/list_index_container */ "./frontend/components/lists/list_index_container.js");
+/* harmony import */ var _list_list_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../list/list_index_container */ "./frontend/components/list/list_index_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -947,13 +934,12 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoard(this.props.boardId);
-      this.props.fetchLists(this.props.boardId);
     }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: 'board-show-container'
+        className: "board-show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_show_nav__WEBPACK_IMPORTED_MODULE_1__["default"], {
         boardId: this.props.boardId,
         board: this.props.board,
@@ -961,10 +947,7 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
         updateBoard: this.props.updateBoard,
         history: this.props.history,
         currentUser: this.props.currentUser
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_lists_list_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        boardId: this.props.boardId,
-        lists: this.props.lists
-      }));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_list_list_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
     }
   }]);
 
@@ -987,8 +970,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _board_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_show */ "./frontend/components/boards/board_show.jsx");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
-
 
 
  // import { } from '../../actions/modal_actions'
@@ -1039,10 +1020,7 @@ var mapDispatchtoProps = function mapDispatchtoProps(dispatch) {
       return deleteBoard;
     }(function (id) {
       return dispatch(deleteBoard(id));
-    }),
-    fetchLists: function fetchLists(boardId) {
-      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLists"])(boardId));
-    }
+    })
   };
 };
 
@@ -1198,6 +1176,462 @@ var BoardMenu = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStatetoProps, mapDispatchToProps)(BoardMenu)));
+
+/***/ }),
+
+/***/ "./frontend/components/card/card_item.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/card/card_item.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CardItem; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var CardItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(CardItem, _React$Component);
+
+  var _super = _createSuper(CardItem);
+
+  function CardItem(props) {
+    var _this;
+
+    _classCallCheck(this, CardItem);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      id: props.card.id,
+      title: props.card.title
+    };
+    return _this;
+  }
+
+  _createClass(CardItem, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__["Draggable"], {
+        draggableId: "card_".concat(this.props.card.id),
+        index: this.props.dragIdx,
+        type: "CARD"
+      }, function (provided, snapshot) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
+          className: "card-item-container",
+          ref: provided.innerRef
+        }, provided.draggableProps, provided.dragHandleProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: function onClick() {
+            return _this2.props.openCardShowModal(_this2.state.id);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.title)));
+      });
+    }
+  }]);
+
+  return CardItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./frontend/components/card/card_item_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/card/card_item_container.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _card_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./card_item */ "./frontend/components/card/card_item.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var cardId = ownProps.cardId;
+  var card = state.entities.cards[cardId];
+  return {
+    card: card
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    openCardShowModal: function openCardShowModal(id) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["openModal"])("showCard", id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_card_item__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/card/card_show.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/card/card_show.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CardShow; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var CardShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(CardShow, _React$Component);
+
+  var _super = _createSuper(CardShow);
+
+  function CardShow(props) {
+    var _this;
+
+    _classCallCheck(this, CardShow);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      id: props.card.id,
+      title: props.card.title,
+      description: props.card.description
+    };
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleKeyEscaper = _this.handleKeyEscaper.bind(_assertThisInitialized(_this));
+    _this.updateCard = _this.updateCard.bind(_assertThisInitialized(_this));
+    _this.setHeightOfTextarea = _this.setHeightOfTextarea.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CardShow, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+
+        _this2.setHeightOfTextarea(e.target);
+      };
+    }
+  }, {
+    key: "handleKeyEscaper",
+    value: function handleKeyEscaper(e) {
+      if (e.key === "Escape" || e.key === "Enter") {
+        e.target.blur();
+      }
+    }
+  }, {
+    key: "updateCard",
+    value: function updateCard() {
+      if (!this.state.title || !this.state.description) {
+        this.setState({
+          title: this.props.card.title,
+          description: this.props.card.description
+        });
+        return;
+      }
+
+      if (this.state.title === this.props.card.title && this.state.description === this.props.card.description) {
+        return;
+      }
+
+      this.props.updateCard(this.state);
+    }
+  }, {
+    key: "setHeightOfTextarea",
+    value: function setHeightOfTextarea(element) {
+      element.style.height = "inherit";
+      element.style.height = element.scrollHeight + "px";
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-show-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-show-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        id: "card-title-icon",
+        className: "card-large-icon"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPencilAlt"]
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "card-title-editor",
+        onKeyDown: this.handleKeyEscaper,
+        onBlur: this.updateCard,
+        onChange: this.update("title"),
+        value: this.state.title
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        id: "card-show-close",
+        className: "card-large-icon",
+        onClick: this.props.closeModal
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faTimes"]
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "card-show-header-listname"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "in list ", this.props.listTitle))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-show-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-description"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-description-top"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "card-large-icon"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faAlignJustify"]
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Description")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "card-description-editor",
+        onKeyDown: this.handleKeyEscaper,
+        onBlur: this.updateCard,
+        onChange: this.update("description"),
+        value: this.state.description,
+        placeholder: "Click here to add a description..."
+      }))));
+    }
+  }]);
+
+  return CardShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./frontend/components/card/card_show_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/card/card_show_container.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _card_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./card_show */ "./frontend/components/card/card_show.jsx");
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var cardId = ownProps.cardId;
+  var card = state.entities.cards[cardId];
+  var listId = card.list_id;
+  var listTitle = state.entities.lists[listId].title;
+  return {
+    card: card,
+    listTitle: listTitle
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateCard: function updateCard(card) {
+      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["updateCard"])(card));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_card_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/card/new_card_form.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/card/new_card_form.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    title: ""
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createCard: function createCard(cardId, list) {
+      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_3__["createCard"])(cardId, list));
+    }
+  };
+};
+
+var NewCardForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(NewCardForm, _React$Component);
+
+  var _super = _createSuper(NewCardForm);
+
+  function NewCardForm(props) {
+    var _this;
+
+    _classCallCheck(this, NewCardForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      title: _this.props.title
+    };
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NewCardForm, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var card;
+      card = Object.assign({}, this.state);
+      this.props.createCard(this.props.listId, card).then(function () {
+        return _this3.setState({
+          title: ""
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-form-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "card-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.title,
+        onChange: this.update("title"),
+        className: "card-input-title",
+        placeholder: "Enter a title for this card..."
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Add Card",
+        disabled: !this.state.title,
+        className: "list-input-submit"
+      })));
+    }
+  }]);
+
+  return NewCardForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(NewCardForm)));
 
 /***/ }),
 
@@ -1397,169 +1831,21 @@ var SplashFoot = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/lists/list_form.jsx":
+/***/ "./frontend/components/list/list_index.jsx":
 /*!*************************************************!*\
-  !*** ./frontend/components/lists/list_form.jsx ***!
+  !*** ./frontend/components/list/list_index.jsx ***!
   \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-var ListForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(ListForm, _React$Component);
-
-  var _super = _createSuper(ListForm);
-
-  function ListForm(props) {
-    var _this;
-
-    _classCallCheck(this, ListForm);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      title: props.lists.title
-    };
-    _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(ListForm, [{
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      var _this2 = this;
-
-      e.preventDefault();
-      this.props.createList(this.state).then(function () {
-        return _this2.props.closeModal();
-      });
-    }
-  }, {
-    key: "update",
-    value: function update(field) {
-      var _this3 = this;
-
-      return function (e) {
-        _this3.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "list-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "list-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "list-form-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        onChange: this.update('title'),
-        value: this.state.title,
-        placeholder: "Add list title"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "submit",
-        value: "Add List",
-        className: "list-input-button"
-      })));
-    }
-  }]);
-
-  return ListForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (ListForm);
-
-/***/ }),
-
-/***/ "./frontend/components/lists/list_form_container.js":
-/*!**********************************************************!*\
-  !*** ./frontend/components/lists/list_form_container.js ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
-/* harmony import */ var _list_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./list_form */ "./frontend/components/lists/list_form.jsx");
-
-
-
-
-
-
-var msp = function msp(state, ownProps) {
-  var boardId = ownProps.history.location.pathname.split("/")[2];
-  return {
-    boardId: boardId,
-    lists: {
-      title: ""
-    }
-  };
-};
-
-var mdp = function mdp(dispatch) {
-  return {
-    createList: function createList(list) {
-      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["createList"])(list));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_list_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
-
-/***/ }),
-
-/***/ "./frontend/components/lists/list_index.jsx":
-/*!**************************************************!*\
-  !*** ./frontend/components/lists/list_index.jsx ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ListIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
-/* harmony import */ var _list_item_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./list_item_container */ "./frontend/components/lists/list_item_container.jsx");
+/* harmony import */ var _new_list_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./new_list_form */ "./frontend/components/list/new_list_form.jsx");
+/* harmony import */ var _list_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list_item */ "./frontend/components/list/list_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -1590,10 +1876,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
- // import { withRouter } from 'react-router-dom';
 
 
- // import ListFormContainer from './list_form_container';
+
+
 
 var ListIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(ListIndex, _React$Component);
@@ -1607,15 +1893,12 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      boardId: props.boardId,
-      lists: props.lists,
-      currentUser: props.currentUser,
       listOrder: [],
       cardDragResult: {}
     };
     _this.orderLists = _this.orderLists.bind(_assertThisInitialized(_this));
-    _this.renderLists = _this.renderLists.bind(_assertThisInitialized(_this));
-    _this.updateListToDB = _this.updateListToDB.bind(_assertThisInitialized(_this));
+    _this.constructLists = _this.constructLists.bind(_assertThisInitialized(_this));
+    _this.persistNewOrderToDB = _this.persistNewOrderToDB.bind(_assertThisInitialized(_this));
     _this.onDragEnd = _this.onDragEnd.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1623,7 +1906,6 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(ListIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLists(this.props.boardId);
       this.orderLists();
     }
   }, {
@@ -1656,13 +1938,13 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "renderLists",
-    value: function renderLists() {
+    key: "constructLists",
+    value: function constructLists() {
       var _this2 = this;
 
       if (this.state.listOrder.length === 0) return null;
       var listItems = this.state.listOrder.map(function (listId, index) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_list_item_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_list_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           list: _this2.props.lists[listId],
           key: "list-".concat(listId),
           dragIdx: index,
@@ -1672,8 +1954,8 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
       return listItems;
     }
   }, {
-    key: "updateListToDB",
-    value: function updateListToDB(list, newIndex, newListOrder) {
+    key: "persistNewOrderToDB",
+    value: function persistNewOrderToDB(list, newIndex, newListOrder) {
       if (newIndex === 0) {
         list.prev_id = null;
         list.next_id = newListOrder[1];
@@ -1685,7 +1967,7 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
         list.next_id = newListOrder[newIndex + 1];
       }
 
-      this.props.updateList(this.state.boardId, list);
+      this.props.updateList(list);
     }
   }, {
     key: "onDragEnd",
@@ -1703,10 +1985,10 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
-      if (type === 'LIST') {
+      if (type === "LIST") {
         var newListOrder = Array.from(this.state.listOrder);
         newListOrder.splice(source.index, 1);
-        var draggedListId = draggableId.slice(draggableId.search('_') + 1);
+        var draggedListId = draggableId.slice(draggableId.search("_") + 1);
         newListOrder.splice(destination.index, 0, draggedListId);
 
         var newState = _objectSpread(_objectSpread({}, this.state), {}, {
@@ -1714,10 +1996,10 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
         });
 
         this.setState(newState);
-        this.updateListToDB(this.props.lists[draggedListId], destination.index, newListOrder);
+        this.persistNewOrderToDB(this.props.lists[draggedListId], destination.index, newListOrder);
       }
 
-      if (type === 'CARD') {
+      if (type === "CARD") {
         this.setState({
           cardDragResult: result
         });
@@ -1735,13 +2017,13 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
         className: "board-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_1__["Droppable"], {
         droppableId: "board_".concat(this.props.boardId),
-        type: "LIST",
-        direction: "horizontal"
+        direction: "horizontal",
+        type: "LIST"
       }, function (provided, snapshot) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
           className: "list-index-container",
           ref: provided.innerRef
-        }, provided.droppableProps), _this3.renderLists(), provided.placeholder);
+        }, provided.droppableProps), _this3.constructLists(), provided.placeholder, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_list_form__WEBPACK_IMPORTED_MODULE_2__["default"], null));
       })));
     }
   }]);
@@ -1749,35 +2031,34 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
   return ListIndex;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ListIndex);
+
 
 /***/ }),
 
-/***/ "./frontend/components/lists/list_index_container.js":
-/*!***********************************************************!*\
-  !*** ./frontend/components/lists/list_index_container.js ***!
-  \***********************************************************/
+/***/ "./frontend/components/list/list_index_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/list/list_index_container.js ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _list_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./list_index */ "./frontend/components/lists/list_index.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
+/* harmony import */ var _list_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list_index */ "./frontend/components/list/list_index.jsx");
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var lists = state.entities.lists;
+  var boardId = parseInt(ownProps.match.params.id);
   return {
-    currentUser: state.session.id,
-    boardId: parseInt(ownProps.boardId),
-    lists: ownProps.lists
+    lists: lists,
+    boardId: boardId
   };
 };
 
@@ -1786,26 +2067,20 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchLists: function fetchLists(boardId) {
       return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLists"])(boardId));
     },
-    openModal: function openModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
-    },
-    updateList: function updateList(boardId, list) {
-      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__["updateList"])(boardId, list));
+    updateList: function updateList(list) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_2__["updateList"])(list));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_list_index__WEBPACK_IMPORTED_MODULE_1__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_list_index__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
-/***/ "./frontend/components/lists/list_item_container.jsx":
-/*!***********************************************************!*\
-  !*** ./frontend/components/lists/list_item_container.jsx ***!
-  \***********************************************************/
+/***/ "./frontend/components/list/list_item.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/list/list_item.jsx ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1813,12 +2088,21 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+/* harmony import */ var _card_card_item_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../card/card_item_container */ "./frontend/components/card/card_item_container.js");
+/* harmony import */ var _card_new_card_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../card/new_card_form */ "./frontend/components/card/new_card_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1843,16 +2127,31 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // Container
 
-var msp = function msp(state, ownProps) {// return {
-  // }
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  var cards = state.entities.cards;
+  return {
+    cards: cards
+  };
 };
 
-var mdp = function mdp(dispatch) {
-  return {};
-}; // Item Class
-
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateList: function updateList(list) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["updateList"])(list));
+    },
+    fetchCards: function fetchCards(listId) {
+      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCards"])(listId));
+    },
+    updateCard: function updateCard(card) {
+      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_4__["updateCard"])(card));
+    }
+  };
+};
 
 var ListItem = /*#__PURE__*/function (_React$Component) {
   _inherits(ListItem, _React$Component);
@@ -1860,30 +2159,354 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ListItem);
 
   function ListItem(props) {
+    var _this;
+
     _classCallCheck(this, ListItem);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props); // debugger;
+
+    _this.state = {
+      id: props.list.id,
+      title: props.list.title,
+      cardOrder: [],
+      cardDragResult: props.cardDragResult
+    };
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.updateListTitle = _this.updateListTitle.bind(_assertThisInitialized(_this));
+    _this.setHeightOfTextarea = _this.setHeightOfTextarea.bind(_assertThisInitialized(_this));
+    _this.handleKeyEscaper = _this.handleKeyEscaper.bind(_assertThisInitialized(_this));
+    _this.orderCards = _this.orderCards.bind(_assertThisInitialized(_this));
+    _this.constructCards = _this.constructCards.bind(_assertThisInitialized(_this));
+    _this.persistNewOrderToDB = _this.persistNewOrderToDB.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ListItem, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.orderCards();
+      this.setHeightOfTextarea(this.textAreaRef);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.cards !== this.props.cards) {
+        this.orderCards();
+      }
+
+      if (prevProps.cardDragResult !== this.props.cardDragResult && this.props.cardDragResult) {
+        var _this$props$cardDragR = this.props.cardDragResult,
+            destination = _this$props$cardDragR.destination,
+            source = _this$props$cardDragR.source,
+            draggableId = _this$props$cardDragR.draggableId;
+        var draggedCardId = draggableId.slice(draggableId.search("_") + 1);
+        var draggedCard = this.props.cards[draggedCardId];
+        var newCardOrder = Array.from(this.state.cardOrder);
+
+        if (source.droppableId === destination.droppableId && draggedCard.list_id === this.state.id) {
+          newCardOrder.splice(source.index, 1);
+          newCardOrder.splice(destination.index, 0, draggedCardId);
+
+          var newState = _objectSpread(_objectSpread({}, this.state), {}, {
+            cardOrder: newCardOrder
+          });
+
+          this.setState(newState);
+          this.persistNewOrderToDB(draggedCard, destination.index, newCardOrder);
+        } else if (source.droppableId !== destination.droppableId) {
+          if (source.droppableId === "list_".concat(this.state.id)) {
+            newCardOrder.splice(source.index, 1);
+
+            var _newState = _objectSpread(_objectSpread({}, this.state), {}, {
+              cardOrder: newCardOrder
+            });
+
+            this.setState(_newState);
+          } // And add that card to its new list
+          else if (destination.droppableId === "list_".concat(this.state.id)) {
+              draggedCard.list_id = this.state.id;
+              newCardOrder.splice(destination.index, 0, draggedCardId);
+
+              var _newState2 = _objectSpread(_objectSpread({}, this.state), {}, {
+                cardOrder: newCardOrder
+              });
+
+              this.setState(_newState2);
+              this.persistNewOrderToDB(draggedCard, destination.index, newCardOrder);
+            }
+        }
+      }
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+
+        _this2.setHeightOfTextarea(e.target);
+      };
+    }
+  }, {
+    key: "updateListTitle",
+    value: function updateListTitle() {
+      if (!this.state.title) {
+        this.setState({
+          title: this.props.list.title
+        });
+        return;
+      }
+
+      if (this.state.title === this.props.list.title) return;
+      this.props.updateList(this.state);
+    }
+  }, {
+    key: "setHeightOfTextarea",
+    value: function setHeightOfTextarea(element) {
+      element.style.height = "inherit";
+      element.style.height = element.scrollHeight + "px";
+    }
+  }, {
+    key: "handleKeyEscaper",
+    value: function handleKeyEscaper(e) {
+      if (e.key === "Escape" || e.key === "Enter") {
+        e.target.blur();
+      }
+    }
+  }, {
+    key: "orderCards",
+    value: function orderCards() {
+      var _this3 = this;
+
+      if (Object.keys(this.props.cards).length === 0) return;
+      var cardsOnList = Object.values(this.props.cards).filter(function (card) {
+        return card.list_id === _this3.state.id;
+      });
+      if (cardsOnList.length === 0) return;
+      var orderedCards = [];
+      var currentCard = cardsOnList.find(function (card) {
+        return card.prev_id === null;
+      });
+      orderedCards.push(currentCard.id);
+
+      while (currentCard.next_id !== null) {
+        currentCard = cardsOnList.find(function (card) {
+          return card.id === currentCard.next_id;
+        });
+        orderedCards.push(currentCard.id);
+      }
+
+      this.setState({
+        cardOrder: orderedCards
+      });
+    }
+  }, {
+    key: "constructCards",
+    value: function constructCards() {
+      if (this.state.cardOrder.length === 0) return null;
+      var cardItems = this.state.cardOrder.map(function (cardId, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_card_item_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          cardId: cardId,
+          key: "card-".concat(cardId),
+          dragIdx: index
+        });
+      });
+      return cardItems;
+    }
+  }, {
+    key: "persistNewOrderToDB",
+    value: function persistNewOrderToDB(card, newIndex, newCardOrder) {
+      if (newIndex === 0) {
+        card.prev_id = null;
+        card.next_id = newCardOrder[1] ? newCardOrder[1] : null;
+      } else if (newIndex === newCardOrder.length - 1) {
+        card.prev_id = newCardOrder[newCardOrder.length - 2];
+        card.next_id = null;
+      } else {
+        card.prev_id = newCardOrder[newIndex - 1];
+        card.next_id = newCardOrder[newIndex + 1];
+      }
+
+      this.props.updateCard(card);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "list-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__["Droppable"], {
-        droppableId: "list_".concat(this.props.list.id)
+      var _this4 = this;
+
+      if (!this.props.list) return null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__["Draggable"], {
+        draggableId: "list_".concat(this.props.list.id),
+        index: this.props.dragIdx,
+        type: "LIST"
       }, function (provided, snapshot) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
+          className: "list-item-container",
           ref: provided.innerRef
-        }, provided.droppableProps), provided.placeholder);
-      })));
+        }, provided.draggableProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "list-item-contents"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
+          className: "list-item-header"
+        }, provided.dragHandleProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          className: "list-name-editor",
+          onKeyDown: _this4.handleKeyEscaper,
+          onBlur: _this4.updateListTitle,
+          onChange: _this4.update("title"),
+          value: _this4.state.title,
+          ref: function ref(textAreaRef) {
+            return _this4.textAreaRef = textAreaRef;
+          }
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__["Droppable"], {
+          droppableId: "list_".concat(_this4.props.list.id),
+          direction: "vertical",
+          type: "CARD"
+        }, function (provided, snapshot) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
+            className: "card-index-container",
+            ref: provided.innerRef
+          }, provided.droppableProps), _this4.constructCards(), provided.placeholder);
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_new_card_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          listId: _this4.state.id
+        })));
+      });
     }
   }]);
 
   return ListItem;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(ListItem)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ListItem));
+
+/***/ }),
+
+/***/ "./frontend/components/list/new_list_form.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/list/new_list_form.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    boardId: parseInt(ownProps.match.params.id),
+    title: ""
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createList: function createList(boardId, list) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["createList"])(boardId, list));
+    }
+  };
+};
+
+var NewListForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(NewListForm, _React$Component);
+
+  var _super = _createSuper(NewListForm);
+
+  function NewListForm(props) {
+    var _this;
+
+    _classCallCheck(this, NewListForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      title: _this.props.title
+    };
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NewListForm, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var list;
+      list = Object.assign({}, this.state);
+      this.props.createList(this.props.boardId, list).then(function () {
+        return _this3.setState({
+          title: ""
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "list-form-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "list-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.title,
+        onChange: this.update("title"),
+        className: "list-input-title",
+        placeholder: "Enter list title..."
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Add List",
+        disabled: !this.state.title,
+        className: "list-input-submit"
+      })));
+    }
+  }]);
+
+  return NewListForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(NewListForm)));
 
 /***/ }),
 
@@ -1903,14 +2526,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_board_nav_user_menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../navbar/board_nav/user_menu */ "./frontend/components/navbar/board_nav/user_menu.jsx");
 /* harmony import */ var _boards_board_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../boards/board_form_container */ "./frontend/components/boards/board_form_container.js");
 /* harmony import */ var _boards_board_show_menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../boards/board_show_menu */ "./frontend/components/boards/board_show_menu.jsx");
-/* harmony import */ var _lists_list_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lists/list_form_container */ "./frontend/components/lists/list_form_container.js");
+/* harmony import */ var _card_card_show_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../card/card_show_container */ "./frontend/components/card/card_show_container.js");
 
 
 
 
 
 
-
+ // import ListForm from '../lists/list_form_container';
 
 var Modal = function Modal(_ref) {
   var modal = _ref.modal,
@@ -1923,21 +2546,26 @@ var Modal = function Modal(_ref) {
   var component;
 
   switch (modal) {
-    case 'user-options':
+    case "user-options":
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_user_menu__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
-    case 'create-board':
+    case "create-board":
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_board_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
       break;
 
-    case 'menu-board':
+    case "menu-board":
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_board_show_menu__WEBPACK_IMPORTED_MODULE_5__["default"], null);
       break;
 
-    case 'create-list':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_lists_list_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+    case "showCard":
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_card_show_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        cardId: modal.id
+      });
       break;
+    // case 'create-list':
+    //   component = <ListForm />
+    // break;
 
     default:
       return null;
@@ -3250,10 +3878,12 @@ var boardsReducer = function boardsReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3264,14 +3894,14 @@ var cardsReducer = function cardsReducer() {
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CARDS"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.cards);
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CARDS"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.cards);
 
-    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CARD"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.card.id, action.card));
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.cards);
 
-    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_2__["CLEAR_CARDS"]:
-      return {};
+    case _actions_cards_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CARD"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.card.id, action.card));
 
     default:
       return state;
@@ -3321,9 +3951,11 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3335,15 +3967,13 @@ var listsReducer = function listsReducer() {
 
   switch (action.type) {
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LISTS"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, action.lists);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.lists);
+
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, action.lists);
 
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIST"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, _defineProperty({}, action.list.id, action.list));
-
-    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIST"]:
-      var newState = lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state);
-      delete newState[action.list.id];
-      return newState;
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.list.id, action.list));
 
     default:
       return state;
@@ -3757,7 +4387,7 @@ var deleteBoard = function deleteBoard(id) {
 /*!****************************************!*\
   !*** ./frontend/util/card_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchCards, createCard, fetchCard, updateCard */
+/*! exports provided: fetchCards, createCard, fetchCard, updateCard, deleteCard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3766,16 +4396,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCard", function() { return createCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCard", function() { return fetchCard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCard", function() { return updateCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCard", function() { return deleteCard; });
 var fetchCards = function fetchCards(listId) {
   return $.ajax({
-    method: 'GET',
-    url: "/api/lists/".concat(listId, "/cards")
+    url: "/api/lists/".concat(listId, "/cards"),
+    method: 'GET'
   });
 };
 var createCard = function createCard(listId, card) {
   return $.ajax({
-    method: 'POST',
     url: "/api/lists/".concat(listId, "/cards"),
+    method: 'POST',
     data: {
       card: card
     }
@@ -3783,17 +4414,23 @@ var createCard = function createCard(listId, card) {
 };
 var fetchCard = function fetchCard(cardId) {
   return $.ajax({
-    method: 'GET',
-    url: "/api/cards/".concat(cardId)
+    url: "/api/cards/".concat(cardId),
+    method: 'GET'
   });
 };
 var updateCard = function updateCard(card) {
   return $.ajax({
-    method: 'PATCH',
     url: "/api/cards/".concat(card.id),
+    method: 'PATCH',
     data: {
       card: card
     }
+  });
+};
+var deleteCard = function deleteCard(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/cards/".concat(id)
   });
 };
 
@@ -3827,18 +4464,18 @@ var createList = function createList(boardId, list) {
     }
   });
 };
-var updateList = function updateList(boardId, list) {
+var updateList = function updateList(list) {
   return $.ajax({
-    url: "/api/boards/".concat(boardId, "/lists/").concat(list.id),
+    url: "/api/lists/".concat(list.id),
     method: "PATCH",
     data: {
       list: list
     }
   });
 };
-var deleteList = function deleteList(boardId, id) {
+var deleteList = function deleteList(id) {
   return $.ajax({
-    url: "/api/boards/".concat(boardId, "/lists/").concat(id),
+    url: "/api/lists/".concat(id),
     method: "DELETE"
   });
 };

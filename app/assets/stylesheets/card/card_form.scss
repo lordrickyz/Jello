@@ -1,6 +1,7 @@
-.list-form-container {
-  width: 272px;
-  margin: 0 4px;
+.card-form-container {
+  width: 256px;
+  margin: 0px 4px;
+  padding: 0px 4px;
   height: 100%;
   box-sizing: border-box;
   display: inline-block;
@@ -8,9 +9,9 @@
   white-space: nowrap;
 }
 
-.list-form {
+.card-form {
   width: inherit;
-  padding: 4px 8px;
+  padding: 4px 0px;
   background-color: #ebecf0;
   border-radius: 3px;
   box-sizing: border-box;
@@ -19,7 +20,7 @@
   justify-content: space-between;
 }
 
-.list-input-title {
+.card-input-title {
   font-size: 14px;
   line-height: 20px;
   padding: 8px 12px;
@@ -28,11 +29,13 @@
   border-radius: 3px;
 }
 
-.list-input-title:focus {
+.card-input-title:focus {
   box-shadow: inset 0 0 0 2px #0079bf;
+  background-color: white;
+  cursor: text;
 }
 
-.list-input-submit {
+.card-input-submit {
   background-color: #5aac44;
   box-shadow: none;
   border: none;
@@ -48,11 +51,11 @@
   font-size: 14px;
 }
 
-.list-input-submit:hover {
+.card-input-submit:hover {
   background-color: #61bd4f;
 }
 
-.list-input-submit[disabled] {
+.card-input-submit[disabled] {
   cursor: not-allowed;
   background-color: #f4f5f7;
   color: #a5adba;

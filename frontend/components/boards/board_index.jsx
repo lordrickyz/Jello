@@ -15,11 +15,6 @@ export default class BoardIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchBoards();
-    this.props.closeModal();
-  }
-
-  componentWillUnmount() {
-    this.props.closeModal();
   }
 
   CreateBoardModal() {
@@ -34,7 +29,6 @@ export default class BoardIndex extends React.Component {
         </li>
       );
     });
-
 
 
     if (boardItems.length > 0) {
@@ -66,7 +60,7 @@ export default class BoardIndex extends React.Component {
           <div className="user-boards-section">
             <div className="user-boards-section-header">
               <div><span><FontAwesomeIcon icon={faChalkboardTeacher} /></span></div>
-              <h3> Personal Boards</h3>
+              <h3>Personal Boards</h3>
             </div>
             {this.renderBoards()}
           </div>

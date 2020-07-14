@@ -1,12 +1,12 @@
 class Api::CardsController < ApplicationController
 
   def index
-    @cards = Card.all.where(list_id: params[:list_id])
+    @cards = Card.where(list_id: params[:list_id])
     render :index
   end
 
   def create
-    @cards = Card.all.where(list_id: params[:list_id])
+    @cards = Card.where(list_id: params[:list_id])
     card = Card.new(card_params)
     card.list_id = params[:list_id]
     if card.save

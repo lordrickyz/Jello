@@ -1,72 +1,15 @@
+.board-content {
+  position: relative;
+  flex-grow: 1;
+}
+
 .list-index-container {
-  width: 272px;
-  margin: 0 4px;
-  margin-top: 50px;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
-.list-index-container:first-child {
-  margin-left: 8px;
-}
-
-.list-index-container:last-child {
-  margin-right: 8px;
-}
-
-
-.list-index-items {
-  width: 272px;
-  margin: 0 4px;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-  margin-top: 50px;
-  width: 200px;
-  padding: 60px;
-  border-radius: 10px;
-  padding-bottom: 200px;
-  margin: 0 20px 20px 0;
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
-  border: 1px solid black;
-  background: linear-gradient(180deg,#248de4,#82bbe9);
-
-}
-
-.lists-index {
-    height: 100%;
-}
-
-
-.list-items {
   display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: auto;
-  padding: auto;
-  background: #0a5fa5;
-}
-
-.list-index-item {
-  width: 200px;
-  padding: 20px;
-  margin: 0 8px 8px 0;
-  box-sizing: border-box;
-  position: relative;
-  cursor: pointer;
-  border: 1px solid black;  
-}
-
-.list-index-item > a, .list-index-item#create-list-li {
-  margin-right: 0;
-  border-radius: 3px;
-  height: 80px;
-  display: block;
-  line-height: 20px;
-  padding: 8px;
-  position: relative;
-  text-decoration: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

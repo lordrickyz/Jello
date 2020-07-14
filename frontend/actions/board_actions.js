@@ -12,9 +12,11 @@ export const receiveBoards = (boards) =>  ({
   boards
 })
 
-export const receiveBoard = ({board}) => ({
+export const receiveBoard = (payload) => ({
   type: RECEIVE_BOARD,
-  board
+  board: payload.board,
+  lists: payload.lists,
+  cards: payload.cards,
 })
 
 export const removeBoard = ({board}) => ({

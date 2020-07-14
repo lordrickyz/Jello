@@ -1,12 +1,12 @@
 class Api::ListsController < ApplicationController
 
   def index
-    @lists = List.all.where(board_id: params[:board_id])
+    @lists = List.where(board_id: params[:board_id])
     render :index
   end
 
   def create
-    @lists = List.all.where(board_id: params[:board_id])
+    @lists = List.where(board_id: params[:board_id])
     list = List.new(list_params)
     list.board_id = params[:board_id]
     if list.save
@@ -18,11 +18,6 @@ class Api::ListsController < ApplicationController
     else
       render json: list.errors.full_messages, status: 422
     end
-  end
-
-  def show
-    @list = List.find_by(id: params[:id])
-    render :show
   end
 
   def update

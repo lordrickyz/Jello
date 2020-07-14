@@ -3,8 +3,10 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import UserMenu from '../navbar/board_nav/user_menu';
 import BoardForm from '../boards/board_form_container';
-import BoardShowMenu from '../boards/board_show_menu'
-import ListForm from '../lists/list_form_container';
+import BoardShowMenu from '../boards/board_show_menu';
+import CardShowContainer from '../card/card_show_container';
+
+// import ListForm from '../lists/list_form_container';
 
 const Modal = ({ modal, closeModal }) => {
   if (!modal) {
@@ -13,18 +15,21 @@ const Modal = ({ modal, closeModal }) => {
 
   let component;
   switch (modal) {
-    case 'user-options':
-      component = <UserMenu />
+    case "user-options":
+      component = <UserMenu />;
       break;
-    case 'create-board':
-      component = <BoardForm />
+    case "create-board":
+      component = <BoardForm />;
       break;
-    case 'menu-board':
-      component = <BoardShowMenu />
+    case "menu-board":
+      component = <BoardShowMenu />;
       break;
-    case 'create-list':
-      component = <ListForm />
+    case "showCard":
+      component = <CardShowContainer cardId={modal.id} />;
       break;
+    // case 'create-list':
+    //   component = <ListForm />
+    // break;
     default:
       return null;
   }

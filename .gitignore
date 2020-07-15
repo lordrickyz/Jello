@@ -29,5 +29,5 @@
 # Files for Heroku to ignore
 /bundle.js
 /bundle.js.map
-/public/assests
+/public/assets
 .DS_Store

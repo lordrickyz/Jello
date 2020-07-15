@@ -1,13 +1,37 @@
 import React from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTimes,
-  faPencilAlt,
-  faAlignJustify,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faPencilAlt, faAlignJustify} from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import { updateCard } from "../../actions/cards_actions";
+import { closeModal } from "../../actions/modal_actions";
 
-export default class CardShow extends React.Component {
+const mapStateToProps = (state, ownProps) => {
+  const cardId = ownProps.cardId;
+  const card = state.entities.cards[cardId];
+  const listId = card.list_id;
+  const listTitle = state.entities.lists[listId].title;
+  let description;
+  if (card.description === null) {
+    description = "";
+  } else {
+    description = card.description;
+  }
+
+  return {
+    card,
+    listTitle,
+    description,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateCard: (card) => dispatch(updateCard(card)),
+    closeModal: () => dispatch(closeModal()),
+  };
+};
+
+class CardShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +43,15 @@ export default class CardShow extends React.Component {
     this.handleKeyEscaper = this.handleKeyEscaper.bind(this);
     this.updateCard = this.updateCard.bind(this);
     this.setHeightOfTextarea = this.setHeightOfTextarea.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({
+        title: this.props.card.title,
+        description: this.props.card.description,
+      });
+    }
   }
 
   update(field) {
@@ -106,3 +139,6 @@ export default class CardShow extends React.Component {
     );
   }
 }
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardShow);

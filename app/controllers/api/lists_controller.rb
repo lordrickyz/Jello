@@ -1,19 +1,22 @@
 class Api::ListsController < ApplicationController
 
-  def index
+  def obtain_lists
     @lists = List.where(board_id: params[:board_id])
-    render :index
+  end
+
+  def index
+    obtain_lists()
   end
 
   def create
-    @lists = List.where(board_id: params[:board_id])
+    obtain_lists()
     list = List.new(list_params)
     list.board_id = params[:board_id]
     if list.save
       if @lists.length > 1
         list.updateLists(@lists[-2].id)
       end
-      @lists
+      obtain_lists()
       render :index
     else
       render json: list.errors.full_messages, status: 422

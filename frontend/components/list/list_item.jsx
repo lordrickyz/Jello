@@ -1,15 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-
 import { fetchBoard } from "../../actions/board_actions";
 import { updateList, deleteList } from "../../actions/lists_actions";
 import { fetchCards, updateCard } from "../../actions/cards_actions";
-import CardItemContainer from "../card/card_item_container";
-import NewCardFormContainer from "../card/new_card_form";
+import CardItemContainer from "../card/card_item";
+import NewCardFormContainer from "../card/card_form";
 
 const mapStateToProps = (state) => {
-  // debugger;
   const cards = state.entities.cards;
   return {
     cards,
@@ -58,10 +56,7 @@ class ListItem extends React.Component {
       this.orderCards();
     }
 
-    if (
-      prevProps.cardDragResult !== this.props.cardDragResult &&
-      this.props.cardDragResult
-    ) {
+    if (prevProps.cardDragResult !== this.props.cardDragResult && this.props.cardDragResult) {
       const { destination, source, draggableId } = this.props.cardDragResult;
       const draggedCardId = draggableId.slice(draggableId.search("_") + 1);
       const draggedCard = this.props.cards[draggedCardId];
@@ -185,6 +180,7 @@ class ListItem extends React.Component {
       card.next_id = newCardOrder[newIndex + 1];
     }
     this.props.updateCard(card);
+    this.orderCards();
   }
 
   deleteList() {
@@ -193,25 +189,25 @@ class ListItem extends React.Component {
 
   }
 
-  updateOtherList() {
-    if (Object.keys(this.props.lists).length === 0) return;
-    let listsFromProps = Object.values(this.props.lists);
-    for (let i = 0; i < listsFromProps.length; i++) {
-      let list = listsFromProps[i];
+  // updateOtherList() {
+  //   if (Object.keys(this.props.lists).length === 0) return;
+  //   let listsFromProps = Object.values(this.props.lists);
+  //   for (let i = 0; i < listsFromProps.length; i++) {
+  //     let list = listsFromProps[i];
 
-      if (listsFromProps[0] === list) {
-        list.prev_id = null;
-        list.next_id = listsFromProps[1];
-      } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
-        list.prev_id = listsFromProps[listsFromProps.length - 2];
-        list.next_id = null;
-      } else {
-        list.prev_id = listsFromProps[listsFromProps[i] - 1];
-        list.next_id = listsFromProps[listsFromProps[i] + 1];
-      }
-      this.props.updateList(list);
-    }
-  }
+  //     if (listsFromProps[0] === list) {
+  //       list.prev_id = null;
+  //       list.next_id = listsFromProps[1];
+  //     } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
+  //       list.prev_id = listsFromProps[listsFromProps.length - 2];
+  //       list.next_id = null;
+  //     } else {
+  //       list.prev_id = listsFromProps[listsFromProps[i] - 1];
+  //       list.next_id = listsFromProps[listsFromProps[i] + 1];
+  //     }
+  //     this.props.updateList(list);
+  //   }
+  // }
 
   render() {
     if (!this.props.list) return null;

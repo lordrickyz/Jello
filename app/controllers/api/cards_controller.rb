@@ -1,19 +1,22 @@
 class Api::CardsController < ApplicationController
 
-  def index
+  def obtain_cards
     @cards = Card.where(list_id: params[:list_id])
-    render :index
+  end
+
+  def index
+    obtain_cards()
   end
 
   def create
-    @cards = Card.where(list_id: params[:list_id])
+    obtain_cards()
     card = Card.new(card_params)
     card.list_id = params[:list_id]
     if card.save
       if @cards.length > 1
         card.updateCards(@cards[-2].id)
       end
-      @cards
+      obtain_cards()
       render :index
     else
       render json: card.errors.full_messages, status: 422

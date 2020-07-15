@@ -1,7 +1,7 @@
 import React from 'react';
 import BoardShowNav from '../navbar/board_nav/board_show_nav';
 import BoardNavContainer from '../navbar/board_nav/board_nav_container'
-import ListIndexContainer from '../list/list_index_container';
+import ListIndexContainer from '../list/list_index';
 
 
 class BoardShow extends React.Component {

@@ -5,7 +5,7 @@ import UserMenu from '../navbar/board_nav/user_menu';
 import BoardMenu from '../navbar/board_nav/board_menu';
 import BoardForm from '../boards/board_form_container';
 import BoardShowMenu from '../boards/board_show_menu';
-import CardShowContainer from '../card/card_show_container';
+import CardShowContainer from '../card/card_show';
 
 // import ListForm from '../lists/list_form_container';
 

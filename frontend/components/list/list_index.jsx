@@ -1,10 +1,28 @@
 import React from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-
-import NewListFormContainer from "./new_list_form";
+import NewListFormContainer from "./list_form";
 import ListItem from "./list_item";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { fetchLists, updateList } from "../../actions/lists_actions";
 
-export default class ListIndex extends React.Component {
+const mapStateToProps = (state, ownProps) => {
+  const lists = state.entities.lists;
+  const boardId = parseInt(ownProps.match.params.id);
+  return {
+    lists,
+    boardId,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchLists: (boardId) => dispatch(fetchLists(boardId)),
+    updateList: (list) => dispatch(updateList(list)),
+  };
+};
+
+class ListIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,32 +46,11 @@ export default class ListIndex extends React.Component {
     }
   }
 
-  // updatedLists() {
-  //   if (Object.keys(this.props.lists).length === 0) return;
-  //   let listsFromProps = Object.values(this.props.lists);
-  //   for (let i = 0; i < listsFromProps.length; i++) {
-  //     let list = listsFromProps[i];
-
-  //     if (listsFromProps[0] === list) {
-  //       list.prev_id = null;
-  //       list.next_id = listsFromProps[1];
-  //     } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
-  //       list.prev_id = listsFromProps[listsFromProps.length - 2];
-  //       list.next_id = null;
-  //     } else {
-  //       list.prev_id = listsFromProps[listsFromProps[i] - 1];
-  //       list.next_id = listsFromProps[listsFromProps[i] + 1];
-  //     }
-  //     this.props.updateList(list);
-  //   }
-  // }
-
   orderLists() {
     if (Object.keys(this.props.lists).length === 0) return;
 
     let listsFromProps = Object.values(this.props.lists);
     let orderedLists = [];
-    // debugger;
 
     let currentList = listsFromProps.find((list) => list.prev_id === null);
     orderedLists.push(currentList.id);
@@ -62,7 +59,6 @@ export default class ListIndex extends React.Component {
       orderedLists.push(currentList.id);
     }
     this.setState({ listOrder: orderedLists });
-    // this.props.fetchLists(this.props.boardId);
   }
 
   constructLists() {
@@ -148,7 +144,6 @@ export default class ListIndex extends React.Component {
                 className="list-index-container"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                // style={dropzoneStyle}
               >
                 {this.constructLists()}
                 {provided.placeholder}
@@ -161,3 +156,5 @@ export default class ListIndex extends React.Component {
     );
   }
 }
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListIndex));

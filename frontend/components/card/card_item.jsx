@@ -1,7 +1,23 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { connect } from "react-redux";
+import { openModal } from "../../actions/modal_actions";
 
-export default class CardItem extends React.Component {
+const mapStateToProps = (state, ownProps) => {
+  const cardId = ownProps.cardId;
+  const card = state.entities.cards[cardId];
+  return {
+    card,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openCardShowModal: (id) => dispatch(openModal("showCard", id)),
+  };
+};
+
+class CardItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,3 +49,5 @@ export default class CardItem extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardItem);

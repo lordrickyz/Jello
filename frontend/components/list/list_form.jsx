@@ -40,7 +40,6 @@ class NewListForm extends React.Component {
     list = Object.assign({}, this.state);
     this.props.createList(this.props.boardId, list)
       .then(() => this.setState({ title: "" }))
-      // .then(() => window.location.reload())
   }
 
   render() {

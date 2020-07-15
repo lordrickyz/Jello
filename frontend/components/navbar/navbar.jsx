@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import jello from 'images/pudding.svg';
 
 const Navbar = ({ currentUser, logoutUser, loginDemo }) => {
 
@@ -15,22 +14,22 @@ const Navbar = ({ currentUser, logoutUser, loginDemo }) => {
         <Link to="/login" className="navbar-btn">Log In</Link>
         &nbsp;
         <Link to="/signup" className="navbar-btn">Sign Up</Link>
-        &nbsp;
-        <Link to="/boards" className="navbar-btn" onClick={loginDemo}>Demo</Link>
+        {/* &nbsp;
+        <Link to="/boards" className="navbar-btn" onClick={loginDemo}>Demo</Link> */}
       </div>
     );
 
   return (
     <header className="navbar-container">
       <nav className="navbar-nav">
-        <Link to='/' className="navbar-logo">
-          <img src={window.puddingIcon} alt="logo jello" />
+        <Link to="/" className="navbar-logo">
+          <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/pudding.svg"} alt="logo jello" />
           <h2>Jello</h2>
         </Link>
         {display}
       </nav>
     </header>
-  )
+  );
 }
 
 export default Navbar;

@@ -6,10 +6,15 @@ Rails.application.routes.draw do
       
     resource :session, only: [:create, :destroy]
     
-    resources :boards, only: [:index, :create, :show, :update, :destroy]
+    resources :boards, only: [:index, :create, :show, :update, :destroy] do 
+      resources :lists, only: [:index, :create]
+    end
 
-    resources :lists, only: [:index, :create,:update, :destroy]
+    resources :lists, only: [:show, :update, :destroy] do
+      resources :cards, only: [:index, :create]
+    end
 
+    resources :cards, only: [:show, :update]
   end
 
 end

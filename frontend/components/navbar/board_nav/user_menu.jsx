@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions/session_actions'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 const msp = state => {
   return {
@@ -25,14 +28,15 @@ const UserMenu = (props) => {
     <ul className="user-options">
       <li id={"user-options-title"}>{username} ({email})</li>
       <hr />
-      <li>Profile and Visibility</li>
-      <li>Activity</li>
-      <li>Cards</li>
-      <li>Settings</li>
-      <hr />
-      <li>Help</li>
-      <li>Shortcuts</li>
-      <li>Change Language...</li>
+        <li>
+          <a href="https://github.com/lordrickyz"><FontAwesomeIcon icon={faGithub} id={"user-link-svg"}/>GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/rickyzhengs/"><FontAwesomeIcon icon={faLinkedin} id={"user-link-svg"}/>LinkedIn</a>
+        </li>
+        <li>
+          <a href="https://lordrickyz.github.io/"><FontAwesomeIcon icon={faUser} id={"user-link-svg"}/>Portfolio</a>
+        </li>
       <hr />
       <li id={"logout-btn"} onClick={props.logoutUser}>Logout</li>
     </ul>

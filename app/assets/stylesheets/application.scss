@@ -15,8 +15,16 @@
  */
 
 
- body { 
-    padding-top: 60px; 
-    min-height: 600px;
-    min-width: 400px;
+body { 
+    // padding-top: 60px; 
+    // min-height: 600px;
+    // min-width: 400px;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }

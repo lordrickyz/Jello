@@ -26,10 +26,8 @@ export const clearSessionErrors = () => ({
 
 
 export const createUser = formUser => dispatch => signup(formUser)
-  .then(user => dispatch(receiveCurrentUser(user)), errors => (
-    dispatch(receiveSessionErrors(errors.responseJSON))
-  )
-);
+  .then(user => dispatch(receiveCurrentUser(user)))
+  .fail(errors => (dispatch(receiveSessionErrors(errors.responseJSON))));
 
 export const loginUser = formUser => dispatch => login(formUser)
   .then(user => dispatch(receiveCurrentUser(user)))

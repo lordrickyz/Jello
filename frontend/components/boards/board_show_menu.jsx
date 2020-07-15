@@ -54,22 +54,13 @@ class BoardMenu extends React.Component {
           <div className="menu-links">
             <ul>
               <li>
-                <a href="https://github.com/lordrickyz">
-                  <FontAwesomeIcon icon={faGithub} />
-                  GitHub
-                  </a>
+                <a href="https://github.com/lordrickyz" target="_blank"><FontAwesomeIcon icon={faGithub} />GitHub</a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/rickyzhengs/">
-                  <FontAwesomeIcon icon={faLinkedin} />
-                  LinkedIn
-                  </a>
+                <a href="https://www.linkedin.com/in/rickyzhengs/" target="_blank"><FontAwesomeIcon icon={faLinkedin} />LinkedIn</a>
               </li>
               <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faUser} />
-                  My Profile
-                 </a>
+                <a href="https://lordrickyz.github.io/" target="_blank"><FontAwesomeIcon icon={faUser} />My Profile</a>
               </li>
             </ul>
           </div>

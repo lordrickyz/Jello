@@ -1,19 +1,12 @@
-export const fetchLists = () =>
+export const fetchLists = (boardId) =>
   $.ajax({
-    url: `/api/lists`,
+    url: `/api/boards/${boardId}/lists`,
     method: "GET",
   });
-
-export const fetchList = (id) => {
+  
+export const createList = (boardId, list) => {
   return $.ajax({
-    url: `/api/lists/${id}`,
-    method: "GET"
-  });
-};
-
-export const createList = (list) => {
-  return $.ajax({
-    url: `/api/lists`,
+    url: `/api/boards/${boardId}/lists`,
     method: "POST",
     data: { list },
   });
@@ -27,9 +20,9 @@ export const updateList = (list) => {
   });
 };
 
-export const deleteList = (id) => {
+export const deleteList = (listId) => {
   return $.ajax({
-    url: `/api/lists/${id}`,
+    url: `/api/lists/${listId}`,
     method: "DELETE",
   });
 };

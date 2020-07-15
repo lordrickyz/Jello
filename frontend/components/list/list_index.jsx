@@ -1,0 +1,160 @@
+import React from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import NewListFormContainer from "./list_form";
+import ListItem from "./list_item";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { fetchLists, updateList } from "../../actions/lists_actions";
+
+const mapStateToProps = (state, ownProps) => {
+  const lists = state.entities.lists;
+  const boardId = parseInt(ownProps.match.params.id);
+  return {
+    lists,
+    boardId,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchLists: (boardId) => dispatch(fetchLists(boardId)),
+    updateList: (list) => dispatch(updateList(list)),
+  };
+};
+
+class ListIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listOrder: [],
+      cardDragResult: {},
+    };
+    this.orderLists = this.orderLists.bind(this);
+    this.constructLists = this.constructLists.bind(this);
+    this.persistNewOrderToDB = this.persistNewOrderToDB.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
+    // this.updatedLists = this.updatedLists.bind(this);
+  }
+
+  componentDidMount() {
+    this.orderLists();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.lists !== this.props.lists) {
+      this.orderLists();
+    }
+  }
+
+  orderLists() {
+    if (Object.keys(this.props.lists).length === 0) return;
+
+    let listsFromProps = Object.values(this.props.lists);
+    let orderedLists = [];
+
+    let currentList = listsFromProps.find((list) => list.prev_id === null);
+    orderedLists.push(currentList.id);
+    while (currentList.next_id !== null) {
+      currentList = listsFromProps.find((list) => list.id === currentList.next_id);
+      orderedLists.push(currentList.id);
+    }
+    this.setState({ listOrder: orderedLists });
+  }
+
+  constructLists() {
+    if (this.state.listOrder.length === 0) return null;
+
+    const listItems = this.state.listOrder.map((listId, index) => {
+      return (
+        <ListItem
+          list={this.props.lists[listId]}
+          key={`list-${listId}`}
+          dragIdx={index}
+          cardDragResult={this.state.cardDragResult}
+        />
+      );
+    });
+
+    return listItems;
+  }
+
+  persistNewOrderToDB(list, newIndex, newListOrder) {
+    if (newIndex === 0) {
+      list.prev_id = null;
+      list.next_id = newListOrder[1];
+    } else if (newIndex === newListOrder.length - 1) {
+      list.prev_id = newListOrder[newListOrder.length - 2];
+      list.next_id = null;
+    } else {
+      list.prev_id = newListOrder[newIndex - 1];
+      list.next_id = newListOrder[newIndex + 1];
+    }
+    this.props.updateList(list);
+  }
+
+  onDragEnd(result) {
+    const { destination, source, draggableId, type } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    if (type === "LIST") {
+      const newListOrder = Array.from(this.state.listOrder);
+      newListOrder.splice(source.index, 1);
+      const draggedListId = draggableId.slice(draggableId.search("_") + 1);
+      newListOrder.splice(destination.index, 0, draggedListId);
+      const newState = {
+        ...this.state,
+        listOrder: newListOrder,
+      };
+      this.setState(newState);
+      this.persistNewOrderToDB(
+        this.props.lists[draggedListId],
+        destination.index,
+        newListOrder
+      );
+    }
+
+    if (type === "CARD") {
+      this.setState({ cardDragResult: result });
+    }
+  }
+
+  render() {
+    if (!this.state.listOrder) return null;
+
+    return (
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <div className="board-content">
+          <Droppable
+            droppableId={`board_${this.props.boardId}`}
+            direction="horizontal"
+            type="LIST"
+          >
+            {(provided) => (
+              <div
+                className="list-index-container"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {this.constructLists()}
+                {provided.placeholder}
+                <NewListFormContainer />
+              </div>
+            )}
+          </Droppable>
+        </div>
+      </DragDropContext>
+    );
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListIndex));

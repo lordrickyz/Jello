@@ -10,8 +10,8 @@ import NavbarContainer from "./navbar/navbar_container";
 import SplashContainer from './splash/splash_container';
 import SignupFormContainer from './session/signup_container';
 import LoginFormContainer from './session/login_container';
-import BoardIndexContainer from './boards/board_index_container'
-import BoardShowContainer from './boards/board_show_container'
+import BoardIndexContainer from './boards/board_index';
+import BoardShowContainer from './boards/board_show';
 import { AuthRoute, ProtectedRoute, BoardedRoute } from '../util/route_utils';
 import Modal from './modals/modal';
 

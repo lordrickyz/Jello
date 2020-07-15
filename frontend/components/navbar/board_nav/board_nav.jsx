@@ -52,7 +52,7 @@ class BoardNav extends React.Component {
       <section className="board-navbar">
         <div className="float-left">
           <Link to="/" className="home-btn"><FontAwesomeIcon icon={faHome}/></Link>
-          <button className="boards-btn"><FontAwesomeIcon icon={faList}/> Boards</button>
+          <button onClick={this.showForm("board-menu")} className="boards-btn"><FontAwesomeIcon icon={faList}/> Boards</button>
           <input
             value={this.state.searchbar}
             onBlur={this.clearSearch}
@@ -64,14 +64,14 @@ class BoardNav extends React.Component {
         </div>
         <div className="float-middle">
           <Link to='/' className="board-nav-logo">
-          <img src={window.boardnav} alt="logo jello" />
+          <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/boardnav.png"} alt="logo jello" />
             Jello
           </Link>
         </div>
         <div className="float-right">
           <button onClick={this.showForm("create-board")} className="create-board-btn"><FontAwesomeIcon icon={faPlus}/></button>
-          <button onClick={this.showForm("information")} className="information-btn"><FontAwesomeIcon icon={faInfoCircle}/></button>
-          <button onClick={this.showForm("notifications")} className="notification-btn"><FontAwesomeIcon icon={faBell}/></button>
+          {/* <button onClick={this.showForm("information")} className="information-btn"><FontAwesomeIcon icon={faInfoCircle}/></button> */}
+          {/* <button onClick={this.showForm("notifications")} className="notification-btn"><FontAwesomeIcon icon={faBell}/></button> */}
           <button onClick={this.showForm("user-options")} id="user-options-btn">{this.props.currentUser.username[0]}</button>
         </div>
       </section>

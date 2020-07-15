@@ -1,10 +1,13 @@
-import { RECEIVE_LISTS, RECEIVE_LIST, REMOVE_LIST } from '../../actions/lists_actions';
-import { RECEIVE_BOARD } from '../../actions/board_actions';
-import merge from 'lodash/merge';
+import {
+  RECEIVE_LISTS,
+  RECEIVE_LIST,
+  REMOVE_LIST,
+} from "../../actions/lists_actions";
+import { RECEIVE_BOARD } from "../../actions/board_actions";
+import merge from "lodash/merge";
 
 const listsReducer = (state = {}, action) => {
   Object.freeze(state);
-
   switch (action.type) {
     case RECEIVE_LISTS:
       return merge({}, action.lists);

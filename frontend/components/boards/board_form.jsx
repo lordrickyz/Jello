@@ -1,4 +1,18 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { createBoard } from "../../actions/board_actions";
+import { closeModal } from "../../actions/modal_actions";
+
+const mapStateToProps = (state) => {
+  return {
+    board: { title: "" },
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  createBoard: (board) => dispatch(createBoard(board)),
+  closeModal: () => dispatch(closeModal()),
+});
 
 class BoardForm extends React.Component {
   constructor(props) {
@@ -44,4 +58,4 @@ class BoardForm extends React.Component {
 
 }
 
-export default BoardForm
+export default connect(mapStateToProps, mapDispatchToProps)(BoardForm);

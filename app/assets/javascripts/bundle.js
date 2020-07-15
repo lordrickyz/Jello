@@ -297,7 +297,7 @@ var updateCard = function updateCard(card) {
 /*!*******************************************!*\
   !*** ./frontend/actions/lists_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_LISTS, RECEIVE_LIST, RECEIVE_LIST_ERRORS, CLEAR_LIST_ERRORS, receiveLists, receiveList, removeList, receiveErrors, clearErrors, fetchLists, createList, updateList, deleteList */
+/*! exports provided: RECEIVE_LISTS, RECEIVE_LIST, RECEIVE_LIST_ERRORS, CLEAR_LIST_ERRORS, REMOVE_LIST, receiveLists, receiveList, removeList, receiveErrors, clearErrors, fetchLists, createList, updateList, deleteList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -306,6 +306,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIST", function() { return RECEIVE_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIST_ERRORS", function() { return RECEIVE_LIST_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_LIST_ERRORS", function() { return CLEAR_LIST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIST", function() { return REMOVE_LIST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLists", function() { return receiveLists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveList", function() { return receiveList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeList", function() { return removeList; });
@@ -321,6 +322,7 @@ var RECEIVE_LISTS = "RECEIVE_LISTS";
 var RECEIVE_LIST = "RECEIVE_LIST";
 var RECEIVE_LIST_ERRORS = "RECEIVE_LIST_ERRORS";
 var CLEAR_LIST_ERRORS = "CLEAR_LIST_ERRORS";
+var REMOVE_LIST = "REMOVE_LIST";
 var receiveLists = function receiveLists(lists) {
   return {
     type: RECEIVE_LISTS,
@@ -379,10 +381,10 @@ var updateList = function updateList(list) {
     });
   };
 };
-var deleteList = function deleteList(id) {
+var deleteList = function deleteList(listId) {
   return function (dispatch) {
-    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](id).then(function (listId) {
-      return dispatch(removeList(listId));
+    return _util_list_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteList"](listId).then(function (list) {
+      return dispatch(removeList(list));
     }).fail(function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -406,10 +408,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModal", function() { return closeModal; });
 var OPEN_MODAL = 'OPEN_MODAL';
 var CLOSE_MODAL = 'CLOSE_MODAL';
-var openModal = function openModal(modal) {
+var openModal = function openModal(type, id) {
   return {
     type: OPEN_MODAL,
-    modal: modal
+    modal: {
+      type: type,
+      id: id
+    }
   };
 };
 var closeModal = function closeModal() {
@@ -936,9 +941,18 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchBoard(this.props.boardId);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.boardId !== this.props.boardId) {
+        this.props.fetchBoard(this.props.boardId);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-filler"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_board_show_nav__WEBPACK_IMPORTED_MODULE_1__["default"], {
         boardId: this.props.boardId,
@@ -947,7 +961,7 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
         updateBoard: this.props.updateBoard,
         history: this.props.history,
         currentUser: this.props.currentUser
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_list_list_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_list_list_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
 
@@ -1358,7 +1372,7 @@ var CardShow = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       id: props.card.id,
       title: props.card.title,
-      description: props.card.description
+      description: props.description
     };
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleKeyEscaper = _this.handleKeyEscaper.bind(_assertThisInitialized(_this));
@@ -1485,9 +1499,18 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var card = state.entities.cards[cardId];
   var listId = card.list_id;
   var listTitle = state.entities.lists[listId].title;
+  var description;
+
+  if (card.description === null) {
+    description = "";
+  } else {
+    description = card.description;
+  }
+
   return {
     card: card,
-    listTitle: listTitle
+    listTitle: listTitle,
+    description: description
   };
 };
 
@@ -1603,7 +1626,7 @@ var NewCardForm = /*#__PURE__*/function (_React$Component) {
         return _this3.setState({
           title: ""
         });
-      });
+      }); // .then(() => window.location.reload())
     }
   }, {
     key: "render",
@@ -1899,7 +1922,8 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
     _this.orderLists = _this.orderLists.bind(_assertThisInitialized(_this));
     _this.constructLists = _this.constructLists.bind(_assertThisInitialized(_this));
     _this.persistNewOrderToDB = _this.persistNewOrderToDB.bind(_assertThisInitialized(_this));
-    _this.onDragEnd = _this.onDragEnd.bind(_assertThisInitialized(_this));
+    _this.onDragEnd = _this.onDragEnd.bind(_assertThisInitialized(_this)); // this.updatedLists = this.updatedLists.bind(this);
+
     return _this;
   }
 
@@ -1914,13 +1938,32 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
       if (prevProps.lists !== this.props.lists) {
         this.orderLists();
       }
-    }
+    } // updatedLists() {
+    //   if (Object.keys(this.props.lists).length === 0) return;
+    //   let listsFromProps = Object.values(this.props.lists);
+    //   for (let i = 0; i < listsFromProps.length; i++) {
+    //     let list = listsFromProps[i];
+    //     if (listsFromProps[0] === list) {
+    //       list.prev_id = null;
+    //       list.next_id = listsFromProps[1];
+    //     } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
+    //       list.prev_id = listsFromProps[listsFromProps.length - 2];
+    //       list.next_id = null;
+    //     } else {
+    //       list.prev_id = listsFromProps[listsFromProps[i] - 1];
+    //       list.next_id = listsFromProps[listsFromProps[i] + 1];
+    //     }
+    //     this.props.updateList(list);
+    //   }
+    // }
+
   }, {
     key: "orderLists",
     value: function orderLists() {
       if (Object.keys(this.props.lists).length === 0) return;
       var listsFromProps = Object.values(this.props.lists);
-      var orderedLists = [];
+      var orderedLists = []; // debugger;
+
       var currentList = listsFromProps.find(function (list) {
         return list.prev_id === null;
       });
@@ -1935,7 +1978,7 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
 
       this.setState({
         listOrder: orderedLists
-      });
+      }); // this.props.fetchLists(this.props.boardId);
     }
   }, {
     key: "constructLists",
@@ -2019,7 +2062,7 @@ var ListIndex = /*#__PURE__*/function (_React$Component) {
         droppableId: "board_".concat(this.props.boardId),
         direction: "horizontal",
         type: "LIST"
-      }, function (provided, snapshot) {
+      }, function (provided) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
           className: "list-index-container",
           ref: provided.innerRef
@@ -2055,7 +2098,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var lists = state.entities.lists;
-  var boardId = parseInt(ownProps.match.params.id);
+  var boardId = parseInt(ownProps.match.params.id); // debugger;
+
   return {
     lists: lists,
     boardId: boardId
@@ -2090,10 +2134,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
-/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
-/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
-/* harmony import */ var _card_card_item_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../card/card_item_container */ "./frontend/components/card/card_item_container.js");
-/* harmony import */ var _card_new_card_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../card/new_card_form */ "./frontend/components/card/new_card_form.jsx");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_lists_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/lists_actions */ "./frontend/actions/lists_actions.js");
+/* harmony import */ var _actions_cards_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/cards_actions */ "./frontend/actions/cards_actions.js");
+/* harmony import */ var _card_card_item_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../card/card_item_container */ "./frontend/components/card/card_item_container.js");
+/* harmony import */ var _card_new_card_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../card/new_card_form */ "./frontend/components/card/new_card_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -2132,23 +2177,32 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var mapStateToProps = function mapStateToProps(state) {
+  // debugger;
   var cards = state.entities.cards;
   return {
-    cards: cards
+    cards: cards,
+    lists: state.entities.lists
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     updateList: function updateList(list) {
-      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_3__["updateList"])(list));
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_4__["updateList"])(list));
     },
     fetchCards: function fetchCards(listId) {
-      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCards"])(listId));
+      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_5__["fetchCards"])(listId));
     },
     updateCard: function updateCard(card) {
-      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_4__["updateCard"])(card));
+      return dispatch(Object(_actions_cards_actions__WEBPACK_IMPORTED_MODULE_5__["updateCard"])(card));
+    },
+    deleteList: function deleteList(listId) {
+      return dispatch(Object(_actions_lists_actions__WEBPACK_IMPORTED_MODULE_4__["deleteList"])(listId));
+    },
+    fetchBoard: function fetchBoard(boardId) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoard"])(boardId));
     }
   };
 };
@@ -2163,8 +2217,7 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, ListItem);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.state = {
       id: props.list.id,
       title: props.list.title,
@@ -2178,6 +2231,8 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
     _this.orderCards = _this.orderCards.bind(_assertThisInitialized(_this));
     _this.constructCards = _this.constructCards.bind(_assertThisInitialized(_this));
     _this.persistNewOrderToDB = _this.persistNewOrderToDB.bind(_assertThisInitialized(_this));
+    _this.deleteList = _this.deleteList.bind(_assertThisInitialized(_this)); // this.updateOtherList = this.updateOtherList.bind(this);
+
     return _this;
   }
 
@@ -2222,18 +2277,17 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
             });
 
             this.setState(_newState);
-          } // And add that card to its new list
-          else if (destination.droppableId === "list_".concat(this.state.id)) {
-              draggedCard.list_id = this.state.id;
-              newCardOrder.splice(destination.index, 0, draggedCardId);
+          } else if (destination.droppableId === "list_".concat(this.state.id)) {
+            draggedCard.list_id = this.state.id;
+            newCardOrder.splice(destination.index, 0, draggedCardId);
 
-              var _newState2 = _objectSpread(_objectSpread({}, this.state), {}, {
-                cardOrder: newCardOrder
-              });
+            var _newState2 = _objectSpread(_objectSpread({}, this.state), {}, {
+              cardOrder: newCardOrder
+            });
 
-              this.setState(_newState2);
-              this.persistNewOrderToDB(draggedCard, destination.index, newCardOrder);
-            }
+            this.setState(_newState2);
+            this.persistNewOrderToDB(draggedCard, destination.index, newCardOrder);
+          }
         }
       }
     }
@@ -2306,7 +2360,7 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
     value: function constructCards() {
       if (this.state.cardOrder.length === 0) return null;
       var cardItems = this.state.cardOrder.map(function (cardId, index) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_card_item_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_card_item_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
           cardId: cardId,
           key: "card-".concat(cardId),
           dragIdx: index
@@ -2329,6 +2383,35 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
       }
 
       this.props.updateCard(card);
+    }
+  }, {
+    key: "deleteList",
+    value: function deleteList() {
+      this.props.deleteList(this.props.list.id);
+      this.updateOtherList();
+    }
+  }, {
+    key: "updateOtherList",
+    value: function updateOtherList() {
+      if (Object.keys(this.props.lists).length === 0) return;
+      var listsFromProps = Object.values(this.props.lists);
+
+      for (var i = 0; i < listsFromProps.length; i++) {
+        var list = listsFromProps[i];
+
+        if (listsFromProps[0] === list) {
+          list.prev_id = null;
+          list.next_id = listsFromProps[1];
+        } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
+          list.prev_id = listsFromProps[listsFromProps.length - 2];
+          list.next_id = null;
+        } else {
+          list.prev_id = listsFromProps[listsFromProps[i] - 1];
+          list.next_id = listsFromProps[listsFromProps[i] + 1];
+        }
+
+        this.props.updateList(list);
+      }
     }
   }, {
     key: "render",
@@ -2366,7 +2449,7 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
             className: "card-index-container",
             ref: provided.innerRef
           }, provided.droppableProps), _this4.constructCards(), provided.placeholder);
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_new_card_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_card_new_card_form__WEBPACK_IMPORTED_MODULE_7__["default"], {
           listId: _this4.state.id
         })));
       });
@@ -2478,7 +2561,7 @@ var NewListForm = /*#__PURE__*/function (_React$Component) {
         return _this3.setState({
           title: ""
         });
-      });
+      }); // .then(() => window.location.reload())
     }
   }, {
     key: "render",
@@ -2547,7 +2630,7 @@ var Modal = function Modal(_ref) {
 
   var component;
 
-  switch (modal) {
+  switch (modal.type) {
     case "user-options":
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_board_nav_user_menu__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
@@ -2651,7 +2734,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  // debugger;
   return {
     boards: state.entities.boards
   };
@@ -2673,10 +2755,10 @@ var BoardMenu = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(BoardMenu);
 
-  function BoardMenu() {
+  function BoardMenu(props) {
     _classCallCheck(this, BoardMenu);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(BoardMenu, [{
@@ -2879,16 +2961,6 @@ var BoardNav = /*#__PURE__*/function (_React$Component) {
         className: "create-board-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"]
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.showForm("information"),
-        className: "information-btn"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
-        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faInfoCircle"]
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.showForm("notifications"),
-        className: "notification-btn"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
-        icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faBell"]
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.showForm("user-options"),
         id: "user-options-btn"
@@ -3100,9 +3172,7 @@ var BoardShowNav = /*#__PURE__*/function (_React$Component) {
         icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faStar"]
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: 'member-icon'
-      }, this.props.currentUser.username[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: 'board-invite-btn'
-      }, "Invite")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currentUser.username[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "menu-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "menu-rightbtn",
@@ -3207,11 +3277,7 @@ var Navbar = function Navbar(_ref) {
   }, "Log In"), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/signup",
     className: "navbar-btn"
-  }, "Sign Up"), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/boards",
-    className: "navbar-btn",
-    onClick: loginDemo
-  }, "Demo"));
+  }, "Sign Up"));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "navbar-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -4109,6 +4175,11 @@ var listsReducer = function listsReducer() {
     case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIST"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, _defineProperty({}, action.list.id, action.list));
 
+    case _actions_lists_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIST"]:
+      var newState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state);
+      delete newState[action.list.id];
+      return newState;
+
     default:
       return state;
   }
@@ -4607,9 +4678,9 @@ var updateList = function updateList(list) {
     }
   });
 };
-var deleteList = function deleteList(id) {
+var deleteList = function deleteList(listId) {
   return $.ajax({
-    url: "/api/lists/".concat(id),
+    url: "/api/lists/".concat(listId),
     method: "DELETE"
   });
 };

@@ -15,22 +15,22 @@ const Navbar = ({ currentUser, logoutUser, loginDemo }) => {
         <Link to="/login" className="navbar-btn">Log In</Link>
         &nbsp;
         <Link to="/signup" className="navbar-btn">Sign Up</Link>
-        &nbsp;
-        <Link to="/boards" className="navbar-btn" onClick={loginDemo}>Demo</Link>
+        {/* &nbsp;
+        <Link to="/boards" className="navbar-btn" onClick={loginDemo}>Demo</Link> */}
       </div>
     );
 
   return (
     <header className="navbar-container">
       <nav className="navbar-nav">
-        <Link to='/' className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           <img src={window.puddingIcon} alt="logo jello" />
           <h2>Jello</h2>
         </Link>
         {display}
       </nav>
     </header>
-  )
+  );
 }
 
 export default Navbar;

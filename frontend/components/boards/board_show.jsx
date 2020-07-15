@@ -6,18 +6,24 @@ import ListIndexContainer from '../list/list_index_container';
 
 class BoardShow extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount() {
-    this.props.fetchBoard(this.props.boardId)
+    this.props.fetchBoard(this.props.boardId);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.boardId !== this.props.boardId) {
+      this.props.fetchBoard(this.props.boardId);
+    }
+  }
 
   render() {
     return (
       <>
-        <section className={"board-show-container"}>
+        <div className={"board-show-filler"}></div>
+        <div className={"board-show-container"}>
           <BoardNavContainer />
           <BoardShowNav
             boardId={this.props.boardId}
@@ -27,8 +33,8 @@ class BoardShow extends React.Component {
             history={this.props.history}
             currentUser={this.props.currentUser}
           />
-        </section>
-        <ListIndexContainer />
+          <ListIndexContainer />
+        </div>
       </>
     );
   }

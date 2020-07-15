@@ -20,9 +20,9 @@ export const updateList = (list) => {
   });
 };
 
-export const deleteList = (id) => {
+export const deleteList = (listId) => {
   return $.ajax({
-    url: `/api/lists/${id}`,
+    url: `/api/lists/${listId}`,
     method: "DELETE",
   });
 };

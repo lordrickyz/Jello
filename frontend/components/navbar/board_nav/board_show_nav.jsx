@@ -85,7 +85,7 @@ class BoardShowNav extends React.Component {
           </form>
           <button id={'board-favorited'}><FontAwesomeIcon icon={faStar} /></button>
           <button id={'member-icon'}>{this.props.currentUser.username[0]}</button>
-          <button id={'board-invite-btn'}>Invite</button>
+          {/* <button id={'board-invite-btn'}>Invite</button> */}
         </div>
 
         <div className="menu-right">

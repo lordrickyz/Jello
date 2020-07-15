@@ -4,6 +4,7 @@ export const RECEIVE_LISTS = "RECEIVE_LISTS";
 export const RECEIVE_LIST = "RECEIVE_LIST";
 export const RECEIVE_LIST_ERRORS = "RECEIVE_LIST_ERRORS";
 export const CLEAR_LIST_ERRORS = "CLEAR_LIST_ERRORS";
+export const REMOVE_LIST = "REMOVE_LIST";
 
 export const receiveLists = (lists) => ({
   type: RECEIVE_LISTS,
@@ -17,7 +18,7 @@ export const receiveList = ({list}) => ({
 
 export const removeList = ({list}) => ({
   type: REMOVE_LIST,
-  list
+  list,
 });
 
 export const receiveErrors = (errors) => {
@@ -45,6 +46,6 @@ export const updateList = (list) => dispatch => ListAPIUtil.updateList(list)
     .then(lists => dispatch(receiveLists(lists)))
     .fail(errors => dispatch(receiveErrors(errors.responseJSON)));
 
-export const deleteList = (id) => dispatch => ListAPIUtil.deleteList(id)
-    .then((listId) => dispatch(removeList(listId)))
+export const deleteList = (listId) => dispatch => ListAPIUtil.deleteList(listId)
+    .then((list) => dispatch(removeList(list)))
     .fail(errors => dispatch(receiveErrors(errors.responseJSON)));

@@ -37,9 +37,9 @@ class NewCardForm extends React.Component {
     e.preventDefault();
     let card;
     card = Object.assign({}, this.state);
-    this.props
-      .createCard(this.props.listId, card)
-      .then(() => this.setState({ title: "" }));
+    this.props.createCard(this.props.listId, card)
+      .then(() => this.setState({ title: "" }))
+      // .then(() => window.location.reload())
   }
 
   render() {

@@ -38,9 +38,9 @@ class NewListForm extends React.Component {
     e.preventDefault();
     let list;
     list = Object.assign({}, this.state);
-    this.props
-      .createList(this.props.boardId, list)
-      .then(() => this.setState({ title: "" }));
+    this.props.createList(this.props.boardId, list)
+      .then(() => this.setState({ title: "" }))
+      // .then(() => window.location.reload())
   }
 
   render() {

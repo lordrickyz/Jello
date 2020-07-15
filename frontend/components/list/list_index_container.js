@@ -7,6 +7,7 @@ import ListIndex from "./list_index";
 const mapStateToProps = (state, ownProps) => {
   const lists = state.entities.lists;
   const boardId = parseInt(ownProps.match.params.id);
+  // debugger;
   return {
     lists,
     boardId,

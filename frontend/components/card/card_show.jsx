@@ -13,7 +13,7 @@ export default class CardShow extends React.Component {
     this.state = {
       id: props.card.id,
       title: props.card.title,
-      description: props.card.description,
+      description: props.description,
     };
     this.update = this.update.bind(this);
     this.handleKeyEscaper = this.handleKeyEscaper.bind(this);

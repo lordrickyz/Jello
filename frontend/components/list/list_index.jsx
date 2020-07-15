@@ -15,6 +15,7 @@ export default class ListIndex extends React.Component {
     this.constructLists = this.constructLists.bind(this);
     this.persistNewOrderToDB = this.persistNewOrderToDB.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
+    // this.updatedLists = this.updatedLists.bind(this);
   }
 
   componentDidMount() {
@@ -27,21 +28,41 @@ export default class ListIndex extends React.Component {
     }
   }
 
+  // updatedLists() {
+  //   if (Object.keys(this.props.lists).length === 0) return;
+  //   let listsFromProps = Object.values(this.props.lists);
+  //   for (let i = 0; i < listsFromProps.length; i++) {
+  //     let list = listsFromProps[i];
+
+  //     if (listsFromProps[0] === list) {
+  //       list.prev_id = null;
+  //       list.next_id = listsFromProps[1];
+  //     } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
+  //       list.prev_id = listsFromProps[listsFromProps.length - 2];
+  //       list.next_id = null;
+  //     } else {
+  //       list.prev_id = listsFromProps[listsFromProps[i] - 1];
+  //       list.next_id = listsFromProps[listsFromProps[i] + 1];
+  //     }
+  //     this.props.updateList(list);
+  //   }
+  // }
+
   orderLists() {
     if (Object.keys(this.props.lists).length === 0) return;
 
     let listsFromProps = Object.values(this.props.lists);
     let orderedLists = [];
+    // debugger;
 
     let currentList = listsFromProps.find((list) => list.prev_id === null);
     orderedLists.push(currentList.id);
     while (currentList.next_id !== null) {
-      currentList = listsFromProps.find(
-        (list) => list.id === currentList.next_id
-      );
+      currentList = listsFromProps.find((list) => list.id === currentList.next_id);
       orderedLists.push(currentList.id);
     }
     this.setState({ listOrder: orderedLists });
+    // this.props.fetchLists(this.props.boardId);
   }
 
   constructLists() {
@@ -122,11 +143,12 @@ export default class ListIndex extends React.Component {
             direction="horizontal"
             type="LIST"
           >
-            {(provided, snapshot) => (
+            {(provided) => (
               <div
                 className="list-index-container"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
+                // style={dropzoneStyle}
               >
                 {this.constructLists()}
                 {provided.placeholder}

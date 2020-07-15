@@ -15,7 +15,7 @@ const Modal = ({ modal, closeModal }) => {
   }
 
   let component;
-  switch (modal) {
+  switch (modal.type) {
     case "user-options":
       component = <UserMenu />;
       break;

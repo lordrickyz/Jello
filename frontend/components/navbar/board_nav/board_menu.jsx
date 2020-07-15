@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 
-import { fetchBoards } from '../../../actions/board_actions';
+import { fetchBoards } from "../../../actions/board_actions";
 import { closeModal } from '../../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
-  // debugger;
   return {
     boards: state.entities.boards
   };
@@ -23,6 +22,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class BoardMenu extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
   componentDidMount() {
     this.props.fetchBoards();
   }

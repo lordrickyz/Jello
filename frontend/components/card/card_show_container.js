@@ -9,9 +9,17 @@ const mapStateToProps = (state, ownProps) => {
   const card = state.entities.cards[cardId];
   const listId = card.list_id;
   const listTitle = state.entities.lists[listId].title;
+  let description;
+  if (card.description === null) {
+    description = ""
+  } else {
+    description = card.description; 
+  }
+
   return {
     card,
     listTitle,
+    description,
   };
 };
 

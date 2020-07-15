@@ -1744,7 +1744,7 @@ var SplashFoot = /*#__PURE__*/function (_React$Component) {
       }), "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://angel.co/",
+        href: "https://angel.co/u/zheng-ricky",
         target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAngellist"]

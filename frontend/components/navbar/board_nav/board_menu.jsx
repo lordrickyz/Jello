@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
-
+import { faChalkboard } from '@fortawesome/free-solid-svg-icons';
 import { fetchBoards } from "../../../actions/board_actions";
 import { closeModal } from '../../../actions/modal_actions';
 
@@ -20,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     closeModal: () => dispatch(closeModal()),
   };
 };
+
 
 class BoardMenu extends React.Component {
   constructor(props) {
@@ -56,7 +55,7 @@ class BoardMenu extends React.Component {
             <div className="board-menu-section-header">
               <span>
                 <span className="board-menu-section-icon">
-                  <FontAwesomeIcon icon={faUser} />
+                  <FontAwesomeIcon icon={faChalkboard} />
                 </span>
                 <span className="board-menu-section-title">
                   Personal Boards

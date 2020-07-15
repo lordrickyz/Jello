@@ -24,7 +24,7 @@ class Splash extends React.Component {
             </div>
 
             <div className="splash-1-img">
-                <img src={window.splashmain} alt="Main Splash" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/splashmain.png"} alt="Main Splash" />
             </div>
           </div>
 
@@ -47,7 +47,7 @@ class Splash extends React.Component {
               <Link className="splash-2-link" to="/signup">Start Now →</Link>
             </div>
             <div className='splash-img-right'>
-              <img src={window.splashmain2} alt="Right Splash" />
+              <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/splashmain2.png"} alt="Right Splash" />
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ class Splash extends React.Component {
         <div className="splash-2-container">
           <div>
             <div className='splash-img-left'>
-                <img src={window.splashmain3} alt="Left Splash" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/splashphone.png"} alt="Left Splash" />
             </div>
             <div className='splash-2-content'>
               <h2>Enhanced Schema Design</h2>
@@ -79,17 +79,17 @@ class Splash extends React.Component {
 
             <div className="splash-p-imgs">
               <div>
-                <img src={window.filmIcon} alt="logo film" />
-                <img src={window.vgIcon} alt="logo video" />
-                <img src={window.bballIcon} alt="logo bball" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/film-strip.svg"} alt="logo film" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/videogame.svg"} alt="logo video" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/basketball.svg"} alt="logo bball" />
               </div>
               <div>
-                <img src={window.teaIcon} alt="logo btea" />
-                <img src={window.bagIcon} alt="logo shop" />
-                <img src={window.bowlIcon} alt="logo bowl" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/bubble-tea.svg"} alt="logo btea" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/shopping-bag.svg"} alt="logo shop" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/bowling.svg"} alt="logo bowl" />
               </div> 
               <div>
-                <img src={window.bballIcon} alt="logo bowl" />
+                <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/videogame.svg"} alt="logo video" />
               </div> 
             </div>
 

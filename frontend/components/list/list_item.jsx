@@ -227,6 +227,7 @@ class ListItem extends React.Component {
             <div className="list-item-contents">
               <div className="list-item-header" {...provided.dragHandleProps}>
                 <textarea
+                  id={"list-index-title"}
                   className="list-name-editor"
                   onKeyDown={this.handleKeyEscaper}
                   onBlur={this.updateListTitle}

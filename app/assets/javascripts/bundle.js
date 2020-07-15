@@ -86,19 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./app/assets/images/pudding.svg":
-/*!***************************************!*\
-  !*** ./app/assets/images/pudding.svg ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/assets/webpack-assets/pudding722e4994e9195b954af5bb88deb9508c.svg");
-
-/***/ }),
-
 /***/ "./frontend/actions/board_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/board_actions.js ***!
@@ -178,7 +165,7 @@ var createBoard = function createBoard(board) {
   return function (dispatch) {
     return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createBoard"](board).then(function (board) {
       return dispatch(receiveBoard(board));
-    }, function (errors) {
+    }).fail(function (errors) {
       return dispatch(receiveBoardErrors(errors.responseJSON));
     });
   };
@@ -480,7 +467,7 @@ var createUser = function createUser(formUser) {
   return function (dispatch) {
     return Object(_util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"])(formUser).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }, function (errors) {
+    }).fail(function (errors) {
       return dispatch(receiveSessionErrors(errors.responseJSON));
     });
   };
@@ -531,8 +518,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_splash_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash/splash_container */ "./frontend/components/splash/splash_container.js");
 /* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.js");
 /* harmony import */ var _session_login_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./session/login_container */ "./frontend/components/session/login_container.js");
-/* harmony import */ var _boards_board_index_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./boards/board_index_container */ "./frontend/components/boards/board_index_container.js");
-/* harmony import */ var _boards_board_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./boards/board_show_container */ "./frontend/components/boards/board_show_container.js");
+/* harmony import */ var _boards_board_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./boards/board_index */ "./frontend/components/boards/board_index.jsx");
+/* harmony import */ var _boards_board_show__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./boards/board_show */ "./frontend/components/boards/board_show.jsx");
 /* harmony import */ var _util_route_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/route_utils */ "./frontend/util/route_utils.jsx");
 /* harmony import */ var _modals_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modals/modal */ "./frontend/components/modals/modal.jsx");
 
@@ -554,7 +541,7 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_8__["ProtectedRoute"], {
     exact: true,
     path: "/boards",
-    component: _boards_board_index_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _boards_board_index__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_8__["AuthRoute"], {
     path: "/login",
     component: _session_login_container__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -563,7 +550,7 @@ var App = function App() {
     component: _session_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_8__["ProtectedRoute"], {
     path: "/boards/:id",
-    component: _boards_board_show_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _boards_board_show__WEBPACK_IMPORTED_MODULE_7__["default"]
   })));
 };
 
@@ -582,6 +569,9 @@ var App = function App() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -607,6 +597,28 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    board: {
+      title: ""
+    }
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createBoard: function createBoard(board) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["createBoard"])(board));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    }
+  };
+};
 
 var BoardForm = /*#__PURE__*/function (_React$Component) {
   _inherits(BoardForm, _React$Component);
@@ -670,48 +682,7 @@ var BoardForm = /*#__PURE__*/function (_React$Component) {
   return BoardForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (BoardForm);
-
-/***/ }),
-
-/***/ "./frontend/components/boards/board_form_container.js":
-/*!************************************************************!*\
-  !*** ./frontend/components/boards/board_form_container.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _board_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_form */ "./frontend/components/boards/board_form.jsx");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-
-
-
-
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    board: {
-      title: ""
-    }
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createBoard: function createBoard(board) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["createBoard"])(board));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(BoardForm));
 
 /***/ }),
 
@@ -724,13 +695,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BoardIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../navbar/board_nav/board_nav_container */ "./frontend/components/navbar/board_nav/board_nav_container.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -758,6 +731,29 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: state.session.id,
+    boards: Object.keys(state.entities.boards).map(function (id) {
+      return state.entities.boards[id];
+    })
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchBoards: function fetchBoards() {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_6__["fetchBoards"])());
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_7__["openModal"])(modal));
+    }
+  };
+};
 
 var BoardIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(BoardIndex, _React$Component);
@@ -837,49 +833,7 @@ var BoardIndex = /*#__PURE__*/function (_React$Component) {
   return BoardIndex;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-
-
-/***/ }),
-
-/***/ "./frontend/components/boards/board_index_container.js":
-/*!*************************************************************!*\
-  !*** ./frontend/components/boards/board_index_container.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _board_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_index */ "./frontend/components/boards/board_index.jsx");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-
-
-
-
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    currentUser: state.session.id,
-    boards: Object.keys(state.entities.boards).map(function (id) {
-      return state.entities.boards[id];
-    })
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchBoards: function fetchBoards() {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBoards"])());
-    },
-    openModal: function openModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, mapDispatchToProps)(BoardIndex));
 
 /***/ }),
 
@@ -897,6 +851,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_board_nav_board_show_nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar/board_nav/board_show_nav */ "./frontend/components/navbar/board_nav/board_show_nav.jsx");
 /* harmony import */ var _navbar_board_nav_board_nav_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/board_nav/board_nav_container */ "./frontend/components/navbar/board_nav/board_nav_container.js");
 /* harmony import */ var _list_list_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../list/list_index */ "./frontend/components/list/list_index.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -923,6 +879,58 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
+var mapStatetoProps = function mapStatetoProps(state, ownProps) {
+  var defaultBoard = {
+    title: "Title"
+  };
+  var defaultList = {
+    title: "Title"
+  };
+  return {
+    boardId: parseInt(ownProps.match.params.id),
+    board: state.entities.boards[ownProps.match.params.id] || defaultBoard,
+    lists: state.entities.lists || defaultList,
+    history: ownProps.history,
+    currentUser: state.entities.users[state.session.id]
+  };
+};
+
+var mapDispatchtoProps = function mapDispatchtoProps(dispatch) {
+  return {
+    fetchBoard: function fetchBoard(id) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_5__["fetchBoard"])(id));
+    },
+    updateBoard: function (_updateBoard) {
+      function updateBoard(_x) {
+        return _updateBoard.apply(this, arguments);
+      }
+
+      updateBoard.toString = function () {
+        return _updateBoard.toString();
+      };
+
+      return updateBoard;
+    }(function (board) {
+      return dispatch(updateBoard(board));
+    }),
+    deleteBoard: function (_deleteBoard) {
+      function deleteBoard(_x2) {
+        return _deleteBoard.apply(this, arguments);
+      }
+
+      deleteBoard.toString = function () {
+        return _deleteBoard.toString();
+      };
+
+      return deleteBoard;
+    }(function (id) {
+      return dispatch(deleteBoard(id));
+    })
+  };
+};
 
 var BoardShow = /*#__PURE__*/function (_React$Component) {
   _inherits(BoardShow, _React$Component);
@@ -968,77 +976,7 @@ var BoardShow = /*#__PURE__*/function (_React$Component) {
   return BoardShow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (BoardShow);
-
-/***/ }),
-
-/***/ "./frontend/components/boards/board_show_container.js":
-/*!************************************************************!*\
-  !*** ./frontend/components/boards/board_show_container.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _board_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_show */ "./frontend/components/boards/board_show.jsx");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-
-
- // import { } from '../../actions/modal_actions'
-
-var mapStatetoProps = function mapStatetoProps(state, ownProps) {
-  var defaultBoard = {
-    title: "Title"
-  };
-  var defaultList = {
-    title: "Title"
-  };
-  return {
-    boardId: parseInt(ownProps.match.params.id),
-    board: state.entities.boards[ownProps.match.params.id] || defaultBoard,
-    lists: state.entities.lists || defaultList,
-    history: ownProps.history,
-    currentUser: state.entities.users[state.session.id]
-  };
-};
-
-var mapDispatchtoProps = function mapDispatchtoProps(dispatch) {
-  return {
-    fetchBoard: function fetchBoard(id) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBoard"])(id));
-    },
-    updateBoard: function (_updateBoard) {
-      function updateBoard(_x) {
-        return _updateBoard.apply(this, arguments);
-      }
-
-      updateBoard.toString = function () {
-        return _updateBoard.toString();
-      };
-
-      return updateBoard;
-    }(function (board) {
-      return dispatch(updateBoard(board));
-    }),
-    deleteBoard: function (_deleteBoard) {
-      function deleteBoard(_x2) {
-        return _deleteBoard.apply(this, arguments);
-      }
-
-      deleteBoard.toString = function () {
-        return _deleteBoard.toString();
-      };
-
-      return deleteBoard;
-    }(function (id) {
-      return dispatch(deleteBoard(id));
-    })
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStatetoProps, mapDispatchtoProps)(_board_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStatetoProps, mapDispatchtoProps)(BoardShow));
 
 /***/ }),
 
@@ -1164,15 +1102,18 @@ var BoardMenu = /*#__PURE__*/function (_React$Component) {
       }, "About This User", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "menu-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://github.com/lordrickyz"
+        href: "https://github.com/lordrickyz",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faGithub"]
       }), "GitHub")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.linkedin.com/in/rickyzhengs/"
+        href: "https://www.linkedin.com/in/rickyzhengs/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faLinkedin"]
       }), "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
+        href: "https://lordrickyz.github.io/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeIcon"], {
         icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_7__["faUser"]
       }), "My Profile"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1250,15 +1191,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-var NewCardForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(NewCardForm, _React$Component);
+var CardForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(CardForm, _React$Component);
 
-  var _super = _createSuper(NewCardForm);
+  var _super = _createSuper(CardForm);
 
-  function NewCardForm(props) {
+  function CardForm(props) {
     var _this;
 
-    _classCallCheck(this, NewCardForm);
+    _classCallCheck(this, CardForm);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -1269,7 +1210,7 @@ var NewCardForm = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(NewCardForm, [{
+  _createClass(CardForm, [{
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -1315,10 +1256,10 @@ var NewCardForm = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return NewCardForm;
+  return CardForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(NewCardForm)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(CardForm)));
 
 /***/ }),
 
@@ -1416,7 +1357,9 @@ var CardItem = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this2.props.openCardShowModal(_this2.state.id);
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _this2.state.title)));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          id: "card-item-title"
+        }, _this2.state.title)));
       });
     }
   }]);
@@ -1698,19 +1641,22 @@ var SessionFoot = /*#__PURE__*/function (_React$Component) {
       }), "Ricky Zheng")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://github.com/lordrickyz"
+        href: "https://github.com/lordrickyz",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faGithub"]
       }), "GitHub")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.linkedin.com/in/rickyzhengs/"
+        href: "https://www.linkedin.com/in/rickyzhengs/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faLinkedin"]
       }), "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
+        href: "https://lordrickyz.github.io/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faUserCircle"]
       }), "Portfolio"))));
@@ -1784,31 +1730,36 @@ var SplashFoot = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://github.com/lordrickyz"
+        href: "https://github.com/lordrickyz",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faGithub"]
       }), "GitHub")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.linkedin.com/in/rickyzhengs/"
+        href: "https://www.linkedin.com/in/rickyzhengs/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faLinkedin"]
       }), "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://angel.co/"
+        href: "https://angel.co/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAngellist"]
       }), "AngelList")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
+        href: "https://lordrickyz.github.io/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faUserCircle"]
       }), "Portfolio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-li-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ""
+        href: "mailto:rickyzheng@ymail.com",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faEnvelope"]
       }), "Email"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1816,7 +1767,8 @@ var SplashFoot = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faAt"]
       }), "Ricky Zheng"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://trello.com"
+        href: "https://trello.com",
+        target: "_blank"
       }, "Inspired by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faTrello"]
       }), "Trello")));
@@ -1888,15 +1840,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-var NewListForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(NewListForm, _React$Component);
+var ListForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(ListForm, _React$Component);
 
-  var _super = _createSuper(NewListForm);
+  var _super = _createSuper(ListForm);
 
-  function NewListForm(props) {
+  function ListForm(props) {
     var _this;
 
-    _classCallCheck(this, NewListForm);
+    _classCallCheck(this, ListForm);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -1907,7 +1859,7 @@ var NewListForm = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(NewListForm, [{
+  _createClass(ListForm, [{
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -1953,10 +1905,10 @@ var NewListForm = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return NewListForm;
+  return ListForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(NewListForm)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ListForm)));
 
 /***/ }),
 
@@ -2496,6 +2448,7 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
           className: "list-item-header"
         }, provided.dragHandleProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          id: "list-index-title",
           className: "list-name-editor",
           onKeyDown: _this4.handleKeyEscaper,
           onBlur: _this4.updateListTitle,
@@ -2542,7 +2495,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _navbar_board_nav_user_menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../navbar/board_nav/user_menu */ "./frontend/components/navbar/board_nav/user_menu.jsx");
 /* harmony import */ var _navbar_board_nav_board_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../navbar/board_nav/board_menu */ "./frontend/components/navbar/board_nav/board_menu.jsx");
-/* harmony import */ var _boards_board_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../boards/board_form_container */ "./frontend/components/boards/board_form_container.js");
+/* harmony import */ var _boards_board_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../boards/board_form */ "./frontend/components/boards/board_form.jsx");
 /* harmony import */ var _boards_board_show_menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../boards/board_show_menu */ "./frontend/components/boards/board_show_menu.jsx");
 /* harmony import */ var _card_card_show__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../card/card_show */ "./frontend/components/card/card_show.jsx");
 
@@ -2570,7 +2523,7 @@ var Modal = function Modal(_ref) {
       break;
 
     case "create-board":
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_board_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_board_form__WEBPACK_IMPORTED_MODULE_5__["default"], null);
       break;
 
     case "menu-board":
@@ -2634,7 +2587,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2733,7 +2686,7 @@ var BoardMenu = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "board-menu-section-icon"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
-        icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faUser"]
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faChalkboard"]
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "board-menu-section-title"
       }, "Personal Boards"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2886,7 +2839,7 @@ var BoardNav = /*#__PURE__*/function (_React$Component) {
         to: "/",
         className: "board-nav-logo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.boardnav,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/boardnav.png",
         alt: "logo jello"
       }), "Jello")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "float-right"
@@ -3137,6 +3090,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+
+
+
 
 
 
@@ -3168,7 +3127,22 @@ var UserMenu = function UserMenu(props) {
     className: "user-options"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     id: "user-options-title"
-  }, username, " (", email, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Profile and Visibility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Activity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Cards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Settings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Help"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Shortcuts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Change Language..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, username, " (", email, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/lordrickyz"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faGithub"],
+    id: "user-link-svg"
+  }), "GitHub")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://www.linkedin.com/in/rickyzhengs/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faLinkedin"],
+    id: "user-link-svg"
+  }), "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://lordrickyz.github.io/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
+    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUser"],
+    id: "user-link-svg"
+  }), "Portfolio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     id: "logout-btn",
     onClick: props.logoutUser
   }, "Logout"));
@@ -3190,8 +3164,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var images_pudding_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! images/pudding.svg */ "./app/assets/images/pudding.svg");
-
 
 
 
@@ -3220,7 +3192,7 @@ var Navbar = function Navbar(_ref) {
     to: "/",
     className: "navbar-logo"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.puddingIcon,
+    src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/pudding.svg",
     alt: "logo jello"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Jello")), display));
 };
@@ -3411,13 +3383,13 @@ var Login = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-leftportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.lpudding,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionleft.png",
         className: "leftportal",
         alt: "left portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-rightportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.rpudding,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionright.png",
         className: "rightportal",
         alt: "right portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_session_footer__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3428,7 +3400,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
         to: "/",
         className: "login-logo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.puddingIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/pudding.svg",
         alt: "logo jello"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Jello"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-login-form"
@@ -3622,13 +3594,13 @@ var Signup = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-leftportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.lpudding,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionleft.png",
         className: "leftportal",
         alt: "left portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "div-rightportal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.rpudding,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionright.png",
         className: "rightportal",
         alt: "right portal"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_session_footer__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3639,7 +3611,7 @@ var Signup = /*#__PURE__*/function (_React$Component) {
         to: "/",
         className: "signup-logo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.puddingIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/pudding.svg",
         alt: "logo jello"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Jello"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-signup-form"
@@ -3661,7 +3633,7 @@ var Signup = /*#__PURE__*/function (_React$Component) {
         value: this.state.password,
         placeholder: " Enter a Password",
         onChange: this.handleInput('password')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "By signing up, you confirm that you've read and accepted our Terms of Service and Privacy Policy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Lazy and Don't Want to Sign up? Click on \"Already have an Account\" to use our fast DEMO login!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, "Create New Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "border-div"
@@ -3783,7 +3755,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Jello lets you collaboratively work with others and get projects done."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Jello's boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible, and rewarding way.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-1-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.splashmain,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/splashmain.png",
         alt: "Main Splash"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-1-links"
@@ -3806,7 +3778,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, "Start Now \u2192")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-img-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.splashmain2,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/splashmain2.png",
         alt: "Right Splash"
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "splash-2-section"
@@ -3815,7 +3787,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-img-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.splashmain3,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/splashphone.png",
         alt: "Left Splash"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-2-content"
@@ -3830,26 +3802,26 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Work Smarter with Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Fictional companies of all shapes and sizes use Jello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "@FREEPIKCOMPANY")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-p-imgs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.filmIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/film-strip.svg",
         alt: "logo film"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.vgIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/videogame.svg",
         alt: "logo video"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.bballIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/basketball.svg",
         alt: "logo bball"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.teaIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/bubble-tea.svg",
         alt: "logo btea"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.bagIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/shopping-bag.svg",
         alt: "logo shop"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.bowlIcon,
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/bowling.svg",
         alt: "logo bowl"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.bballIcon,
-        alt: "logo bowl"
+        src: "https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/videogame.svg",
+        alt: "logo video"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-p-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {

@@ -65,6 +65,10 @@
   cursor: pointer;
 }
 
+.board-list-item > div > span {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .board-list-item > a, .board-list-item#create-board-li {
   margin-right: 0;
   border-radius: 3px;
@@ -79,6 +83,8 @@
 .board-list-item > a {
   background-color: #0079bf;
   color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
 }
 
 .board-list-item > a:hover {

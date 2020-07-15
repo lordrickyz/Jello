@@ -3,9 +3,25 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 import BoardNavContainer from '../navbar/board_nav/board_nav_container'
+import { connect } from "react-redux";
+import { fetchBoards } from "../../actions/board_actions";
+import { openModal, closeModal } from "../../actions/modal_actions";
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.id,
+    boards: Object.keys(state.entities.boards).map(
+      (id) => state.entities.boards[id]
+    ),
+  };
+};
 
-export default class BoardIndex extends React.Component {
+const mapDispatchToProps = (dispatch) => ({
+  fetchBoards: () => dispatch(fetchBoards()),
+  openModal: (modal) => dispatch(openModal(modal)),
+});
+
+class BoardIndex extends React.Component {
   constructor(props) {
     super(props);
 
@@ -70,3 +86,5 @@ export default class BoardIndex extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoardIndex);

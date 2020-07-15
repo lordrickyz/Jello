@@ -64,7 +64,7 @@ class BoardNav extends React.Component {
         </div>
         <div className="float-middle">
           <Link to='/' className="board-nav-logo">
-          <img src={window.boardnav} alt="logo jello" />
+          <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/boardnav.png"} alt="logo jello" />
             Jello
           </Link>
         </div>

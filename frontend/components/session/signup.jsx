@@ -58,11 +58,11 @@ class Signup extends React.Component {
     return (
       <section className="signup-back">
         <div className="div-leftportal">
-          <img src={window.lpudding} className="leftportal" alt="left portal" />
+          <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionleft.png"} className="leftportal" alt="left portal" />
         </div>
 
         <div className="div-rightportal">
-          <img src={window.rpudding} className="rightportal" alt="right portal" />
+          <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionright.png"} className="rightportal" alt="right portal" />
         </div>
         
         <SessionFoot />
@@ -70,7 +70,7 @@ class Signup extends React.Component {
         <div className= "session-form-signup">
           <div className='session-logo-signup'>
             <Link to='/' className="signup-logo">
-              <img src={window.puddingIcon} alt="logo jello" />
+              <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/pudding.svg"} alt="logo jello" />
               <h2>Jello</h2>
             </Link>
           </div>
@@ -101,7 +101,7 @@ class Signup extends React.Component {
             placeholder=" Enter a Password"
             onChange={this.handleInput('password')}
           />
-          <p>By signing up, you confirm that you've read and accepted our Terms of Service and Privacy Policy.</p>
+          <p>Lazy and Don't Want to Sign up? Click on "Already have an Account" to use our fast DEMO login!</p>
           <button onClick={this.handleSubmit}>Create New Account</button>
           <div className='border-div'></div>
           <Link to='/login' className='form-login'>Already have an account? Log In</Link>

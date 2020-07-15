@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import { createCard } from "../../actions/cards_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class NewCardForm extends React.Component {
+class CardForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,4 +64,4 @@ class NewCardForm extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewCardForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardForm));

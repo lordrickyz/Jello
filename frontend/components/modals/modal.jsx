@@ -3,7 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import UserMenu from '../navbar/board_nav/user_menu';
 import BoardMenu from '../navbar/board_nav/board_menu';
-import BoardForm from '../boards/board_form_container';
+import BoardForm from '../boards/board_form';
 import BoardShowMenu from '../boards/board_show_menu';
 import CardShowContainer from '../card/card_show';
 

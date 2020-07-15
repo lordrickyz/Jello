@@ -58,11 +58,11 @@ class Login extends React.Component {
     return (
       <section className="login-back">
       <div className="div-leftportal">
-        <img src={window.lpudding} className="leftportal" alt="left portal" />
+        <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionleft.png"} className="leftportal" alt="left portal" />
       </div>
 
       <div className="div-rightportal">
-        <img src={window.rpudding} className="rightportal" alt="right portal" />
+        <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/sessionright.png"} className="rightportal" alt="right portal" />
       </div>
 
         <SessionFoot />
@@ -70,7 +70,7 @@ class Login extends React.Component {
       <div className="session-form-login">
         <div className='session-logo-login'>
           <Link to='/' className="login-logo">
-            <img src={window.puddingIcon} alt="logo jello" />
+            <img src={"https://raw.githubusercontent.com/lordrickyz/Jello/lists/app/assets/images/pudding.svg"} alt="logo jello" />
             <h2>Jello</h2>
           </Link>
         </div>

@@ -175,6 +175,7 @@
   right: 3px;
   top: 45px;
   padding: 3px 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .user-options > li {
@@ -186,10 +187,19 @@
   background-color: rgba(22, 22, 22, 0.05);
 }
 
+.user-options > li > a {
+  color: black;
+}
+
 #user-options-title{
   color: rgba(58, 56, 56, 0.735);
   text-align: center;
   cursor: text;
+  padding-left: 5px;
+}
+
+#user-link-svg {
+  padding-right: 10px;
 }
 
 #user-options-title:hover{

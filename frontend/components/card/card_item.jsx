@@ -41,7 +41,7 @@ class CardItem extends React.Component {
             {...provided.dragHandleProps}
           >
             <div onClick={() => this.props.openCardShowModal(this.state.id)}>
-              <span>{this.state.title}</span>
+              <span id={"card-item-title"}>{this.state.title}</span>
             </div>
           </div>
         )}

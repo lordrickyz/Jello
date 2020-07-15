@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import { createList } from "../../actions/lists_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class NewListForm extends React.Component {
+class ListForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,4 +65,4 @@ class NewListForm extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewListForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListForm));

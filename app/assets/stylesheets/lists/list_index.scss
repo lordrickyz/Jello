@@ -4,6 +4,8 @@
 }
 .board-content {
   display: flex;
+  padding-top: 10px;
+  background: linear-gradient(90deg,#2585d3,#0a4364);
   height: 90vh;
   overflow-y: scroll;
   scrollbar-width: none;

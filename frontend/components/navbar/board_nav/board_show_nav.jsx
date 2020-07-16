@@ -83,6 +83,7 @@ class BoardShowNav extends React.Component {
               onBlur={this.handleSubmit}
               value={this.state.title} />
           </form>
+          <div className="board-show-line"></div>
           <button id={'board-favorited'}><FontAwesomeIcon icon={faStar} /></button>
           <button id={'member-icon'}>{this.props.currentUser.username[0]}</button>
           {/* <button id={'board-invite-btn'}>Invite</button> */}

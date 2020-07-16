@@ -31,9 +31,10 @@
   color: hsla(0,0%,100%,.3);
   height: inherit;
   text-align: center;
+  width: 100%;
   a {
     color: rgba(255, 255, 255, 0.568);;
-    font-size: 33px;
+    font-size: 40px;
   }
 }
 
@@ -41,7 +42,7 @@
 .home-btn {
   background-color: hsla(0,0%,100%,.3);
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 28px;
   text-align: center;
   margin: auto; 
   padding: 7px;
@@ -59,9 +60,9 @@
 
 .board-nav-logo > img {
   overflow: hidden;
-  width: 33px;
+  width: 35px;
   margin-top: -8px;
-  height: 25px;
+  height: 27px;
   margin-right: 1px;
   vertical-align: middle;
   filter: invert(100%);
@@ -97,7 +98,8 @@
   color: white;
   margin-left: 3px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 18px;
+  width: 100px;
   font-weight: bolder;
 }
 
@@ -133,12 +135,12 @@
 .float-right > button {
   background-color: hsla(0,0%,100%,.3);
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 28px;
   text-align: center;
   margin: auto 2px; 
   padding: 5.5px;
   color: white;
-  width: 33px;
+  width: 44px;
   border-style: none;
 }
 
@@ -156,8 +158,8 @@
   color: black;
   background-color: whitesmoke;
   border-radius: 50%;
-  height: 33px;
-  font-size: 14px;
+  height: 44px;
+  font-size: 24px;
 }
 
 #user-options-btn:hover{
@@ -173,7 +175,7 @@
   margin-right: 3px;
   min-width: 300px;
   right: 3px;
-  top: 45px;
+  top: 55px;
   padding: 3px 0;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

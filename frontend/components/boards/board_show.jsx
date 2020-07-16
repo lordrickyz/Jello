@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router";
 import BoardShowNav from '../navbar/board_nav/board_show_nav';
 import BoardNavContainer from '../navbar/board_nav/board_nav_container'
 import ListIndexContainer from '../list/list_index';
@@ -67,4 +68,4 @@ class BoardShow extends React.Component {
 
 
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(BoardShow);
+export default withRouter(connect(mapStatetoProps,mapDispatchtoProps)(BoardShow));

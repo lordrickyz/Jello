@@ -55,7 +55,9 @@ class ListIndex extends React.Component {
     let currentList = listsFromProps.find((list) => list.prev_id === null);
     orderedLists.push(currentList.id);
     while (currentList.next_id !== null) {
-      currentList = listsFromProps.find((list) => list.id === currentList.next_id);
+      currentList = listsFromProps.find(
+        (list) => list.id === currentList.next_id
+      );
       orderedLists.push(currentList.id);
     }
     this.setState({ listOrder: orderedLists });

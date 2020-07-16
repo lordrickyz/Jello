@@ -56,7 +56,10 @@ class ListItem extends React.Component {
       this.orderCards();
     }
 
-    if (prevProps.cardDragResult !== this.props.cardDragResult && this.props.cardDragResult) {
+    if (
+      prevProps.cardDragResult !== this.props.cardDragResult &&
+      this.props.cardDragResult
+    ) {
       const { destination, source, draggableId } = this.props.cardDragResult;
       const draggedCardId = draggableId.slice(draggableId.search("_") + 1);
       const draggedCard = this.props.cards[draggedCardId];
@@ -74,10 +77,7 @@ class ListItem extends React.Component {
         };
         this.setState(newState);
         this.persistNewOrderToDB(draggedCard, destination.index, newCardOrder);
-      }
-
-      else if (source.droppableId !== destination.droppableId) {
-
+      } else if (source.droppableId !== destination.droppableId) {
         if (source.droppableId === `list_${this.state.id}`) {
           newCardOrder.splice(source.index, 1);
           const newState = {
@@ -85,9 +85,7 @@ class ListItem extends React.Component {
             cardOrder: newCardOrder,
           };
           this.setState(newState);
-        }
-
-        else if (destination.droppableId === `list_${this.state.id}`) {
+        } else if (destination.droppableId === `list_${this.state.id}`) {
           draggedCard.list_id = this.state.id;
           newCardOrder.splice(destination.index, 0, draggedCardId);
           const newState = {
@@ -135,18 +133,14 @@ class ListItem extends React.Component {
   orderCards() {
     if (Object.keys(this.props.cards).length === 0) return;
 
-    const cardsOnList = Object.values(this.props.cards).filter(
-      (card) => card.list_id === this.state.id
-    );
+    const cardsOnList = Object.values(this.props.cards).filter((card) => card.list_id === this.state.id);
     if (cardsOnList.length === 0) return;
 
     let orderedCards = [];
     let currentCard = cardsOnList.find((card) => card.prev_id === null);
     orderedCards.push(currentCard.id);
     while (currentCard.next_id !== null) {
-      currentCard = cardsOnList.find(
-        (card) => card.id === currentCard.next_id
-      );
+      currentCard = cardsOnList.find((card) => card.id === currentCard.next_id);
       orderedCards.push(currentCard.id);
     }
     this.setState({ cardOrder: orderedCards });
@@ -184,9 +178,8 @@ class ListItem extends React.Component {
   }
 
   deleteList() {
-    this.props.deleteList(this.props.list.id)
-    this.updateOtherList()
-
+    this.props.deleteList(this.props.list.id);
+    this.updateOtherList();
   }
 
   // updateOtherList() {

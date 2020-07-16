@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { fetchBoard } from "../../actions/board_actions";
+// import { fetchBoard } from "../../actions/board_actions";
 import { updateList, deleteList } from "../../actions/lists_actions";
 import { fetchCards, updateCard } from "../../actions/cards_actions";
 import CardItemContainer from "../card/card_item";
@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     updateList: (list) => dispatch(updateList(list)),
     fetchCards: (listId) => dispatch(fetchCards(listId)),
     updateCard: (card) => dispatch(updateCard(card)),
-    deleteList: (listId) => dispatch(deleteList(listId)),
-    fetchBoard: (boardId) => dispatch(fetchBoard(boardId)),
+    // deleteList: (listId) => dispatch(deleteList(listId)),
+    // fetchBoard: (boardId) => dispatch(fetchBoard(boardId)),
   };
 };
 
@@ -42,7 +42,7 @@ class ListItem extends React.Component {
     this.orderCards = this.orderCards.bind(this);
     this.constructCards = this.constructCards.bind(this);
     this.persistNewOrderToDB = this.persistNewOrderToDB.bind(this);
-    this.deleteList = this.deleteList.bind(this);
+    // this.deleteList = this.deleteList.bind(this);
     // this.updateOtherList = this.updateOtherList.bind(this);
   }
 
@@ -56,7 +56,10 @@ class ListItem extends React.Component {
       this.orderCards();
     }
 
-    if (prevProps.cardDragResult !== this.props.cardDragResult && this.props.cardDragResult) {
+    if (
+      prevProps.cardDragResult !== this.props.cardDragResult &&
+      this.props.cardDragResult
+    ) {
       const { destination, source, draggableId } = this.props.cardDragResult;
       const draggedCardId = draggableId.slice(draggableId.search("_") + 1);
       const draggedCard = this.props.cards[draggedCardId];
@@ -74,10 +77,7 @@ class ListItem extends React.Component {
         };
         this.setState(newState);
         this.persistNewOrderToDB(draggedCard, destination.index, newCardOrder);
-      }
-
-      else if (source.droppableId !== destination.droppableId) {
-
+      } else if (source.droppableId !== destination.droppableId) {
         if (source.droppableId === `list_${this.state.id}`) {
           newCardOrder.splice(source.index, 1);
           const newState = {
@@ -86,7 +86,7 @@ class ListItem extends React.Component {
           };
           this.setState(newState);
         }
-
+        // And add that card to its new list
         else if (destination.droppableId === `list_${this.state.id}`) {
           draggedCard.list_id = this.state.id;
           newCardOrder.splice(destination.index, 0, draggedCardId);
@@ -144,9 +144,7 @@ class ListItem extends React.Component {
     let currentCard = cardsOnList.find((card) => card.prev_id === null);
     orderedCards.push(currentCard.id);
     while (currentCard.next_id !== null) {
-      currentCard = cardsOnList.find(
-        (card) => card.id === currentCard.next_id
-      );
+      currentCard = cardsOnList.find((card) => card.id === currentCard.next_id);
       orderedCards.push(currentCard.id);
     }
     this.setState({ cardOrder: orderedCards });
@@ -180,33 +178,10 @@ class ListItem extends React.Component {
       card.next_id = newCardOrder[newIndex + 1];
     }
     this.props.updateCard(card);
-    this.orderCards();
   }
 
-  deleteList() {
-    this.props.deleteList(this.props.list.id)
-    this.updateOtherList()
-
-  }
-
-  // updateOtherList() {
-  //   if (Object.keys(this.props.lists).length === 0) return;
-  //   let listsFromProps = Object.values(this.props.lists);
-  //   for (let i = 0; i < listsFromProps.length; i++) {
-  //     let list = listsFromProps[i];
-
-  //     if (listsFromProps[0] === list) {
-  //       list.prev_id = null;
-  //       list.next_id = listsFromProps[1];
-  //     } else if (listsFromProps[i] === listsFromProps[listsFromProps.length - 1]) {
-  //       list.prev_id = listsFromProps[listsFromProps.length - 2];
-  //       list.next_id = null;
-  //     } else {
-  //       list.prev_id = listsFromProps[listsFromProps[i] - 1];
-  //       list.next_id = listsFromProps[listsFromProps[i] + 1];
-  //     }
-  //     this.props.updateList(list);
-  //   }
+  // deleteList() {
+  //   this.props.deleteList(this.props.list.id)
   // }
 
   render() {

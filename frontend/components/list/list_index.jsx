@@ -33,7 +33,6 @@ class ListIndex extends React.Component {
     this.constructLists = this.constructLists.bind(this);
     this.persistNewOrderToDB = this.persistNewOrderToDB.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
-    // this.updatedLists = this.updatedLists.bind(this);
   }
 
   componentDidMount() {

@@ -69,7 +69,8 @@
 }
 
 .splash-1-content > h1 {
-  font-size: 3.0rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.9rem;
   font-weight: bold;
   line-height: 1.2;
   margin-top: 0;
@@ -77,6 +78,7 @@
 }
 
 .splash-1-content > p {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5625rem;
   font-weight: 300;
   line-height: 1.5;
@@ -137,6 +139,7 @@
 }
 
 .splash-1-links {
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -153,7 +156,7 @@
   text-decoration: none;
   background-color: #61bd4f;
   color: white;
-  font-size: 1.5625rem;
+  font-size: 1.2625rem;
   line-height: 1.5;
 }
 
@@ -203,7 +206,8 @@
 }
 
 .splash-2-content > h2 {
-  font-size: 3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.9rem;
   font-weight: bold;
   line-height: 1.2;
   margin-top: 0;
@@ -211,7 +215,8 @@
 }
 
 .splash-2-content > p {
-  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
   font-weight: 300;
   line-height: 1.5;
   margin-top: 0;
@@ -219,6 +224,7 @@
 }
 
 .splash-2-link {
+  font-family: Arial, Helvetica, sans-serif;
   width: 30%;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
@@ -302,6 +308,7 @@
 
 .splash-dashboard {
   padding-left: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .splash-dashboard > h2 {
@@ -322,6 +329,8 @@
 
 
 .splash-3-link {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   width: 30%;
   padding: 0.75rem 1rem;
   border-radius: 0.25rem;
@@ -329,7 +338,7 @@
   text-decoration: none;
   background-color: #61bd4f;
   color: white;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.5;
   transition: all .2s ease-in-out;
   
@@ -388,7 +397,7 @@
 .splash-p-header > h2:nth-child(1) {
   font-size: 1.7rem;
   line-height: 1.5;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin-top: 0;
   margin-bottom: 0.23rem;
   text-align: center;
@@ -399,7 +408,7 @@
 .splash-p-header > p {
   font-size: 1rem;
   line-height: 1.5;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin-top: 5px;
   margin-bottom: 0.23rem;
   text-align: center;
@@ -417,6 +426,7 @@
 }
 
 .splash-p-links {
+  font-family: Arial, Helvetica, sans-serif;
   width: 100%;
   display: block;
   align-items: center;

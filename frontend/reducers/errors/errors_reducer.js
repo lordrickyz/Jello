@@ -9,7 +9,7 @@ const errorsReducer = combineReducers({
   session: sessionErrorsReducer,
   boards: boardErrorsReducer,
   lists: listErrorsReducer,
-  cards: cardErrorsReducer,
+  cards: cardErrorsReducer
 });
 
 export default errorsReducer;

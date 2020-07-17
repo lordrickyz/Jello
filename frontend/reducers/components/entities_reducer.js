@@ -8,7 +8,7 @@ const entitiesReducer = combineReducers({
   users: usersReducer,
   boards: boardsReducer,
   lists: listsReducer,
-  cards: cardsReducer,
+  cards: cardsReducer
 })
 
 export default entitiesReducer;

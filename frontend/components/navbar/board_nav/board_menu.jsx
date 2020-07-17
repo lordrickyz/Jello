@@ -6,24 +6,18 @@ import { faChalkboard } from '@fortawesome/free-solid-svg-icons';
 import { fetchBoards } from "../../../actions/board_actions";
 import { closeModal } from '../../../actions/modal_actions';
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     boards: state.entities.boards
-  };
-};
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+const mapDispatchToProps = (dispatch) => ({
     fetchBoards: () => dispatch(fetchBoards()),
     closeModal: () => dispatch(closeModal()),
-  };
-};
-
+});
 
 class BoardMenu extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   componentDidMount() {

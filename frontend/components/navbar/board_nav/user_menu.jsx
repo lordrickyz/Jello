@@ -5,17 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
-const msp = state => {
-  return {
+const mstp = state => ({
     currentUser: state.entities.users[state.session.id]
-  }
-}
+})
 
-const mdp = dispatch => {
-  return {
+const mdtp = dispatch => ({
     logoutUser: () => dispatch(logoutUser()),
-  }
-}
+})
 
 const UserMenu = (props) => {
   let username;
@@ -43,4 +39,4 @@ const UserMenu = (props) => {
   )
 }
 
-export default connect(msp, mdp)(UserMenu)
+export default connect(mstp, mdtp)(UserMenu)

@@ -1,48 +1,53 @@
 # Jello
 
-## Visit The Live Site
-
-[Click Me To Enter Live Site](https://jelloz.herokuapp.com/)
-
-![Jello splash page](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/readme-splash.png)
-
-## Introduction
-
-Jello is a Trello Clone. It offers collaborate tools to assist in project management and allows users to organize their workflow. Teams can easily manage their projects through a simple system of creating boards.
+## [<> Live Site <>](https://jelloz.herokuapp.com/)
 
 ![Jello splash gif](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/splashgif.gif)
 
+## Introduction:
 
-## Technologies
+Jello is a Trello Clone. It offers collaborate tools to assist in project management and allows users to organize their workflow. Teams can easily manage their projects through a system of creating boards.
 
-* Backend: Ruby on Rails, PostgreSQL
-* Frontend: React, Redux
-* Hosting: Heroku
-* Additional technologies:
-  * [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd): adds drag and drop functionality
-  * [@React-FontAwesome](https://github.com/FortAwesome/react-fontawesome) for icons.
+![Jello splash page](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/readme-splash.png)
 
-## Features
+
+## Technologies:
+#### Backend: 
+  * Ruby on Rails - v2.5.1
+  * PostgreSQL - v12
+#### Frontend: 
+  * React - ^16.13.1
+  * Redux - ^4.0.5
+  * Webpack - ^4.43.0
+#### Hosting: 
+  * Heroku
+#### Additional technologies:
+  * [BCrypt](https://github.com/codahale/bcrypt-ruby): for secure authentication- v3.1.7
+  * [React-Beautiful-DnD](https://github.com/atlassian/react-beautiful-dnd): adds drag and drop functionality - v13.0.0
+  * [@React-FontAwesome](https://github.com/FortAwesome/react-fontawesome): for icons - v0.1.11
+
+
+## Features:
 
 ### User Auth
 
 ![Sign Up Page](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/signup.png)
 
-Users can sign up or log in through the redirect buttons from top of the navigation bar. Users passwords are secured with BCrypt and session tokens are randomly generated and invalidated when logged out.
-
-## Boards
+Users can sign up or log in through the redirect buttons from top of the navigation bar. Users passwords are secured with BCrypt and session tokens are randomly generated and kept in cookies. These session tokens are invalidated when logged out.
 
 ### Board Create
 
 ![Create Board](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/createboard.gif)
 
+Users are able to create boards from the dashboard and are able to access the board to create lists and cards.
+
 ### Drag-and-Drop Lists and Cards
 
 ![Draggable](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/moveLists.gif)
 
-Users have a simple dashboard that includes their list of boards they already made. Users can create, edit, and delete their own boards for their designated projects.
+Users have a dashboard that includes their list of boards they already made. Users can create, edit, and delete their own boards for their designated projects.
 
-For lists to reposition themselves, every changes needs to be sorted out. Data  has to be sorted out first. 
+For lists to re-position themselves, every changes needs to be sorted out. Data  has to be sorted out first. 
 
 ```js
 // Sets our prev_id and next_id for first list in orderList 
@@ -61,6 +66,11 @@ For lists to reposition themselves, every changes needs to be sorted out. Data  
   }
   this.props.updateList(list);
 ```
+
+![CreateCard](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/createCard.gif)
+
+Using the same functionality, users are able to drag and drop cards into different lists.
+We can sort them using:
 
 ```js
 sortList() {
@@ -84,11 +94,8 @@ Then while loop helps sort out next list and adds it to the last order. And fina
   this.setState({ listOrder: orderedLists });
 }
 ```
-### Cards
 
-![CreateCard](https://github.com/lordrickyz/Jello/blob/master/app/assets/readme/createCard.gif)
-
-## Future Updates
+## Future Updates:
 
 Jello will eventually be able to do the following:
 

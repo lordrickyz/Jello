@@ -15,7 +15,6 @@ class Card < ApplicationRecord
   end
 
   def updateCards(prev_id = nil, next_id = nil)
-
     old_prev_card = self.prev_card
     old_next_card = self.next_card
 

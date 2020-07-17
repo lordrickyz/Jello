@@ -15,7 +15,7 @@ class Board < ApplicationRecord
   through: :lists,
   source: :cards
 
-  def is_admin?(user) #basically owners of the board.
+  def is_admin?(user)
     user.id == self.admin_id
   end
 

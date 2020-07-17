@@ -5,7 +5,7 @@ import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 import BoardNavContainer from '../navbar/board_nav/board_nav_container'
 import { connect } from "react-redux";
 import { fetchBoards } from "../../actions/board_actions";
-import { openModal, closeModal } from "../../actions/modal_actions";
+import { openModal } from "../../actions/modal_actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchBoards: () => dispatch(fetchBoards()),
-  openModal: (modal) => dispatch(openModal(modal)),
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 class BoardIndex extends React.Component {
@@ -26,14 +26,14 @@ class BoardIndex extends React.Component {
     super(props);
 
     this.renderBoards = this.renderBoards.bind(this);
-    this.CreateBoardModal = this.CreateBoardModal.bind(this)
+    this.createBoardModal = this.createBoardModal.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchBoards();
   }
 
-  CreateBoardModal() {
+  createBoardModal() {
     this.props.openModal("create-board")
   }
 
@@ -51,7 +51,7 @@ class BoardIndex extends React.Component {
       return (
         <ul className="boards-list">
           {boardItems}
-          <li className="board-list-item" key="create-board-li" id="create-board-li" onClick={this.CreateBoardModal}>
+          <li className="board-list-item" key="create-board-li" id="create-board-li" onClick={this.createBoardModal}>
             <div><span>Create New Board</span></div>
           </li>
         </ul>
@@ -59,7 +59,7 @@ class BoardIndex extends React.Component {
     } else {
       return (
         <ul className="boards-list">
-          <li className="board-list-item" key="create-board-li" id="create-board-li" onClick={this.CreateBoardModal} >
+          <li className="board-list-item" key="create-board-li" id="create-board-li" onClick={this.createBoardModal} >
             <div><span>Create New Board</span></div>
           </li>
         </ul>

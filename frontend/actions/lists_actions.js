@@ -18,21 +18,17 @@ export const receiveList = ({list}) => ({
 
 export const removeList = ({list}) => ({
   type: REMOVE_LIST,
-  list,
+  list
 });
 
-export const receiveErrors = (errors) => {
-  return {
+export const receiveErrors = (errors) => ({
     type: RECEIVE_LIST_ERRORS,
-    errors,
-  };
-};
+    errors
+});
 
-export const clearErrors = () => {
-  return {
+export const clearErrors = () => ({
     type: CLEAR_LIST_ERRORS,
-  };
-};
+});
 
 export const fetchLists = (boardId) => dispatch => ListAPIUtil.fetchLists(boardId)
     .then(lists => dispatch(receiveLists(lists)))

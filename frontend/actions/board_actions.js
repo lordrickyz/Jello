@@ -6,17 +6,16 @@ export const REMOVE_BOARD = 'REMOVE_BOARD';
 export const RECEIVE_BOARD_ERRORS = "RECEIVE_BOARD_ERRORS";
 export const CLEAR_BOARD_ERRORS = "CLEAR_BOARD_ERRORS";
 
-
 export const receiveBoards = (boards) =>  ({
   type: RECEIVE_BOARDS,
   boards
 })
 
-export const receiveBoard = (payload) => ({
+export const receiveBoard = (data) => ({
   type: RECEIVE_BOARD,
-  board: payload.board,
-  lists: payload.lists,
-  cards: payload.cards,
+  board: data.board,
+  lists: data.lists,
+  cards: data.cards,
 })
 
 export const removeBoard = ({board}) => ({

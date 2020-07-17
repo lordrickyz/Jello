@@ -12,7 +12,7 @@ export const receiveCards = (cards) => ({
 
 export const receiveCard = (card) => ({
   type: RECEIVE_CARD,
-  card,
+  card
 });
 
 export const receiveErrors = (errors) => ({
@@ -27,7 +27,6 @@ export const clearErrors = () => ({
 export const fetchCards = (listId) => dispatch => CardAPIUtil.fetchCards(listId)
   .then((cards) => dispatch(receiveCards(cards)))
   .fail((errors) => dispatch(receiveErrors(errors.responseJSON)));
-
 
 export const fetchCard = (cardId) => dispatch => CardAPIUtil.fetchCard(cardId)
   .then((card) => dispatch(receiveCard(card)))
